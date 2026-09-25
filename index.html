@@ -1,339 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>رحلتي السعودية | طيران وفنادق وعروض سفر</title>
-<meta name="description" content="رحلتي السعودية لخدمات السفر والطيران والفنادق والباقات السياحية. خطط رحلتك بسهولة من مكان واحد.">
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>رحلتي السعودية | خطط رحلتك بسهولة</title>
+<meta name="description" content="رحلتي السعودية: منصة عربية تساعدك على تخطيط رحلتك، استكشاف الوجهات، وتجهيز طلب الطيران والفندق والباقات من مكان واحد.">
+<meta name="theme-color" content="#063d48">
+<meta property="og:title" content="رحلتي السعودية"><meta property="og:description" content="خطط رحلتك القادمة بسهولة من مكان واحد."><meta property="og:type" content="website">
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:#f5f8f9;
-  color:#17252b;
-}
-header{
-  background:#063d48;
-  color:white;
-  padding:18px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  font-size:25px;
-  font-weight:bold;
-}
-nav a{
-  color:white;
-  text-decoration:none;
-  margin:0 9px;
-}
-.hero{
-  background:linear-gradient(135deg,#064b59,#0799a4);
-  color:white;
-  padding:55px 6% 70px;
-  text-align:center;
-}
-.hero h1{
-  font-size:38px;
-  margin:10px 0;
-}
-.hero p{
-  font-size:19px;
-  line-height:1.8;
-}
-.tabs{
-  margin:30px auto 0;
-}
-.tabs span{
-  display:inline-block;
-  background:rgba(255,255,255,.18);
-  padding:11px 18px;
-  border-radius:25px;
-  margin:4px;
-}
-.searchbox{
-  max-width:1000px;
-  margin:25px auto 0;
-  background:white;
-  padding:22px;
-  border-radius:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.18);
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  text-align:right;
-}
-.field label{
-  color:#344;
-  display:block;
-  margin-bottom:7px;
-  font-weight:bold;
-}
-.field input,.field select{
-  width:100%;
-  padding:14px;
-  border:1px solid #d6dfe1;
-  border-radius:11px;
-  font-size:16px;
-  background:white;
-}
-.searchbtn{
-  grid-column:1/-1;
-  border:0;
-  background:#ffb000;
-  color:#17252b;
-  font-size:19px;
-  font-weight:bold;
-  padding:16px;
-  border-radius:12px;
-  cursor:pointer;
-}
-section{
-  padding:48px 6%;
-}
-.section-title{
-  text-align:center;
-  font-size:29px;
-  margin-bottom:28px;
-}
-.cards{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.card{
-  background:white;
-  border-radius:18px;
-  padding:28px 20px;
-  box-shadow:0 5px 22px rgba(0,0,0,.08);
-  text-align:center;
-}
-.icon{
-  font-size:45px;
-}
-.card h3{
-  color:#056d77;
-}
-.card p{
-  line-height:1.8;
-  color:#58666a;
-}
-.card button{
-  background:#087f89;
-  color:white;
-  border:0;
-  border-radius:10px;
-  padding:11px 22px;
-  font-weight:bold;
-}
-.why{
-  background:#e8f5f5;
-}
-.request{
-  max-width:700px;
-  margin:auto;
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 5px 22px rgba(0,0,0,.08);
-}
-.request input,.request textarea{
-  width:100%;
-  margin:7px 0;
-  padding:14px;
-  border:1px solid #d6dfe1;
-  border-radius:10px;
-  font-size:16px;
-}
-.request button{
-  width:100%;
-  padding:15px;
-  margin-top:8px;
-  background:#087f89;
-  border:0;
-  color:white;
-  border-radius:10px;
-  font-size:18px;
-  font-weight:bold;
-}
-.ai{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:#ffb000;
-  color:#17252b;
-  padding:14px 18px;
-  border-radius:30px;
-  font-weight:bold;
-  box-shadow:0 5px 20px rgba(0,0,0,.2);
-}
-footer{
-  background:#063d48;
-  color:white;
-  text-align:center;
-  padding:30px 15px;
-  line-height:2;
-}
-@media(max-width:760px){
-  nav{display:none}
-  .hero h1{font-size:31px}
-  .searchbox{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
-}
+:root{--navy:#063d48;--teal:#087f89;--teal2:#0aa4a7;--gold:#ffb000;--bg:#f4f8f9;--ink:#14272c;--muted:#62757a;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(6,61,72,.96);color:#fff;padding:14px 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px #0002}
+.logo{font-size:23px;font-weight:800}.nav{display:flex;gap:22px;align-items:center}.nav a{font-size:14px}.nav .cta{background:var(--gold);color:#17252b;padding:10px 16px;border-radius:12px;font-weight:800}
+.hero{background:radial-gradient(circle at 20% 20%,#11aeb0 0,transparent 28%),linear-gradient(135deg,#063d48,#087f89);color:#fff;padding:72px 6% 95px;text-align:center}
+.badge{display:inline-block;padding:8px 14px;border:1px solid #ffffff55;background:#ffffff14;border-radius:99px;font-size:13px}.hero h1{font-size:clamp(34px,6vw,58px);margin:18px auto 10px;max-width:900px;line-height:1.25}.hero p{font-size:18px;line-height:1.9;max-width:760px;margin:0 auto;color:#e8ffff}
+.booking{max-width:1080px;margin:-52px auto 0;background:#fff;border-radius:24px;box-shadow:0 18px 55px #0b30362c;padding:20px}
+.tabs{display:flex;gap:8px;margin-bottom:16px;overflow:auto}.tab{border:0;background:#edf5f5;padding:11px 18px;border-radius:12px;font-weight:800;white-space:nowrap;cursor:pointer}.tab.active{background:var(--navy);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.field{text-align:right}.field label{display:block;font-size:13px;font-weight:800;margin:0 3px 7px}.field input,.field select{width:100%;border:1px solid #d7e1e3;border-radius:12px;padding:14px;background:#fff;outline:none}.field input:focus,.field select:focus{border-color:var(--teal)}
+.go{grid-column:1/-1;border:0;background:var(--gold);padding:15px;border-radius:13px;font-weight:900;cursor:pointer;color:#17252b}
+.notice{font-size:12px;color:var(--muted);margin:12px 4px 0;line-height:1.7}
+section{padding:62px 6%}.head{text-align:center;margin-bottom:30px}.head h2{font-size:30px;margin:0 0 9px}.head p{color:var(--muted);margin:0;line-height:1.8}
+.cards{max-width:1120px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border-radius:20px;padding:26px;box-shadow:0 7px 26px #153a4012;border:1px solid #e8eff0}.icon{font-size:40px}.card h3{margin:14px 0 8px;color:#076d76}.card p{color:var(--muted);line-height:1.8;margin:0}.card .link{display:inline-block;margin-top:16px;color:var(--teal);font-weight:800}
+.destinations{background:#e9f6f6}.dest-grid{max-width:1120px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.dest{background:#fff;border-radius:18px;padding:22px;text-align:center;border:1px solid #dfecec}.dest b{display:block;font-size:18px;margin:9px}.dest span{font-size:13px;color:var(--muted)}
+.steps{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{text-align:center}.num{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin:auto;background:var(--navy);color:#fff;font-weight:900}.step h3{margin:13px 0 6px}.step p{color:var(--muted);line-height:1.7}
+.request-wrap{background:linear-gradient(135deg,#063d48,#087f89);color:#fff}.request{max-width:760px;margin:auto;background:#fff;color:var(--ink);padding:28px;border-radius:22px;box-shadow:0 14px 45px #0002}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.request input,.request textarea,.request select{width:100%;padding:14px;border:1px solid #d7e1e3;border-radius:11px;background:#fff}.request textarea{grid-column:1/-1;resize:vertical}.send{grid-column:1/-1;border:0;background:var(--gold);padding:15px;border-radius:12px;font-weight:900;cursor:pointer}.result{display:none;margin-top:14px;background:#edf8f8;border-radius:12px;padding:14px;line-height:1.8;color:#31565d}
+.faq{max-width:850px;margin:auto}.faq details{background:#fff;margin:10px 0;border-radius:14px;padding:18px;border:1px solid #e3ebed}.faq summary{font-weight:800;cursor:pointer}.faq p{color:var(--muted);line-height:1.8}
+footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-height:2}.small{font-size:12px;color:#a9c5c8}
+.float{position:fixed;left:18px;bottom:18px;background:var(--gold);padding:13px 16px;border-radius:99px;box-shadow:0 8px 25px #0003;font-weight:900;z-index:10}
+@media(max-width:850px){.nav a:not(.cta){display:none}.grid{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.dest-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.hero{padding-top:52px}.booking{margin:-55px 14px 0}.formgrid{grid-template-columns:1fr}.request textarea,.send{grid-column:1}.float{font-size:13px}}
+@media(max-width:520px){.grid,.dest-grid{grid-template-columns:1fr}.hero h1{font-size:36px}.logo{font-size:19px}}
 </style>
 </head>
-
 <body>
-
-<header>
-  <div class="logo">✈ رحلتي السعودية</div>
-  <nav>
-    <a href="#booking">احجز رحلتك</a>
-    <a href="#services">خدماتنا</a>
-    <a href="#offers">العروض</a>
-    <a href="#contact">تواصل معنا</a>
-  </nav>
-</header>
-
-<div class="hero" id="booking">
-  <h1>وين وجهتك القادمة؟ 🌍</h1>
-  <p>خطط لرحلتك القادمة بسهولة — طيران وفنادق وباقات سياحية من مكان واحد.</p>
-
-  <div class="tabs">
-    <span>✈️ طيران</span>
-    <span>🏨 فنادق</span>
-    <span>🌴 طيران + فندق</span>
-  </div>
-
-  <div class="searchbox">
-    <div class="field">
-      <label>من أين؟</label>
-      <input type="text" placeholder="الدمام">
-    </div>
-
-    <div class="field">
-      <label>إلى أين؟</label>
-      <input type="text" placeholder="دبي، إسطنبول، لندن...">
-    </div>
-
-    <div class="field">
-      <label>تاريخ الذهاب</label>
-      <input type="date">
-    </div>
-
-    <div class="field">
-      <label>المسافرون</label>
-      <select>
-        <option>1 مسافر</option>
-        <option>2 مسافرين</option>
-        <option>3 مسافرين</option>
-        <option>4 مسافرين</option>
-        <option>5+ مسافرين</option>
-      </select>
-    </div>
-
-    <button class="searchbtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      🔍 ابحث عن رحلتك
-    </button>
-  </div>
+<header><div class="logo">✈ رحلتي السعودية</div><nav class="nav"><a href="#services">الخدمات</a><a href="#destinations">وجهات</a><a href="#faq">الأسئلة</a><a class="cta" href="#request">خطط رحلتك</a></nav></header>
+<main>
+<section class="hero"><span class="badge">🇸🇦 منصة سفر عربية بسيطة وواضحة</span><h1>رحلتك تبدأ من هنا</h1><p>اختر وجهتك وموعدك، واجمع تفاصيل الطيران والفندق والباقات في طلب واحد مرتب.</p></section>
+<div class="booking" id="booking">
+<div class="tabs"><button class="tab active" data-type="طيران">✈️ طيران</button><button class="tab" data-type="فندق">🏨 فنادق</button><button class="tab" data-type="طيران + فندق">🌴 طيران + فندق</button></div>
+<div class="grid">
+<div class="field"><label>من أين؟</label><input id="from" placeholder="مثال: الدمام"></div>
+<div class="field"><label>إلى أين؟</label><input id="to" placeholder="مثال: دبي أو إسطنبول"></div>
+<div class="field"><label>تاريخ السفر</label><input id="date" type="date"></div>
+<div class="field"><label>المسافرون</label><select id="people"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select></div>
+<button class="go" id="planBtn">🔎 جهّز طلب رحلتي</button>
 </div>
-
-<section id="services">
-  <h2 class="section-title">كل احتياجات رحلتك في مكان واحد</h2>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">✈️</div>
-      <h3>تذاكر الطيران</h3>
-      <p>ابحث عن خيارات الرحلات المناسبة لوجهتك وموعد سفرك.</p>
-      <button onclick="location.href='#contact'">اطلب رحلة</button>
-    </div>
-
-    <div class="card">
-      <div class="icon">🏨</div>
-      <h3>حجوزات الفنادق</h3>
-      <p>اختر الفندق المناسب لميزانيتك واحتياجات رحلتك.</p>
-      <button onclick="location.href='#contact'">اطلب فندق</button>
-    </div>
-
-    <div class="card">
-      <div class="icon">🌴</div>
-      <h3>باقات السفر</h3>
-      <p>طيران وفندق وخيارات سياحية ضمن طلب واحد سهل.</p>
-      <button onclick="location.href='#contact'">اطلب باقة</button>
-    </div>
-  </div>
-</section>
-
-<section class="why" id="offers">
-  <h2 class="section-title">لماذا رحلتي السعودية؟</h2>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">⚡</div>
-      <h3>سهولة وسرعة</h3>
-      <p>أرسل تفاصيل رحلتك خلال دقائق بدون تعقيد.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💬</div>
-      <h3>مساعد رحلات</h3>
-      <p>نجهز الموقع لاستقبال استفسارات السفر ومساعدتك في اختيار الرحلة.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🔒</div>
-      <h3>وضوح وأمان</h3>
-      <p>لا يتم عرض أسعار أو توفر غير مؤكد؛ تفاصيل الحجز النهائية تعتمد على مزود الخدمة.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="section-title">اطلب عرض رحلتك</h2>
-
-  <form class="request"
-        name="travel-request"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field">
-
-    <input type="hidden" name="form-name" value="travel-request">
-
-    <p style="display:none">
-      <label>لا تملأ هذه الخانة:
-        <input name="bot-field">
-      </label>
-    </p>
-
-    <input name="name" type="text" placeholder="الاسم" required>
-    <input name="phone" type="tel" placeholder="رقم الجوال" required>
-    <input name="destination" type="text" placeholder="الوجهة المطلوبة" required>
-    <input name="dates" type="text" placeholder="موعد السفر">
-    <input name="budget" type="text" placeholder="الميزانية التقريبية">
-
-    <textarea name="details" rows="5"
-      placeholder="اكتب تفاصيل الرحلة: عدد المسافرين، الفندق، الطيران وأي طلبات أخرى"></textarea>
-
-    <button type="submit">إرسال طلب الرحلة ✈️</button>
-  </form>
-</section>
-
-<div class="ai" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-  💬 مساعد الرحلات
+<p class="notice">رحلتي السعودية حاليًا أداة لتجهيز واستقبال طلبات السفر وليست محرك حجز مباشر. الأسعار والتوفر النهائيان يعتمدان على مزود الخدمة.</p>
 </div>
-
-<footer>
-  <strong>✈ رحلتي السعودية</strong><br>
-  طيران • فنادق • باقات سياحية<br>
-  © 2026 رحلتي السعودية — جميع الحقوق محفوظة
-</footer>
-
-</body>
-</html>
+<section id="services"><div class="head"><h2>كل احتياجات الرحلة في مكان واحد</h2><p>واجهة سهلة تساعدك على ترتيب طلبك قبل الحجز.</p></div>
+<div class="cards">
+<article class="card"><div class="icon">✈️</div><h3>رحلات الطيران</h3><p>جهّز مدينة المغادرة والوجهة والتاريخ وعدد المسافرين في ثوانٍ.</p><a class="link" href="#booking">ابدأ الطلب ←</a></article>
+<article class="card"><div class="icon">🏨</div><h3>الفنادق</h3><p>حدد وجهتك واحتياجات الإقامة والميزانية لتكوين طلب واضح.</p><a class="link" href="#request">اطلب فندق ←</a></article>
+<article class="card"><div class="icon">🌴</div><h3>باقات السفر</h3><p>اجمع الطيران والفندق والطلبات الإضافية في نموذج واحد.</p><a class="link" href="#request">جهّز باقتك ←</a></article>
+</div></section>
+<section class="destinations" id="destinations"><div class="head"><h2>وجهات يبحث عنها المسافرون</h2><p>أفكار سريعة لرحلتك القادمة.</p></div>
+<div class="dest-grid"><div class="dest">🇦🇪<b>دبي</b><span>تسوق • عائلة • فعاليات</span></div><div class="dest">🇹🇷<b>إسطنبول</b><span>طبيعة • أسواق • تاريخ</span></div><div class="dest">🇬🇧<b>لندن</b><span>مدينة • تسوق • معالم</span></div><div class="dest">🇲🇾<b>كوالالمبور</b><span>عائلة • طبيعة • استجمام</span></div></div></section>
+<section><div class="head"><h2>كيف تعمل؟</h2><p>ثلاث خطوات بسيطة.</p></div><div class="steps"><div class="step"><div class="num">1</div><h3>حدد وجهتك</h3><p>أدخل المدن والتاريخ وعدد المسافرين.</p></div><div class="step"><div class="num">2</div><h3>أضف التفاصيل</h3><p>اكتب احتياجات الفندق والميزانية وأي طلبات أخرى.</p></div><div class="step"><div class="num">3</div><h3>جهّز الطلب</h3><p>نرتب التفاصيل في صيغة واضحة لتسهيل متابعة الحجز.</p></div></div></section>
+<section class="request-wrap" id="request"><div class="head"><h2>جهّز طلب رحلتك</h2><p style="color:#dff">أدخل البيانات، وسنرتب لك ملخصًا جاهزًا للنسخ والمشاركة.</p></div>
+<div class="request"><div class="formgrid">
+<input id="name" placeholder="الاسم"><input id="phone" type="tel" placeholder="رقم الجوال">
+<input id="dest" placeholder="الوجهة المطلوبة"><input id="travelDate" type="date">
+<select id="budget"><option value="">الميزانية التقريبية</option><option>اقتصادية</option><option>متوسطة</option><option>مرنة</option></select><select id="travellers"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select>
+<textarea id="details" rows="5" placeholder="تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال..."></textarea>
+<button class="send" id="makeRequest">✈️ إنشاء ملخص الطلب</button></div><div class="result" id="result"></div></div></section>
+<section id="faq"><div class="head"><h2>أسئلة شائعة</h2></div><div class="faq">
+<details><summary>هل الحجز والدفع يتمان داخل الموقع الآن؟</summary><p>لا. النسخة الحالية تساعد على تجهيز طلب السفر واستقبال التفاصيل. عند إضافة مزودي الحجز لاحقًا ستظهر خيارات الحجز الفعلي بوضوح.</p></details>
+<details><summary>هل الأسعار المعروضة مؤكدة؟</summary><p>لا نعرض سعرًا أو توفرًا على أنه مؤكد دون اتصال بمزود حجز. السعر النهائي يحدده مزود الخدمة وقت الحجز.</p></details>
+<details><summary>هل يعمل الموقع على الجوال؟</summary><p>نعم، التصميم متجاوب مع الجوال والكمبيوتر والأجهزة اللوحية.</p></details>
+</div></section>
+</main>
+<a class="float" href="#request">💬 جهّز رحلتك</a>
+<footer><strong>✈ رحلتي السعودية</strong><br>طيران • فنادق • باقات سفر<div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>النسخة الحالية للتخطيط وتجهيز الطلبات، وليست جهة إصدار تذاكر أو تأكيد حجوزات.</div></footer>
+<script>
+let tripType='طيران';document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type});
+document.getElementById('planBtn').onclick=()=>{let to=document.getElementById('to').value;document.getElementById('dest').value=to;document.getElementById('travelDate').value=document.getElementById('date').value;document.getElementById('travellers').value=document.getElementById('people').value;document.getElementById('request').scrollIntoView({behavior:'smooth'})};
+document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️\nالنوع: '+tripType+'\nالاسم: '+name+'\nالجوال: '+(document.getElementById('phone').value||'غير مذكور')+'\nالوجهة: '+dest+'\nالتاريخ: '+(document.getElementById('travelDate').value||'مرن')+'\nالمسافرون: '+document.getElementById('travellers').value+'\nالميزانية: '+(document.getElementById('budget').value||'غير محددة')+'\nالتفاصيل: '+(document.getElementById('details').value||'لا يوجد');let r=document.getElementById('result');r.style.display='block';r.innerHTML='<b>تم تجهيز طلبك:</b><br>'+t.replaceAll('\n','<br>')+'<br><br><button id="copyBtn" class="send">نسخ الطلب</button>';document.getElementById('copyBtn').onclick=async()=>{await navigator.clipboard.writeText(t);document.getElementById('copyBtn').textContent='✓ تم النسخ'}};
+</script>
+</body></html>
