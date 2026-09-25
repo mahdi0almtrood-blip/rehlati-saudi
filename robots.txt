@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rehlati-saudi.netlify.app/sitemap.xml
