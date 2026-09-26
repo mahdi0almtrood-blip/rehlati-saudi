@@ -6,8 +6,8 @@
 <meta name="description" content="رحلتي السعودية: منصة عربية تساعدك على تخطيط رحلتك، استكشاف الوجهات، وتجهيز طلب الطيران والفندق والباقات من مكان واحد.">
 <meta name="theme-color" content="#063d48">
 <meta property="og:title" content="رحلتي السعودية"><meta property="og:description" content="خطط رحلتك القادمة بسهولة من مكان واحد."><meta property="og:type" content="website">
-<meta property="og:url" content="https://rehlati-saudi.netlify.app/">
-<link rel="canonical" href="https://rehlati-saudi.netlify.app/">
+<meta property="og:url" content="https://mahdi0almtrood-blip.github.io/rehlati-saudi/">
+<link rel="canonical" href="https://mahdi0almtrood-blip.github.io/rehlati-saudi/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="رحلتي السعودية">
 <meta property="og:locale" content="ar_SA">
@@ -50,7 +50,8 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <div class="grid">
 <div class="field"><label>من أين؟</label><input id="from" placeholder="مثال: الدمام"></div>
 <div class="field"><label>إلى أين؟</label><input id="to" placeholder="مثال: دبي أو إسطنبول"></div>
-<div class="field"><label>تاريخ السفر</label><input id="date" type="date"></div>
+<div class="field"><label>تاريخ الذهاب</label><input id="date" type="date"></div>
+<div class="field"><label>تاريخ العودة</label><input id="returnDate" type="date"></div>
 <div class="field"><label>المسافرون</label><select id="people"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select></div>
 <a class="go" id="flightBookBtn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" style="text-align:center">✈️ ابحث واحجز طيران الآن</a>
 </div>
@@ -85,7 +86,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <a class="float" href="#request">💬 جهّز رحلتك</a>
 <footer><strong>✈ رحلتي السعودية</strong><br>طيران • إقامة • سيارات • توصيل مطار • نقل خاص • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
 <script>
-const today=new Date().toISOString().split('T')[0];document.getElementById('date').min=today;document.getElementById('travelDate').min=today;
+const today=new Date().toISOString().split('T')[0];const depart=document.getElementById('date'),ret=document.getElementById('returnDate');depart.min=today;ret.min=today;document.getElementById('travelDate').min=today;depart.addEventListener('change',()=>{ret.min=depart.value||today;if(ret.value&&ret.value<ret.min)ret.value='';});
 let tripType='طيران';const serviceBtn=document.getElementById('flightBookBtn');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type;serviceBtn.href=b.dataset.url;serviceBtn.textContent=b.dataset.label});
 document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️
 النوع: '+tripType+'
