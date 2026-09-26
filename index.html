@@ -12,7 +12,7 @@
 <meta name="author" content="رحلتي السعودية">
 <meta property="og:locale" content="ar_SA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="keywords" content="رحلات, طيران, فنادق, سياحة, السعودية, حجز سفر">
+<meta name="keywords" content="رحلات, طيران, فنادق, تأجير سيارات, توصيل مطار, أنشطة سياحية, السعودية, حجز سفر, ريال سعودي">
 <meta name="color-scheme" content="light">
 <style>
 :root{--navy:#063d48;--teal:#087f89;--teal2:#0aa4a7;--gold:#ffb000;--bg:#f4f8f9;--ink:#14272c;--muted:#62757a;--white:#fff}
@@ -74,7 +74,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <div class="request"><div class="formgrid">
 <input id="name" placeholder="الاسم"><input id="phone" type="tel" placeholder="رقم الجوال">
 <input id="dest" placeholder="الوجهة المطلوبة"><input id="travelDate" type="date">
-<select id="budget"><option value="">الميزانية التقريبية</option><option>اقتصادية</option><option>متوسطة</option><option>مرنة</option></select><select id="travellers"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select>
+<select id="budget"><option value="">الميزانية التقريبية (ر.س)</option><option>أقل من 2,000 ر.س</option><option>2,000 – 5,000 ر.س</option><option>5,000 – 10,000 ر.س</option><option>أكثر من 10,000 ر.س</option><option>مرنة</option></select><select id="travellers"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select>
 <textarea id="details" rows="5" placeholder="تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال..."></textarea>
 <button class="send" id="makeRequest">✈️ إنشاء ملخص الطلب</button></div><div class="result" id="result"></div></div></section>
 <section id="faq"><div class="head"><h2>أسئلة شائعة</h2></div><div class="faq">
@@ -84,7 +84,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 </div></section>
 </main>
 <a class="float" href="#request">💬 جهّز رحلتك</a>
-<footer><strong>✈ رحلتي السعودية</strong><br>طيران • إقامة • سيارات • توصيل مطار • نقل خاص • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
+<footer><strong>✈ رحلتي السعودية</strong><br><span class="small">العملة الأساسية في تقديرات الميزانية: الريال السعودي (SAR)</span><br>طيران • إقامة • سيارات • توصيل مطار • نقل خاص • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
 <script>
 const today=new Date().toISOString().split('T')[0];const depart=document.getElementById('date'),ret=document.getElementById('returnDate');depart.min=today;ret.min=today;document.getElementById('travelDate').min=today;depart.addEventListener('change',()=>{ret.min=depart.value||today;if(ret.value&&ret.value<ret.min)ret.value='';});
 let tripType='طيران';const serviceBtn=document.getElementById('flightBookBtn');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type;serviceBtn.href=b.dataset.url;serviceBtn.textContent=b.dataset.label});
