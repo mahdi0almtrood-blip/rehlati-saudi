@@ -8,7 +8,11 @@
 <meta property="og:title" content="رحلتي السعودية"><meta property="og:description" content="خطط رحلتك القادمة بسهولة من مكان واحد."><meta property="og:type" content="website">
 <meta property="og:url" content="https://mahdi0almtrood-blip.github.io/rehlati-saudi/">
 <link rel="canonical" href="https://mahdi0almtrood-blip.github.io/rehlati-saudi/">
-<meta name="robots" content="index,follow,max-image-preview:large">\n<meta name="author" content="رحلتي السعودية">\n<meta property="og:locale" content="ar_SA">\n<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="رحلتي السعودية">
+<meta property="og:locale" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="keywords" content="رحلات, طيران, فنادق, سياحة, السعودية, حجز سفر">
 <meta name="color-scheme" content="light">
 <style>
 :root{--navy:#063d48;--teal:#087f89;--teal2:#0aa4a7;--gold:#ffb000;--bg:#f4f8f9;--ink:#14272c;--muted:#62757a;--white:#fff}
@@ -33,7 +37,9 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 .float{position:fixed;left:18px;bottom:18px;background:var(--gold);padding:13px 16px;border-radius:99px;box-shadow:0 8px 25px #0003;font-weight:900;z-index:10}
 @media(max-width:850px){.nav a:not(.cta){display:none}.grid{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.dest-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.hero{padding-top:52px}.booking{margin:-55px 14px 0}.formgrid{grid-template-columns:1fr}.request textarea,.send{grid-column:1}.float{font-size:13px}}
 @media(max-width:520px){.grid,.dest-grid{grid-template-columns:1fr}.hero h1{font-size:36px}.logo{font-size:19px}}
-\n.partnerbar{max-width:1120px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.partner{background:#fff;border:1px solid #dfeaec;border-radius:14px;padding:16px;text-align:center;font-weight:800}.trust{max-width:1120px;margin:22px auto 0;text-align:center;color:var(--muted);font-size:13px}.copyrow{display:flex;gap:8px;margin-top:10px}.copyrow button{flex:1}@media(max-width:850px){.partnerbar{grid-template-columns:1fr 1fr}}\n</style>
+
+.partnerbar{max-width:1120px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.partner{background:#fff;border:1px solid #dfeaec;border-radius:14px;padding:16px;text-align:center;font-weight:800}.trust{max-width:1120px;margin:22px auto 0;text-align:center;color:var(--muted);font-size:13px}.copyrow{display:flex;gap:8px;margin-top:10px}.copyrow button{flex:1}@media(max-width:850px){.partnerbar{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
 <header><div class="logo">✈ رحلتي السعودية</div><nav class="nav"><a href="#services">الخدمات</a><a href="#destinations">وجهات</a><a href="#faq">الأسئلة</a><a class="cta" href="#request">خطط رحلتك</a></nav></header>
@@ -73,10 +79,20 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 </div></section>
 </main>
 <a class="float" href="#request">💬 جهّز رحلتك</a>
-<footer><strong>✈ رحلتي السعودية</strong><br>طيران • فنادق • باقات سفر<div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>النسخة الحالية للتخطيط وتجهيز الطلبات، وليست جهة إصدار تذاكر أو تأكيد حجوزات.</div></footer>
+<footer><strong>✈ رحلتي السعودية</strong><br>طيران • فنادق • باقات سفر<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
 <script>
+const today=new Date().toISOString().split('T')[0];document.getElementById('date').min=today;document.getElementById('travelDate').min=today;
 let tripType='طيران';document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type});
 document.getElementById('planBtn').onclick=()=>{let to=document.getElementById('to').value;document.getElementById('dest').value=to;document.getElementById('travelDate').value=document.getElementById('date').value;document.getElementById('travellers').value=document.getElementById('people').value;document.getElementById('request').scrollIntoView({behavior:'smooth'})};
-document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️\nالنوع: '+tripType+'\nالاسم: '+name+'\nالجوال: '+(document.getElementById('phone').value||'غير مذكور')+'\nالوجهة: '+dest+'\nالتاريخ: '+(document.getElementById('travelDate').value||'مرن')+'\nالمسافرون: '+document.getElementById('travellers').value+'\nالميزانية: '+(document.getElementById('budget').value||'غير محددة')+'\nالتفاصيل: '+(document.getElementById('details').value||'لا يوجد');let r=document.getElementById('result');r.style.display='block';r.innerHTML='<b>تم تجهيز طلبك:</b><br>'+t.replaceAll('\n','<br>')+'<br><br><button id="copyBtn" class="send">نسخ الطلب</button>';document.getElementById('copyBtn').onclick=async()=>{await navigator.clipboard.writeText(t);document.getElementById('copyBtn').textContent='✓ تم النسخ'}};
+document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️
+النوع: '+tripType+'
+الاسم: '+name+'
+الجوال: '+(document.getElementById('phone').value||'غير مذكور')+'
+الوجهة: '+dest+'
+التاريخ: '+(document.getElementById('travelDate').value||'مرن')+'
+المسافرون: '+document.getElementById('travellers').value+'
+الميزانية: '+(document.getElementById('budget').value||'غير محددة')+'
+التفاصيل: '+(document.getElementById('details').value||'لا يوجد');let r=document.getElementById('result');r.style.display='block';r.innerHTML='<b>تم تجهيز طلبك:</b><br>'+t.replaceAll('
+','<br>')+'<br><br><button id="copyBtn" class="send">نسخ الطلب</button>';document.getElementById('copyBtn').onclick=async()=>{await navigator.clipboard.writeText(t);document.getElementById('copyBtn').textContent='✓ تم النسخ'}};
 </script>
 </body></html>
