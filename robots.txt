@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://rehlati-saudi.netlify.app/sitemap.xml
+
+Sitemap: https://mahdi0almtrood-blip.github.io/rehlati-saudi/sitemap.txt
+Sitemap: https://mahdi0almtrood-blip.github.io/rehlati-saudi/sitemap.xml
