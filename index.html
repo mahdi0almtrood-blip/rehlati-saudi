@@ -46,7 +46,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <main>
 <section class="hero"><span class="badge">🇸🇦 منصة سفر عربية بسيطة وواضحة</span><h1>رحلتك تبدأ من هنا</h1><p>اختر وجهتك وموعدك، واجمع تفاصيل الطيران والفندق والباقات في طلب واحد مرتب.</p></section>
 <div class="booking" id="booking">
-<div class="tabs"><button class="tab active" data-type="طيران">✈️ طيران</button><button class="tab" data-type="فندق">🏨 فنادق</button><button class="tab" data-type="طيران + فندق">🌴 طيران + فندق</button></div>
+<div class="tabs"><button class="tab active" data-type="طيران" data-url="https://aviasales.tpx.li/4RrQgTGf" data-label="✈️ ابحث واحجز طيران الآن">✈️ طيران</button><button class="tab" data-type="فنادق وخدمات سفر" data-url="https://klook.tpx.li/7jFmO4s5" data-label="🏨 استكشف الإقامة وخدمات السفر">🏨 إقامة</button><button class="tab" data-type="تأجير سيارات" data-url="https://localrent.tpx.li/VvRRkzkU" data-label="🚗 احجز سيارة">🚗 سيارات</button><button class="tab" data-type="توصيل المطار" data-url="https://kiwitaxi.tpx.li/cX9iEn9B" data-label="🚕 احجز توصيل المطار">🚕 توصيل</button><button class="tab" data-type="أنشطة ومعالم" data-url="https://tiqets.tpx.li/95cmhjdm" data-label="🎟️ احجز أنشطة ومعالم">🎟️ أنشطة</button></div>
 <div class="grid">
 <div class="field"><label>من أين؟</label><input id="from" placeholder="مثال: الدمام"></div>
 <div class="field"><label>إلى أين؟</label><input id="to" placeholder="مثال: دبي أو إسطنبول"></div>
@@ -54,13 +54,16 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <div class="field"><label>المسافرون</label><select id="people"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select></div>
 <a class="go" id="flightBookBtn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" style="text-align:center">✈️ ابحث واحجز طيران الآن</a>
 </div>
-<p class="notice">يمكنك الآن الانتقال إلى شريك حجز الطيران للبحث عن الرحلات والأسعار وإتمام الحجز لديه. الأسعار والتوفر النهائيان يعتمدان على مزود الخدمة.</p>
+<p class="notice" id="bookingNotice">اختر الخدمة ثم انتقل إلى شريك الحجز لإتمام البحث والحجز لديه. الأسعار والتوفر والشروط النهائية يحددها مزود الخدمة.</p>
 </div>
-<section id="services"><div class="head"><h2>خدمات رحلتي السعودية</h2><p>جهّز طلب السفر الآن، ومع إضافة شركاء الحجز ستظهر خيارات الحجز والأسعار من مزودي الخدمة.</p></div><div class="partnerbar"><div class="partner">✈️ شركات الطيران</div><div class="partner">🏨 الفنادق</div><div class="partner">🚗 تأجير السيارات</div><div class="partner">🎟️ الأنشطة والباقات</div></div><p class="trust">لن نعرض سعرًا أو توفرًا على أنه مؤكد إلا بعد الربط بمزود حجز معتمد.</p><div class="head"><h2>كل احتياجات الرحلة في مكان واحد</h2><p>واجهة سهلة تساعدك على ترتيب طلبك قبل الحجز.</p></div>
+<section id="services"><div class="head"><h2>خدمات رحلتي السعودية</h2><p>روابط حجز فعلية لدى مزودي خدمات السفر، مع بقاء السعر والتوفر والدفع النهائي لدى كل مزود.</p></div><div class="partnerbar"><div class="partner">✈️ شركات الطيران</div><div class="partner">🏨 الفنادق</div><div class="partner">🚗 تأجير السيارات</div><div class="partner">🎟️ الأنشطة والباقات</div></div><p class="trust">لن نعرض سعرًا أو توفرًا على أنه مؤكد إلا بعد الربط بمزود حجز معتمد.</p><div class="head"><h2>كل احتياجات الرحلة في مكان واحد</h2><p>واجهة سهلة تساعدك على ترتيب طلبك قبل الحجز.</p></div>
 <div class="cards">
-<article class="card"><div class="icon">✈️</div><h3>رحلات الطيران</h3><p>ابحث عن الرحلات والأسعار ثم أكمل الحجز لدى مزود الخدمة.</p><a class="link" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">ابحث واحجز طيران ←</a></article>
-<article class="card"><div class="icon">🏨</div><h3>الفنادق</h3><p>حدد وجهتك واحتياجات الإقامة والميزانية لتكوين طلب واضح.</p><a class="link" href="#request">اطلب فندق ←</a></article>
-<article class="card"><div class="icon">🌴</div><h3>باقات السفر</h3><p>اجمع الطيران والفندق والطلبات الإضافية في نموذج واحد.</p><a class="link" href="#request">جهّز باقتك ←</a></article>
+<article class="card"><div class="icon">✈️</div><h3>رحلات الطيران</h3><p>ابحث عن الرحلات والأسعار وأكمل الحجز لدى Aviasales.</p><a class="link" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">ابحث عن طيران ←</a></article>
+<article class="card"><div class="icon">🏨</div><h3>الإقامة وخدمات السفر</h3><p>استكشف الخيارات المتاحة لدى Klook والخدمات المناسبة لوجهتك.</p><a class="link" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener">استكشف Klook ←</a></article>
+<article class="card"><div class="icon">🚗</div><h3>تأجير السيارات</h3><p>انتقل إلى Localrent لمقارنة خيارات تأجير السيارات المتاحة.</p><a class="link" href="https://localrent.tpx.li/VvRRkzkU" target="_blank" rel="sponsored noopener">استأجر سيارة ←</a></article>
+<article class="card"><div class="icon">🚕</div><h3>توصيل المطار</h3><p>احجز النقل من وإلى المطار عبر Kiwitaxi، مع خيار إضافي عبر INTUI.</p><a class="link" href="https://kiwitaxi.tpx.li/cX9iEn9B" target="_blank" rel="sponsored noopener">Kiwitaxi ←</a> · <a class="link" href="https://intui.tpx.li/dXvFTqlg" target="_blank" rel="sponsored noopener">INTUI ←</a></article>
+<article class="card"><div class="icon">🎟️</div><h3>الأنشطة والمعالم</h3><p>استكشف تذاكر المعالم والأنشطة السياحية المتاحة لدى Tiqets.</p><a class="link" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">استكشف الأنشطة ←</a></article>
+<article class="card"><div class="icon">🌴</div><h3>خطط رحلتك</h3><p>اجمع احتياجاتك في ملخص واحد مرتب قبل الانتقال لمزودي الخدمات.</p><a class="link" href="#request">جهّز طلبك ←</a></article>
 </div></section>
 <section class="destinations" id="destinations"><div class="head"><h2>وجهات يبحث عنها المسافرون</h2><p>أفكار سريعة لرحلتك القادمة.</p></div>
 <div class="dest-grid"><div class="dest">🇦🇪<b>دبي</b><span>تسوق • عائلة • فعاليات</span></div><div class="dest">🇹🇷<b>إسطنبول</b><span>طبيعة • أسواق • تاريخ</span></div><div class="dest">🇬🇧<b>لندن</b><span>مدينة • تسوق • معالم</span></div><div class="dest">🇲🇾<b>كوالالمبور</b><span>عائلة • طبيعة • استجمام</span></div></div></section>
@@ -73,17 +76,16 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <textarea id="details" rows="5" placeholder="تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال..."></textarea>
 <button class="send" id="makeRequest">✈️ إنشاء ملخص الطلب</button></div><div class="result" id="result"></div></div></section>
 <section id="faq"><div class="head"><h2>أسئلة شائعة</h2></div><div class="faq">
-<details><summary>هل الحجز والدفع يتمان داخل الموقع الآن؟</summary><p>لا. النسخة الحالية تساعد على تجهيز طلب السفر واستقبال التفاصيل. عند إضافة مزودي الحجز لاحقًا ستظهر خيارات الحجز الفعلي بوضوح.</p></details>
+<details><summary>أين يتم الحجز والدفع؟</summary><p>تختار الخدمة من رحلتي السعودية ثم تنتقل إلى مزود الخدمة الخارجي لإكمال البحث والحجز والدفع وفق شروطه.</p></details>
 <details><summary>هل الأسعار المعروضة مؤكدة؟</summary><p>لا نعرض سعرًا أو توفرًا على أنه مؤكد دون اتصال بمزود حجز. السعر النهائي يحدده مزود الخدمة وقت الحجز.</p></details>
 <details><summary>هل يعمل الموقع على الجوال؟</summary><p>نعم، التصميم متجاوب مع الجوال والكمبيوتر والأجهزة اللوحية.</p></details>
 </div></section>
 </main>
 <a class="float" href="#request">💬 جهّز رحلتك</a>
-<footer><strong>✈ رحلتي السعودية</strong><br>طيران • فنادق • باقات سفر<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
+<footer><strong>✈ رحلتي السعودية</strong><br>طيران • إقامة • سيارات • توصيل مطار • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
 <script>
 const today=new Date().toISOString().split('T')[0];document.getElementById('date').min=today;document.getElementById('travelDate').min=today;
-let tripType='طيران';document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type});
-document.getElementById('planBtn').onclick=()=>{let to=document.getElementById('to').value;document.getElementById('dest').value=to;document.getElementById('travelDate').value=document.getElementById('date').value;document.getElementById('travellers').value=document.getElementById('people').value;document.getElementById('request').scrollIntoView({behavior:'smooth'})};
+let tripType='طيران';const serviceBtn=document.getElementById('flightBookBtn');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type;serviceBtn.href=b.dataset.url;serviceBtn.textContent=b.dataset.label});
 document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️
 النوع: '+tripType+'
 الاسم: '+name+'
