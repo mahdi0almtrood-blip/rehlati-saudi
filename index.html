@@ -106,18 +106,19 @@ body{background:linear-gradient(180deg,#eef7f5 0,#f7faf9 38%,#eef4f3 100%)}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"يلا رحلة","alternateName":"رحلتي السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","inLanguage":"ar-SA","description":"BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك، من رحلتي السعودية. خدمات سفر وروابط حجز للطيران والإقامة والسيارات والتوصيل والنقل الخاص والأنشطة."}
 </script>
-<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
-(function () {
-var script = document.createElement("script");
-script.async = 1;
-script.type = "module";
-script.src = "https://tpwgts.com/wl_web/main.js?wl_id=22698";
-document.head.appendChild(script);
-window.TPWL_CONFIGURATION = {
-  ...window.TPWL_CONFIGURATION,
-  resultsURL: "https://mahdi0almtrood-blip.github.io/rehlati-saudi/"
+<link rel="preconnect" href="https://tpwgts.com" crossorigin>
+<link rel="dns-prefetch" href="//tpwgts.com">
+<script>
+window.TPWL_CONFIGURATION={...window.TPWL_CONFIGURATION,resultsURL:"https://mahdi0almtrood-blip.github.io/rehlati-saudi/"};
+window.loadYallaFlightEngine=function(){
+ if(window.__yallaFlightEngineLoading)return;
+ window.__yallaFlightEngineLoading=true;
+ var script=document.createElement("script");
+ script.async=true; script.type="module";
+ script.src="https://tpwgts.com/wl_web/main.js?wl_id=22698";
+ document.head.appendChild(script);
 };
-})();
+if(new URLSearchParams(location.search).has("flightSearch")) window.loadYallaFlightEngine();
 </script>
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
@@ -168,6 +169,7 @@ html[data-site-lang="ar"] body{direction:rtl}
 <script>
 (function(){
   const form=document.getElementById('yallaFlightSearch');
+  ['pointerdown','focusin','touchstart'].forEach(ev=>form.addEventListener(ev,()=>window.loadYallaFlightEngine&&window.loadYallaFlightEngine(),{once:true,passive:true}));
   const dep=document.getElementById('flightDepart'), ret=document.getElementById('flightReturn');
   const today=new Date(); today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
   const min=today.toISOString().slice(0,10); dep.min=min; ret.min=min;
