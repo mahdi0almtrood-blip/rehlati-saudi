@@ -89,6 +89,9 @@ window.loadYallaFlightEngine=function(){
  document.head.appendChild(script);
 };
 if(new URLSearchParams(location.search).has("flightSearch")) window.loadYallaFlightEngine();
+window.__yallaWarmBound=true;
+document.addEventListener("pointerdown",function(e){if(e.target.closest && e.target.closest("#yallaFlightSearch,#booking")) window.loadYallaFlightEngine();},{once:true,passive:true});
+document.addEventListener("focusin",function(e){if(e.target.closest && e.target.closest("#yallaFlightSearch,#booking")) window.loadYallaFlightEngine();},{once:true});
 </script>
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
