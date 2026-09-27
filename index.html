@@ -172,4 +172,37 @@ try{if(localStorage.getItem('yallaRehlaLang')==='en')setLanguage('en')}catch(e){
   };
 })();
 </script>
-</body></html>
+<script>
+(function(){
+const B=document.getElementById('langToggle');
+const dict=new Map();
+const skip=e=>e.closest('#tpwl-search,#tpwl-tickets,script,style')||e.id==='langToggle';
+const en={
+'الخدمات':'Services','وجهات':'Destinations','الأسئلة':'FAQ','خطط رحلتك':'Plan your trip',
+'من رحلتي السعودية':'by Rehlati Saudi','أسعار ترضيك… ورحلة تسعدك':'Great prices… happier journeys',
+'منصة سفر عربية بسيطة وواضحة':'A simple and clear travel platform','طيران':'Flights','إقامة':'Stays','سيارات':'Cars','توصيل':'Transfers','نقل خاص':'Private transfer','أنشطة':'Activities',
+'ابحث عن رحلتك':'Search for your flight','خدمات يلا رحلة':'Yalla Rehla Services','كل احتياجات الرحلة في مكان واحد':'Everything for your trip in one place',
+'رحلات الطيران':'Flights','الإقامة وخدمات السفر':'Hotels & Travel','تأجير السيارات':'Car Rental','توصيل المطار':'Airport Transfer','الأنشطة والمعالم':'Activities & Attractions',
+'خطط رحلتك':'Plan your trip','وجهات يبحث عنها المسافرون':'Popular destinations','أفكار سريعة لرحلتك القادمة.':'Ideas for your next trip.',
+'كيف تعمل؟':'How it works','ثلاث خطوات بسيطة.':'Three simple steps.','حدد وجهتك':'Choose your destination','أضف التفاصيل':'Add details','جهّز الطلب':'Prepare your request',
+'جهّز طلب رحلتك':'Prepare your trip request','أسئلة شائعة':'Frequently Asked Questions','دليل الوجهات السياحية':'Travel Destinations Guide',
+'حجز الطيران':'Flight Booking','كل خدمات رحلتك في مكان واحد':'All your travel services in one place','الدفع المرن عند مزود الحجز':'Flexible payment with the booking provider',
+'أدلة تساعدك في التخطيط للسفر':'Travel planning guides','ابدأ الحجز':'Start booking','سياسة الخصوصية':'Privacy Policy','الشروط والأحكام':'Terms & Conditions',
+'الاسم':'Name','رقم الجوال':'Mobile number','الوجهة المطلوبة':'Destination','تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال...':'Additional details: hotel, nights, flight class, children...'
+};
+function translateText(s){
+ let out=s;
+ Object.keys(en).sort((a,b)=>b.length-a.length).forEach(k=>{out=out.split(k).join(en[k])});
+ return out;
+}
+function apply(toEn){
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ let n; const nodes=[]; while(n=walker.nextNode())nodes.push(n);
+ nodes.forEach(n=>{const p=n.parentElement;if(!p||skip(p))return;if(!dict.has(n))dict.set(n,n.nodeValue);n.nodeValue=toEn?translateText(dict.get(n)):dict.get(n)});
+ document.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(el=>{if(!el.dataset.arPlaceholder)el.dataset.arPlaceholder=el.placeholder;if(toEn)el.placeholder=translateText(el.dataset.arPlaceholder);else el.placeholder=el.dataset.arPlaceholder});
+ document.documentElement.lang=toEn?'en':'ar';document.documentElement.dir=toEn?'ltr':'rtl';document.body.dir=toEn?'ltr':'rtl';B.textContent=toEn?'العربية':'English';B.dataset.lang=toEn?'en':'ar';
+}
+window.toggleSiteLanguage=function(){apply(B.dataset.lang!=='en')};
+B.onclick=window.toggleSiteLanguage;
+})();
+</script></body></html>
