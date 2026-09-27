@@ -136,10 +136,10 @@ html[data-site-lang="ar"] body{direction:rtl}
 <form id="yallaFlightSearch" class="yalla-flight-search">
   <div class="flight-fields">
     <label><span class="ar-only">من</span><span class="en-only">From</span>
-      <input id="flightFrom" list="flightCities" placeholder="الدمام DMM" required>
+      <select id="flightFrom" required><option value="">اختر مدينة المغادرة</option><option value="DMM">الدمام DMM</option><option value="RUH">الرياض RUH</option><option value="JED">جدة JED</option><option value="MED">المدينة MED</option><option value="CAI">القاهرة CAI</option><option value="DXB">دبي DXB</option><option value="AUH">أبوظبي AUH</option><option value="DOH">الدوحة DOH</option><option value="KWI">الكويت KWI</option><option value="MCT">مسقط MCT</option><option value="IST">إسطنبول IST</option><option value="LON">لندن LON</option><option value="PAR">باريس PAR</option><option value="ROM">روما ROM</option><option value="NYC">نيويورك NYC</option><option value="BKK">بانكوك BKK</option><option value="KUL">كوالالمبور KUL</option></select>
     </label>
     <label><span class="ar-only">إلى</span><span class="en-only">To</span>
-      <input id="flightTo" list="flightCities" placeholder="القاهرة CAI" required>
+      <select id="flightTo" required><option value="">اختر مدينة الوصول</option><option value="DMM">الدمام DMM</option><option value="RUH">الرياض RUH</option><option value="JED">جدة JED</option><option value="MED">المدينة MED</option><option value="CAI">القاهرة CAI</option><option value="DXB">دبي DXB</option><option value="AUH">أبوظبي AUH</option><option value="DOH">الدوحة DOH</option><option value="KWI">الكويت KWI</option><option value="MCT">مسقط MCT</option><option value="IST">إسطنبول IST</option><option value="LON">لندن LON</option><option value="PAR">باريس PAR</option><option value="ROM">روما ROM</option><option value="NYC">نيويورك NYC</option><option value="BKK">بانكوك BKK</option><option value="KUL">كوالالمبور KUL</option></select>
     </label>
     <label><span class="ar-only">تاريخ المغادرة</span><span class="en-only">Departure</span>
       <input id="flightDepart" type="date" required>
@@ -152,9 +152,6 @@ html[data-site-lang="ar"] body{direction:rtl}
     </label>
   </div>
   <button class="yalla-search-btn" type="submit"><span class="ar-only">🔍 البحث عن رحلات طيران</span><span class="en-only">🔍 Search flights</span></button>
-  <datalist id="flightCities">
-    <option value="الدمام DMM"><option value="الرياض RUH"><option value="جدة JED"><option value="المدينة MED"><option value="القاهرة CAI"><option value="دبي DXB"><option value="أبوظبي AUH"><option value="الدوحة DOH"><option value="الكويت KWI"><option value="مسقط MCT"><option value="إسطنبول IST"><option value="لندن LON"><option value="باريس PAR"><option value="روما ROM"><option value="نيويورك NYC"><option value="بانكوك BKK"><option value="كوالالمبور KUL">
-  </datalist>
 </form>
 <div id="tpwl-search" class="tpwl-native-hidden"></div>
 <section class="yalla-results-shell">
@@ -175,13 +172,13 @@ html[data-site-lang="ar"] body{direction:rtl}
   const today=new Date(); today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
   const min=today.toISOString().slice(0,10); dep.min=min; ret.min=min;
   dep.addEventListener('change',()=>{ret.min=dep.value||min;if(ret.value&&ret.value<dep.value)ret.value='';});
-  const code=v=>{const m=(v||'').toUpperCase().match(/(?:^|\s)([A-Z]{3})(?:$|\s)/);return m?m[1]:''};
+  const code=v=>(v||'').toUpperCase().trim();
   const ddmm=v=>{const p=v.split('-');return p[2]+p[1]};
   form.addEventListener('submit',e=>{
     e.preventDefault();
     const from=code(document.getElementById('flightFrom').value);
     const to=code(document.getElementById('flightTo').value);
-    if(!from||!to){alert('اختر مدينة من القائمة حتى يظهر رمز المطار مثل DMM أو CAI');return;}
+    if(!from||!to){alert(document.documentElement.lang==='en'?'Choose departure and destination from the lists':'اختر مدينة المغادرة والوجهة من القائمتين');return;}
     if(!dep.value){alert('اختر تاريخ المغادرة');return;}
     const back=ret.value?ddmm(ret.value):'';
     const adults=document.getElementById('flightAdults').value;
