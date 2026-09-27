@@ -20,7 +20,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
 a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}
 header{position:sticky;top:0;z-index:20;background:rgba(6,61,72,.96);color:#fff;padding:14px 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px #0002}
-.logo{font-size:32px;font-weight:900;letter-spacing:.2px}.logo .brand-main{font-size:1em;font-weight:900}.logo .brand-sub{font-size:12px;font-weight:500;opacity:.8;margin-right:7px}.nav{display:flex;gap:22px;align-items:center}.nav a{font-size:14px}.nav .cta{background:var(--gold);color:#17252b;padding:10px 16px;border-radius:12px;font-weight:800}
+.logo{font-size:32px;font-weight:900;letter-spacing:.2px}.logo .brand-main{font-size:1em;font-weight:900}.logo .brand-sub{font-size:12px;font-weight:500;opacity:.8;margin-right:7px}.nav{display:flex;gap:22px;align-items:center}.nav a{font-size:14px}.nav .cta{background:var(--gold);color:#17252b;padding:10px 16px;border-radius:12px;font-weight:800}.lang-btn{border:1px solid #ffffff88;background:#fff;color:var(--navy);padding:9px 13px;border-radius:10px;font-weight:900;cursor:pointer;white-space:nowrap}
 .hero{background:radial-gradient(circle at 20% 20%,#11aeb0 0,transparent 28%),linear-gradient(135deg,#063d48,#087f89);color:#fff;padding:72px 6% 95px;text-align:center}
 .booking-word{font-size:15px;font-weight:900;letter-spacing:3px;color:#ffd166;margin-bottom:10px}.tagline{font-weight:900;color:#fff;margin-top:8px}.subbrand{font-size:14px;color:#dff;margin-top:5px}.badge{display:inline-block;padding:8px 14px;border:1px solid #ffffff55;background:#ffffff14;border-radius:99px;font-size:13px}.hero h1{font-size:clamp(34px,6vw,58px);margin:18px auto 10px;max-width:900px;line-height:1.25}.hero p{font-size:18px;line-height:1.9;max-width:760px;margin:0 auto;color:#e8ffff}
 .booking{max-width:1080px;margin:-52px auto 0;background:#fff;border-radius:24px;box-shadow:0 18px 55px #0b30362c;padding:20px}
@@ -59,7 +59,7 @@ window.TPWL_CONFIGURATION = {
 </script>
 </head>
 <body>
-<header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub">من رحلتي السعودية</span></div><nav class="nav"><a href="#services">الخدمات</a><a href="#destinations">وجهات</a><a href="#faq">الأسئلة</a><a class="cta" href="#request">خطط رحلتك</a></nav></header>
+<header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub">من رحلتي السعودية</span></div><nav class="nav"><a href="#services">الخدمات</a><a href="#destinations">وجهات</a><a href="#faq">الأسئلة</a><a class="cta" href="#request">خطط رحلتك</a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">English</button></nav></header>
 <main>
 <section class="hero"><h1 aria-label="يلا رحلة">يــــلا رحــــلة</h1><div class="booking-word">BOOKING</div><span class="badge">🇸🇦 منصة سفر عربية بسيطة وواضحة</span><div class="tagline">أسعار ترضيك… ورحلة تسعدك</div><div class="subbrand">من رحلتي السعودية</div><p>تذاكر طيران • إقامة وفنادق • سيارات • توصيل مطار • نقل خاص • أنشطة ورحلات — اختر خدمتك وانتقل إلى مزود الحجز لإتمام الحجز.</p></section>
 <div class="booking" id="booking">
@@ -113,5 +113,42 @@ document.getElementById('makeRequest').onclick=()=>{let name=document.getElement
 الميزانية: '+(document.getElementById('budget').value||'غير محددة')+'
 التفاصيل: '+(document.getElementById('details').value||'لا يوجد');let r=document.getElementById('result');r.style.display='block';r.innerHTML='<b>تم تجهيز طلبك:</b><br>'+t.replaceAll('
 ','<br>')+'<br><br><button id="copyBtn" class="send">نسخ الطلب</button>';document.getElementById('copyBtn').onclick=async()=>{await navigator.clipboard.writeText(t);document.getElementById('copyBtn').textContent='✓ تم النسخ'}};
+
+const langToggle=document.getElementById('langToggle');
+const originalText=new Map();
+const translations={
+'الخدمات':'Services','وجهات':'Destinations','الأسئلة':'FAQ','خطط رحلتك':'Plan your trip',
+'من رحلتي السعودية':'by Rehlati Saudi','من رحلتي السعودية: طيران، إقامة، سيارات، توصيل مطار، نقل خاص وأنشطة ورحلات.':'Flights, stays, cars, airport transfers, private transport, activities and trips.',
+'🇸🇦 منصة سفر عربية بسيطة وواضحة':'🇸🇦 A simple and clear travel platform',
+'أسعار ترضيك… ورحلة تسعدك':'Great prices… happier journeys',
+'تذاكر طيران • إقامة وفنادق • سيارات • توصيل مطار • نقل خاص • أنشطة ورحلات — اختر خدمتك وانتقل إلى مزود الحجز لإتمام الحجز.':'Flights • Hotels & stays • Cars • Airport transfers • Private transport • Activities — choose a service and complete your booking with the provider.',
+'✈️ طيران':'✈️ Flights','🏨 إقامة':'🏨 Stays','🚗 سيارات':'🚗 Cars','🚕 توصيل':'🚕 Transfers','🚘 نقل خاص':'🚘 Private transfer','🎟️ أنشطة':'🎟️ Activities',
+'✈️ ابحث عن رحلتك':'✈️ Search for your flight',
+'استخدم محرك الحجز الحقيقي مباشرة هنا. اختر مدينة المغادرة والوجهة والتواريخ ثم ابحث.':'Use the live booking search here. Choose your departure city, destination and dates, then search.',
+'خدمات يلا رحلة':'Yalla Rehla Services',
+'كل احتياجات الرحلة في مكان واحد':'Everything for your trip in one place',
+'رحلات الطيران':'Flights','الإقامة وخدمات السفر':'Hotels & Travel','تأجير السيارات':'Car Rental','توصيل المطار':'Airport Transfer','نقل خاص':'Private Transfer','الأنشطة والمعالم':'Activities & Attractions',
+'وجهات يبحث عنها المسافرون':'Popular destinations','كيف تعمل؟':'How it works','حدد وجهتك':'Choose your destination','أضف التفاصيل':'Add details','جهّز الطلب':'Prepare your request',
+'جهّز طلب رحلتك':'Plan your trip request','أسئلة شائعة':'Frequently Asked Questions','دليل الوجهات السياحية':'Travel Destinations Guide',
+'✈️ حجز الطيران':'✈️ Flight Booking','كل خدمات رحلتك في مكان واحد':'All your travel services in one place','الدفع المرن عند مزود الحجز':'Flexible payment with the booking provider',
+'أدلة تساعدك في التخطيط للسفر':'Travel planning guides','✈️ ابدأ الحجز':'✈️ Start booking',
+'سياسة الخصوصية':'Privacy Policy','الشروط والأحكام':'Terms & Conditions'
+};
+function setLanguage(lang){
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==='en'?'ltr':'rtl';
+ document.body.dir=lang==='en'?'ltr':'rtl';
+ document.querySelectorAll('a,button,h1,h2,h3,p,span,b,summary,option,label').forEach(el=>{
+   if(el.id==='langToggle')return;
+   if(!originalText.has(el))originalText.set(el,el.textContent);
+   const ar=originalText.get(el).trim();
+   if(lang==='en'&&translations[ar])el.textContent=translations[ar];
+   else if(lang==='ar')el.textContent=originalText.get(el);
+ });
+ langToggle.textContent=lang==='en'?'العربية':'English';
+ localStorage.setItem('yallaRehlaLang',lang);
+}
+langToggle.addEventListener('click',()=>setLanguage(document.documentElement.lang==='en'?'ar':'en'));
+if(localStorage.getItem('yallaRehlaLang')==='en')setLanguage('en');
 </script>
 </body></html>
