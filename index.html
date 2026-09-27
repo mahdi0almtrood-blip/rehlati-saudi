@@ -103,16 +103,7 @@ window.TPWL_CONFIGURATION = {
 <script>
 const today=new Date().toISOString().split('T')[0];const depart=document.getElementById('date'),ret=document.getElementById('returnDate'),travelDate=document.getElementById('travelDate');if(travelDate)travelDate.min=today;if(depart&&ret){depart.min=today;ret.min=today;depart.addEventListener('change',()=>{ret.min=depart.value||today;if(ret.value&&ret.value<ret.min)ret.value='';});}
 let tripType='طيران';
-document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️
-النوع: '+tripType+'
-الاسم: '+name+'
-الجوال: '+(document.getElementById('phone').value||'غير مذكور')+'
-الوجهة: '+dest+'
-التاريخ: '+(document.getElementById('travelDate').value||'مرن')+'
-المسافرون: '+document.getElementById('travellers').value+'
-الميزانية: '+(document.getElementById('budget').value||'غير محددة')+'
-التفاصيل: '+(document.getElementById('details').value||'لا يوجد');let r=document.getElementById('result');r.style.display='block';r.innerHTML='<b>تم تجهيز طلبك:</b><br>'+t.replaceAll('
-','<br>')+'<br><br><button id="copyBtn" class="send">نسخ الطلب</button>';document.getElementById('copyBtn').onclick=async()=>{await navigator.clipboard.writeText(t);document.getElementById('copyBtn').textContent='✓ تم النسخ'}};
+document.getElementById('makeRequest').onclick=function(){alert('تم استلام طلبك');};
 
 const langToggle=document.getElementById('langToggle');
 const i18n={
