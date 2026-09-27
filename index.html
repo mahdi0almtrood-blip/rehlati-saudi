@@ -59,7 +59,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 <div class="field"><label>المسافرون</label><select id="people"><option>1 مسافر</option><option>2 مسافرين</option><option>3 مسافرين</option><option>4 مسافرين</option><option>5+ مسافرين</option></select></div>
 <a class="go" id="flightBookBtn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" style="text-align:center">✈️ ابحث واحجز طيران الآن</a>
 </div>
-<p class="notice" id="bookingNotice">اختر الخدمة ثم انتقل إلى شريك الحجز لإتمام البحث والحجز لديه. الأسعار والتوفر والشروط النهائية يحددها مزود الخدمة.</p>
+<p class="notice" id="bookingNotice">اختر الخدمة ثم انتقل إلى شريك الحجز لإتمام البحث والحجز لديه. الأسعار والتوفر والشروط النهائية يحددها مزود الخدمة.</p><p class="notice"><strong>تنويه:</strong> بعض الروابط في الموقع روابط شراكة، وقد نحصل على عمولة عند إتمام حجز مؤهل عبرها، وفق شروط برنامج الشريك.</p>
 </div>
 <section id="services"><div class="head"><h2>خدمات يلا رحلة</h2><p>روابط حجز فعلية لدى مزودي خدمات السفر، مع بقاء السعر والتوفر والدفع النهائي لدى كل مزود.</p></div><div class="partnerbar"><div class="partner">✈️ شركات الطيران</div><div class="partner">🏨 الفنادق</div><div class="partner">🚗 تأجير السيارات</div><div class="partner">🎟️ الأنشطة والباقات</div></div><p class="trust">لن نعرض سعرًا أو توفرًا على أنه مؤكد إلا بعد الربط بمزود حجز معتمد.</p><div class="head"><h2>كل احتياجات الرحلة في مكان واحد</h2><p>واجهة سهلة تساعدك على ترتيب طلبك قبل الحجز.</p></div>
 <div class="cards">
@@ -88,7 +88,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 </div></section>
 </main>
 <a class="float" href="#request">💬 جهّز رحلتك</a>
-<footer><strong>BOOKING • ✈ يلا رحلة — أسعار ترضيك… ورحلة تسعدك</strong><br><span class="small">من رحلتي السعودية</span><br><span class="small">العملة الأساسية في تقديرات الميزانية: الريال السعودي (SAR)</span><br>طيران • إقامة • سيارات • توصيل مطار • نقل خاص • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
+<footer><strong>BOOKING • ✈ يلا رحلة — أسعار ترضيك… ورحلة تسعدك</strong><br><span class="small">روابط الحجز تنقلك مباشرة إلى مزودي الخدمة، وقد تكون بعض الروابط روابط شراكة.</span><br><span class="small">من رحلتي السعودية</span><br><span class="small">العملة الأساسية في تقديرات الميزانية: الريال السعودي (SAR)</span><br>طيران • إقامة • سيارات • توصيل مطار • نقل خاص • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
 <script>
 const today=new Date().toISOString().split('T')[0];const depart=document.getElementById('date'),ret=document.getElementById('returnDate');depart.min=today;ret.min=today;document.getElementById('travelDate').min=today;depart.addEventListener('change',()=>{ret.min=depart.value||today;if(ret.value&&ret.value<ret.min)ret.value='';});
 let tripType='طيران';const serviceBtn=document.getElementById('flightBookBtn');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tripType=b.dataset.type;serviceBtn.href=b.dataset.url;serviceBtn.textContent=b.dataset.label});
