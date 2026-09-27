@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mahdi0almtrood-blip.github.io/rehlati-saudi/sitemap.txt
 Sitemap: https://mahdi0almtrood-blip.github.io/rehlati-saudi/sitemap.xml
