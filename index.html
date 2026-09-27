@@ -59,7 +59,7 @@ window.TPWL_CONFIGURATION = {
 </script>
 </head>
 <body>
-<header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub">من رحلتي السعودية</span></div><nav class="nav"><a href="#services">الخدمات</a><a href="#destinations">وجهات</a><a href="#faq">الأسئلة</a><a class="cta" href="#request">خطط رحلتك</a><a class="lang-btn" href="en.html" lang="en" hreflang="en" aria-label="English version">English</a></nav></header>
+<header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub">من رحلتي السعودية</span></div><nav class="nav"><a href="#services">الخدمات</a><a href="#destinations">وجهات</a><a href="#faq">الأسئلة</a><a class="cta" href="#request">خطط رحلتك</a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
 <main>
 <section class="hero"><h1 aria-label="يلا رحلة">يــــلا رحــــلة</h1><div class="booking-word">BOOKING</div><span class="badge">🇸🇦 منصة سفر عربية بسيطة وواضحة</span><div class="tagline">أسعار ترضيك… ورحلة تسعدك</div><div class="subbrand">من رحلتي السعودية</div><p>تذاكر طيران • إقامة وفنادق • سيارات • توصيل مطار • نقل خاص • أنشطة ورحلات — اختر خدمتك وانتقل إلى مزود الحجز لإتمام الحجز.</p></section>
 <div class="booking" id="booking">
@@ -148,5 +148,37 @@ function setLanguage(lang){
 }
 langToggle.onclick=function(){setLanguage(document.documentElement.lang==='en'?'ar':'en')};
 try{if(localStorage.getItem('yallaRehlaLang')==='en')setLanguage('en')}catch(e){}
+</script>
+<script>
+(function(){
+  var lang='ar';
+  var pairs=[
+    ['الخدمات','Services'],['وجهات','Destinations'],['الأسئلة','FAQ'],['خطط رحلتك','Plan your trip'],
+    ['من رحلتي السعودية','by Rehlati Saudi'],['🇸🇦 منصة سفر عربية بسيطة وواضحة','🇸🇦 A simple and clear travel platform'],
+    ['أسعار ترضيك… ورحلة تسعدك','Great prices… happier journeys'],
+    ['✈️ ابحث عن رحلتك','✈️ Search for your flight'],['خدمات يلا رحلة','Yalla Rehla Services'],
+    ['وجهات يبحث عنها المسافرون','Popular destinations'],['كيف تعمل؟','How it works'],
+    ['أسئلة شائعة','Frequently Asked Questions'],['✈️ ابدأ الحجز','✈️ Start booking'],
+    ['✈️ طيران','✈️ Flights'],['🏨 إقامة','🏨 Stays'],['🚗 سيارات','🚗 Cars'],
+    ['🚕 توصيل','🚕 Transfers'],['🚘 نقل خاص','🚘 Private transfer'],['🎟️ أنشطة','🎟️ Activities']
+  ];
+  function swapText(from,to){
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    var n; while(n=walker.nextNode()){
+      if(n.parentElement && (n.parentElement.id==='langToggle'||n.parentElement.closest('#tpwl-search,#tpwl-tickets'))) continue;
+      if(n.nodeValue.indexOf(from)!==-1)n.nodeValue=n.nodeValue.split(from).join(to);
+    }
+  }
+  window.toggleSiteLanguage=function(){
+    var toEn=lang==='ar';
+    pairs.forEach(function(p){swapText(toEn?p[0]:p[1],toEn?p[1]:p[0]);});
+    lang=toEn?'en':'ar';
+    document.documentElement.lang=lang;
+    document.documentElement.dir=toEn?'ltr':'rtl';
+    document.body.dir=toEn?'ltr':'rtl';
+    var b=document.getElementById('langToggle');
+    if(b)b.textContent=toEn?'العربية':'English';
+  };
+})();
 </script>
 </body></html>
