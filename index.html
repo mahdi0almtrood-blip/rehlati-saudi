@@ -115,40 +115,38 @@ document.getElementById('makeRequest').onclick=()=>{let name=document.getElement
 ','<br>')+'<br><br><button id="copyBtn" class="send">نسخ الطلب</button>';document.getElementById('copyBtn').onclick=async()=>{await navigator.clipboard.writeText(t);document.getElementById('copyBtn').textContent='✓ تم النسخ'}};
 
 const langToggle=document.getElementById('langToggle');
-const originalText=new Map();
-const translations={
-'الخدمات':'Services','وجهات':'Destinations','الأسئلة':'FAQ','خطط رحلتك':'Plan your trip',
-'من رحلتي السعودية':'by Rehlati Saudi','من رحلتي السعودية: طيران، إقامة، سيارات، توصيل مطار، نقل خاص وأنشطة ورحلات.':'Flights, stays, cars, airport transfers, private transport, activities and trips.',
-'🇸🇦 منصة سفر عربية بسيطة وواضحة':'🇸🇦 A simple and clear travel platform',
-'أسعار ترضيك… ورحلة تسعدك':'Great prices… happier journeys',
-'تذاكر طيران • إقامة وفنادق • سيارات • توصيل مطار • نقل خاص • أنشطة ورحلات — اختر خدمتك وانتقل إلى مزود الحجز لإتمام الحجز.':'Flights • Hotels & stays • Cars • Airport transfers • Private transport • Activities — choose a service and complete your booking with the provider.',
-'✈️ طيران':'✈️ Flights','🏨 إقامة':'🏨 Stays','🚗 سيارات':'🚗 Cars','🚕 توصيل':'🚕 Transfers','🚘 نقل خاص':'🚘 Private transfer','🎟️ أنشطة':'🎟️ Activities',
-'✈️ ابحث عن رحلتك':'✈️ Search for your flight',
-'استخدم محرك الحجز الحقيقي مباشرة هنا. اختر مدينة المغادرة والوجهة والتواريخ ثم ابحث.':'Use the live booking search here. Choose your departure city, destination and dates, then search.',
-'خدمات يلا رحلة':'Yalla Rehla Services',
-'كل احتياجات الرحلة في مكان واحد':'Everything for your trip in one place',
-'رحلات الطيران':'Flights','الإقامة وخدمات السفر':'Hotels & Travel','تأجير السيارات':'Car Rental','توصيل المطار':'Airport Transfer','نقل خاص':'Private Transfer','الأنشطة والمعالم':'Activities & Attractions',
-'وجهات يبحث عنها المسافرون':'Popular destinations','كيف تعمل؟':'How it works','حدد وجهتك':'Choose your destination','أضف التفاصيل':'Add details','جهّز الطلب':'Prepare your request',
-'جهّز طلب رحلتك':'Plan your trip request','أسئلة شائعة':'Frequently Asked Questions','دليل الوجهات السياحية':'Travel Destinations Guide',
-'✈️ حجز الطيران':'✈️ Flight Booking','كل خدمات رحلتك في مكان واحد':'All your travel services in one place','الدفع المرن عند مزود الحجز':'Flexible payment with the booking provider',
-'أدلة تساعدك في التخطيط للسفر':'Travel planning guides','✈️ ابدأ الحجز':'✈️ Start booking',
-'سياسة الخصوصية':'Privacy Policy','الشروط والأحكام':'Terms & Conditions'
+const i18n={
+'.nav a[href="#services"]':['الخدمات','Services'],
+'.nav a[href="#destinations"]':['وجهات','Destinations'],
+'.nav a[href="#faq"]':['الأسئلة','FAQ'],
+'.nav .cta':['خطط رحلتك','Plan your trip'],
+'.badge':['🇸🇦 منصة سفر عربية بسيطة وواضحة','🇸🇦 A simple and clear travel platform'],
+'.tagline':['أسعار ترضيك… ورحلة تسعدك','Great prices… happier journeys'],
+'.subbrand':['من رحلتي السعودية','by Rehlati Saudi'],
+'.hero p':['تذاكر طيران • إقامة وفنادق • سيارات • توصيل مطار • نقل خاص • أنشطة ورحلات — اختر خدمتك وانتقل إلى مزود الحجز لإتمام الحجز.','Flights • Hotels & stays • Cars • Airport transfers • Private transport • Activities — choose a service and complete your booking with the provider.'],
+'#booking h2':['✈️ ابحث عن رحلتك','✈️ Search for your flight'],
+'#booking > p:not(.notice)':['استخدم محرك الحجز الحقيقي مباشرة هنا. اختر مدينة المغادرة والوجهة والتواريخ ثم ابحث.','Use the live booking search here. Choose departure, destination and dates, then search.'],
+'#services .head h2':['خدمات يلا رحلة','Yalla Rehla Services'],
+'#destinations .head h2':['وجهات يبحث عنها المسافرون','Popular destinations'],
+'#faq .head h2':['أسئلة شائعة','Frequently Asked Questions'],
+'.float':['✈️ ابدأ الحجز','✈️ Start booking']
 };
 function setLanguage(lang){
- document.documentElement.lang=lang;
- document.documentElement.dir=lang==='en'?'ltr':'rtl';
- document.body.dir=lang==='en'?'ltr':'rtl';
- document.querySelectorAll('a,button,h1,h2,h3,p,span,b,summary,option,label').forEach(el=>{
-   if(el.id==='langToggle')return;
-   if(!originalText.has(el))originalText.set(el,el.textContent);
-   const ar=originalText.get(el).trim();
-   if(lang==='en'&&translations[ar])el.textContent=translations[ar];
-   else if(lang==='ar')el.textContent=originalText.get(el);
+ const en=lang==='en';
+ document.documentElement.lang=en?'en':'ar';
+ document.documentElement.dir=en?'ltr':'rtl';
+ document.body.dir=en?'ltr':'rtl';
+ Object.entries(i18n).forEach(([selector,words])=>{
+   const el=document.querySelector(selector); if(el) el.textContent=words[en?1:0];
  });
- langToggle.textContent=lang==='en'?'العربية':'English';
- localStorage.setItem('yallaRehlaLang',lang);
+ const tabs=document.querySelectorAll('#booking .tab');
+ const tabWords=en?['✈️ Flights','🏨 Stays','🚗 Cars','🚕 Transfers','🚘 Private transfer','🎟️ Activities']:['✈️ طيران','🏨 إقامة','🚗 سيارات','🚕 توصيل','🚘 نقل خاص','🎟️ أنشطة'];
+ tabs.forEach((el,i)=>{if(tabWords[i])el.textContent=tabWords[i]});
+ langToggle.textContent=en?'العربية':'English';
+ langToggle.setAttribute('aria-label',en?'التبديل إلى العربية':'Switch to English');
+ try{localStorage.setItem('yallaRehlaLang',en?'en':'ar')}catch(e){}
 }
-langToggle.addEventListener('click',()=>setLanguage(document.documentElement.lang==='en'?'ar':'en'));
-if(localStorage.getItem('yallaRehlaLang')==='en')setLanguage('en');
+langToggle.onclick=function(){setLanguage(document.documentElement.lang==='en'?'ar':'en')};
+try{if(localStorage.getItem('yallaRehlaLang')==='en')setLanguage('en')}catch(e){}
 </script>
 </body></html>
