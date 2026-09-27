@@ -74,6 +74,18 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
   .booking#booking{padding:20px 14px 24px}
   #tpwl-search{min-height:210px}
 }
+
+/* Yalla Rehla controlled flight-search UI */
+.tpwl-native-hidden{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+.yalla-flight-search{max-width:1080px;margin:20px auto 8px}
+.flight-fields{display:grid;grid-template-columns:1.2fr 1.2fr 1fr 1fr .7fr;gap:12px;align-items:end}
+.flight-fields label{display:flex;flex-direction:column;gap:7px;font-weight:800;color:#24343a;text-align:right}
+.flight-fields input,.flight-fields select{box-sizing:border-box;width:100%;height:56px;border:2px solid #d8e1e3;border-radius:13px;background:#fff;padding:0 14px;font:inherit;color:#17272d;outline:none}
+.flight-fields input:focus,.flight-fields select:focus{border-color:#087052;box-shadow:0 0 0 3px rgba(8,112,82,.10)}
+.yalla-search-btn{display:block;width:min(390px,90%);min-height:58px;margin:22px auto 4px;border:0;border-radius:14px;background:#087052;color:#fff;font:inherit;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(8,112,82,.20)}
+.yalla-search-btn:hover{transform:translateY(-1px)}
+@media(max-width:900px){.flight-fields{grid-template-columns:1fr 1fr}.flight-fields label:last-child{grid-column:1/-1}.yalla-flight-search{margin-top:14px}}
+@media(max-width:560px){.flight-fields{grid-template-columns:1fr}.flight-fields label:last-child{grid-column:auto}.yalla-search-btn{width:100%}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"يلا رحلة","alternateName":"رحلتي السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","inLanguage":"ar-SA","description":"BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك، من رحلتي السعودية. خدمات سفر وروابط حجز للطيران والإقامة والسيارات والتوصيل والنقل الخاص والأنشطة."}
@@ -105,43 +117,51 @@ html[data-site-lang="ar"] body{direction:rtl}
 <div class="tabs"><a class="tab active" href="#booking">✈️ <span class="ar-only">طيران</span><span class="en-only">Flights</span></a><a class="tab" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener">🏨 <span class="ar-only">إقامة</span><span class="en-only">Stays</span></a><a class="tab" href="https://localrent.tpx.li/VvRRkzkU" target="_blank" rel="sponsored noopener">🚗 <span class="ar-only">سيارات</span><span class="en-only">Cars</span></a><a class="tab" href="https://kiwitaxi.tpx.li/cX9iEn9B" target="_blank" rel="sponsored noopener">🚕 <span class="ar-only">توصيل</span><span class="en-only">Transfer</span></a><a class="tab" href="https://gettransfer.tpx.li/x8pN4IlK" target="_blank" rel="sponsored noopener">🚘 <span class="ar-only">نقل خاص</span><span class="en-only">Private transfer</span></a><a class="tab" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">🎟️ <span class="ar-only">أنشطة</span><span class="en-only">Activities</span></a></div>
 <h2 style="text-align:center"><span class="ar-only">✈️ ابحث عن رحلتك</span><span class="en-only">✈️ Search for your flight</span></h2>
 <p style="text-align:center;color:var(--muted)"><span class="ar-only">استخدم محرك الحجز الحقيقي مباشرة هنا. اختر مدينة المغادرة والوجهة والتواريخ ثم ابحث.</span><span class="en-only">Use the live booking search here. Choose your departure city, destination and dates, then search.</span></p>
-<div id="tpwl-search"></div>
+<form id="yallaFlightSearch" class="yalla-flight-search">
+  <div class="flight-fields">
+    <label><span class="ar-only">من</span><span class="en-only">From</span>
+      <input id="flightFrom" list="flightCities" placeholder="الدمام DMM" required>
+    </label>
+    <label><span class="ar-only">إلى</span><span class="en-only">To</span>
+      <input id="flightTo" list="flightCities" placeholder="القاهرة CAI" required>
+    </label>
+    <label><span class="ar-only">تاريخ المغادرة</span><span class="en-only">Departure</span>
+      <input id="flightDepart" type="date" required>
+    </label>
+    <label><span class="ar-only">تاريخ العودة</span><span class="en-only">Return</span>
+      <input id="flightReturn" type="date">
+    </label>
+    <label><span class="ar-only">المسافرون</span><span class="en-only">Travelers</span>
+      <select id="flightAdults"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
+    </label>
+  </div>
+  <button class="yalla-search-btn" type="submit"><span class="ar-only">🔍 البحث عن رحلات طيران</span><span class="en-only">🔍 Search flights</span></button>
+  <datalist id="flightCities">
+    <option value="الدمام DMM"><option value="الرياض RUH"><option value="جدة JED"><option value="المدينة MED"><option value="القاهرة CAI"><option value="دبي DXB"><option value="أبوظبي AUH"><option value="الدوحة DOH"><option value="الكويت KWI"><option value="مسقط MCT"><option value="إسطنبول IST"><option value="لندن LON"><option value="باريس PAR"><option value="روما ROM"><option value="نيويورك NYC"><option value="بانكوك BKK"><option value="كوالالمبور KUL">
+  </datalist>
+</form>
+<div id="tpwl-search" class="tpwl-native-hidden"></div>
 <div id="tpwl-tickets"></div>
 <script>
-(function centerTpwlSearchButton(){
-  const host=document.getElementById('tpwl-search');
-  if(!host) return;
-  function walk(root){
-    const nodes=[...(root.querySelectorAll?root.querySelectorAll('*'):[])];
-    for(const el of nodes){
-      if(el.shadowRoot) walk(el.shadowRoot);
-      const txt=(el.textContent||'').trim();
-      const isButton=el.tagName==='BUTTON'||el.getAttribute?.('role')==='button'||el.getAttribute?.('type')==='submit';
-      if(isButton && (/البحث عن رحلات طيران|search flights/i.test(txt))){
-        el.style.setProperty('display','block','important');
-        el.style.setProperty('width','340px','important');
-        el.style.setProperty('max-width','90%','important');
-        el.style.setProperty('min-height','54px','important');
-        el.style.setProperty('margin','18px auto 4px','important');
-        el.style.setProperty('font-weight','900','important');
-        el.style.setProperty('font-size','17px','important');
-        const p=el.parentElement;
-        if(p){
-          p.style.setProperty('flex','0 0 100%','important');
-          p.style.setProperty('width','100%','important');
-          p.style.setProperty('max-width','100%','important');
-          p.style.setProperty('display','flex','important');
-          p.style.setProperty('justify-content','center','important');
-          p.style.setProperty('order','999','important');
-          p.style.setProperty('margin','0 auto','important');
-        }
-      }
-    }
-  }
-  const apply=()=>walk(host);
-  apply();
-  new MutationObserver(apply).observe(host,{childList:true,subtree:true});
-  setTimeout(apply,500); setTimeout(apply,1500); setTimeout(apply,3500);
+(function(){
+  const form=document.getElementById('yallaFlightSearch');
+  const dep=document.getElementById('flightDepart'), ret=document.getElementById('flightReturn');
+  const today=new Date(); today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
+  const min=today.toISOString().slice(0,10); dep.min=min; ret.min=min;
+  dep.addEventListener('change',()=>{ret.min=dep.value||min;if(ret.value&&ret.value<dep.value)ret.value='';});
+  const code=v=>{const m=(v||'').toUpperCase().match(/(?:^|\s)([A-Z]{3})(?:$|\s)/);return m?m[1]:''};
+  const ddmm=v=>{const p=v.split('-');return p[2]+p[1]};
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const from=code(document.getElementById('flightFrom').value);
+    const to=code(document.getElementById('flightTo').value);
+    if(!from||!to){alert('اختر مدينة من القائمة حتى يظهر رمز المطار مثل DMM أو CAI');return;}
+    if(!dep.value){alert('اختر تاريخ المغادرة');return;}
+    const back=ret.value?ddmm(ret.value):'';
+    const adults=document.getElementById('flightAdults').value;
+    const q=from+ddmm(dep.value)+to+back+adults;
+    location.href=location.pathname+'?flightSearch='+encodeURIComponent(q)+'#booking';
+  });
 })();
 </script>
 <p class="notice"><span class="ar-only"><strong>تنويه:</strong> نتائج وأسعار الطيران تأتي من مزود البحث، وقد نحصل على عمولة عند إتمام حجز مؤهل عبر روابط الشراكة.</span><span class="en-only"><strong>Notice:</strong> Flight results and prices come from the search provider, and we may earn a commission from eligible bookings through affiliate links.</span></p>
