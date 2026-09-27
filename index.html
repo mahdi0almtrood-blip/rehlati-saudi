@@ -174,18 +174,35 @@ html[data-site-lang="ar"] body{direction:rtl}
   const today=new Date(); today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
   const min=today.toISOString().slice(0,10); dep.min=min; ret.min=min;
   dep.addEventListener('change',()=>{ret.min=dep.value||min;if(ret.value&&ret.value<dep.value)ret.value='';});
-  const code=v=>(v||'').toUpperCase().trim();
+  const airportMap={
+    'الدمام':'DMM','dammam':'DMM','dmm':'DMM','الرياض':'RUH','riyadh':'RUH','ruh':'RUH','جدة':'JED','jeddah':'JED','jed':'JED',
+    'المدينة المنورة':'MED','المدينة':'MED','madinah':'MED','medina':'MED','med':'MED','أبها':'AHB','abha':'AHB','ahb':'AHB',
+    'جازان':'GIZ','jazan':'GIZ','giz':'GIZ','الطائف':'TIF','taif':'TIF','tif':'TIF','القصيم':'ELQ','qassim':'ELQ','elq':'ELQ',
+    'القاهرة':'CAI','القاهره':'CAI','cairo':'CAI','cai':'CAI','دبي':'DXB','dubai':'DXB','dxb':'DXB','اسطنبول':'IST','إسطنبول':'IST','istanbul':'IST','ist':'IST',
+    'لندن':'LHR','london':'LHR','lhr':'LHR','نيويورك':'JFK','new york':'JFK','jfk':'JFK','طوكيو':'HND','tokyo':'HND','hnd':'HND',
+    'الدار البيضاء':'CMN','كازابلانكا':'CMN','casablanca':'CMN','cmn':'CMN','مراكش':'RAK','marrakesh':'RAK','marrakech':'RAK','rak':'RAK'
+  };
+  const code=v=>{
+    const s=(v||'').trim();
+    const m=s.match(/\(([A-Z]{3})\)\s*$/i)||s.match(/^([A-Z]{3})$/i);
+    if(m)return m[1].toUpperCase();
+    return airportMap[s.toLowerCase()]||airportMap[s]||'';
+  };
   const ddmm=v=>{const p=v.split('-');return p[2]+p[1]};
   form.addEventListener('submit',e=>{
     e.preventDefault();
     const from=code(document.getElementById('flightFrom').value);
     const to=code(document.getElementById('flightTo').value);
-    if(!from||!to){alert(document.documentElement.lang==='en'?'Choose departure and destination from the lists':'اختر مدينة المغادرة والوجهة من القائمتين');return;}
-    if(!dep.value){alert('اختر تاريخ المغادرة');return;}
+    if(!from||!to){alert(document.documentElement.lang==='en'?'Choose a city from the suggestions or type its 3-letter airport code.':'اختر المدينة من الاقتراحات أو اكتب رمز المطار من 3 أحرف مثل DMM أو CAI');return;}
+    if(!dep.value){alert(document.documentElement.lang==='en'?'Choose a departure date':'اختر تاريخ المغادرة');return;}
+    if(ret.value&&ret.value<dep.value){alert(document.documentElement.lang==='en'?'Return date must be after departure':'تاريخ العودة يجب أن يكون بعد تاريخ المغادرة');return;}
     const back=ret.value?ddmm(ret.value):'';
     const adults=document.getElementById('flightAdults').value;
     const q=from+ddmm(dep.value)+to+back+adults;
-    location.href=location.pathname+'?flightSearch='+encodeURIComponent(q)+'#booking';
+    const url=new URL(location.href);
+    url.searchParams.set('flightSearch',q);
+    url.hash='booking';
+    location.href=url.toString();
   });
 })();
 </script>
