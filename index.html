@@ -182,6 +182,24 @@ html[data-site-lang="ar"] body{direction:rtl}
     'لندن':'LHR','london':'LHR','lhr':'LHR','نيويورك':'JFK','new york':'JFK','jfk':'JFK','طوكيو':'HND','tokyo':'HND','hnd':'HND',
     'الدار البيضاء':'CMN','كازابلانكا':'CMN','casablanca':'CMN','cmn':'CMN','مراكش':'RAK','marrakesh':'RAK','marrakech':'RAK','rak':'RAK'
   };
+  const countryChoices={
+    'المغرب':[['الدار البيضاء','CMN'],['مراكش','RAK'],['الرباط','RBA'],['طنجة','TNG'],['أغادير','AGA'],['فاس','FEZ']],
+    'morocco':[['Casablanca','CMN'],['Marrakesh','RAK'],['Rabat','RBA'],['Tangier','TNG'],['Agadir','AGA'],['Fes','FEZ']]
+  };
+  const toInput=document.getElementById('flightTo');
+  const resolveCountryChoice=()=>{
+    const key=(toInput.value||'').trim().toLowerCase();
+    const choices=countryChoices[key];
+    if(!choices)return true;
+    const list=choices.map((x,i)=>(i+1)+'. '+x[0]+' ('+x[1]+')').join('\n');
+    const answer=prompt((document.documentElement.lang==='en'?'Choose an airport:\n':'اختر مطار الوصول:\n')+list,'1');
+    if(answer===null)return false;
+    const n=parseInt(answer,10);
+    if(!n||n<1||n>choices.length){alert(document.documentElement.lang==='en'?'Choose a number from the list':'اختر رقمًا صحيحًا من القائمة');return false;}
+    toInput.value=choices[n-1][0]+' ('+choices[n-1][1]+')';
+    toInput.dataset.code=choices[n-1][1];
+    return true;
+  };
   const code=v=>{
     const s=(v||'').trim();
     const m=s.match(/\(([A-Z]{3})\)\s*$/i)||s.match(/^([A-Z]{3})$/i);
@@ -191,8 +209,9 @@ html[data-site-lang="ar"] body{direction:rtl}
   const ddmm=v=>{const p=v.split('-');return p[2]+p[1]};
   form.addEventListener('submit',e=>{
     e.preventDefault();
+    if(!resolveCountryChoice())return;
     const from=code(document.getElementById('flightFrom').value);
-    const to=code(document.getElementById('flightTo').value);
+    const to=toInput.dataset.code||code(toInput.value);
     if(!from||!to){alert(document.documentElement.lang==='en'?'Choose a city from the suggestions or type its 3-letter airport code.':'اختر المدينة من الاقتراحات أو اكتب رمز المطار من 3 أحرف مثل DMM أو CAI');return;}
     if(!dep.value){alert(document.documentElement.lang==='en'?'Choose a departure date':'اختر تاريخ المغادرة');return;}
     if(ret.value&&ret.value<dep.value){alert(document.documentElement.lang==='en'?'Return date must be after departure':'تاريخ العودة يجب أن يكون بعد تاريخ المغادرة');return;}
