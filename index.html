@@ -41,40 +41,6 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 
 .partnerbar{max-width:1120px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.partner{background:#fff;border:1px solid #dfeaec;border-radius:14px;padding:16px;text-align:center;font-weight:800}.trust{max-width:1120px;margin:22px auto 0;text-align:center;color:var(--muted);font-size:13px}.copyrow{display:flex;gap:8px;margin-top:10px}.copyrow button{flex:1}@media(max-width:850px){.partnerbar{grid-template-columns:1fr 1fr}}
 
-/* Flight search layout polish */
-.booking#booking{max-width:1180px;padding:28px 30px 32px}
-#tpwl-search{width:100%;max-width:1100px;margin:18px auto 0;min-height:150px}
-#tpwl-tickets{width:100%;max-width:1100px;margin:0 auto}
-#tpwl-search input,
-#tpwl-search button,
-#tpwl-search [role="button"]{min-height:48px;border-radius:12px}
-#tpwl-search input{border:1px solid #cfdadd!important;background:#fff!important;padding:10px 12px!important}
-#tpwl-search button{font-weight:900!important}
-/* Keep the real Travelpayouts search action centered on its own row */
-#tpwl-search form{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-items:stretch!important;gap:10px!important}
-#tpwl-search form>button,
-#tpwl-search form [type="submit"],
-#tpwl-search button[type="submit"]{
-  flex:0 0 320px!important;
-  width:320px!important;
-  max-width:90%!important;
-  margin:12px auto 0!important;
-  display:block!important;
-  order:99!important;
-  font-size:17px!important;
-  font-weight:900!important;
-  min-height:52px!important;
-}
-@media(min-width:851px){
-  .booking#booking{margin-top:-52px}
-  #tpwl-search{padding:4px 8px 10px}
-  #tpwl-search button{min-width:220px}
-}
-@media(max-width:850px){
-  .booking#booking{padding:20px 14px 24px}
-  #tpwl-search{min-height:210px}
-}
-
 /* Yalla Rehla controlled flight-search UI */
 .tpwl-native-hidden{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
 .yalla-flight-search{max-width:1080px;margin:20px auto 8px}
@@ -107,6 +73,7 @@ body{background:linear-gradient(180deg,#eef7f5 0,#f7faf9 38%,#eef4f3 100%)}
 {"@context":"https://schema.org","@type":"WebSite","name":"يلا رحلة","alternateName":"رحلتي السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","inLanguage":"ar-SA","description":"BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك، من رحلتي السعودية. خدمات سفر وروابط حجز للطيران والإقامة والسيارات والتوصيل والنقل الخاص والأنشطة."}
 </script>
 <link rel="preconnect" href="https://tpwgts.com" crossorigin>
+<link rel="dns-prefetch" href="//tpx.li">
 <link rel="dns-prefetch" href="//tpwgts.com">
 <script>
 window.TPWL_CONFIGURATION={...window.TPWL_CONFIGURATION,resultsURL:"https://mahdi0almtrood-blip.github.io/rehlati-saudi/"};
@@ -116,6 +83,7 @@ window.loadYallaFlightEngine=function(){
  var script=document.createElement("script");
  script.async=true; script.type="module";
  script.src="https://tpwgts.com/wl_web/main.js?wl_id=22698";
+ script.fetchPriority="high";
  document.head.appendChild(script);
 };
 if(new URLSearchParams(location.search).has("flightSearch")) window.loadYallaFlightEngine();
