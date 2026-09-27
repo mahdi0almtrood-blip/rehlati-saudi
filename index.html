@@ -86,6 +86,22 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 .yalla-search-btn:hover{transform:translateY(-1px)}
 @media(max-width:900px){.flight-fields{grid-template-columns:1fr 1fr}.flight-fields label:last-child{grid-column:1/-1}.yalla-flight-search{margin-top:14px}}
 @media(max-width:560px){.flight-fields{grid-template-columns:1fr}.flight-fields label:last-child{grid-column:auto}.yalla-search-btn{width:100%}}
+
+/* Premium travel atmosphere around live flight results */
+body{background:linear-gradient(180deg,#eef7f5 0,#f7faf9 38%,#eef4f3 100%)}
+.booking#booking{background:rgba(255,255,255,.97);border:1px solid rgba(8,112,82,.10);box-shadow:0 24px 70px rgba(19,61,55,.14);overflow:visible}
+.yalla-flight-search{background:linear-gradient(135deg,#f7fbfa,#eef8f5);border:1px solid #dbeae5;border-radius:20px;padding:18px}
+.flight-fields input,.flight-fields select{box-shadow:0 4px 14px rgba(31,68,62,.06)}
+.yalla-search-btn{box-shadow:0 14px 30px rgba(8,112,82,.24)}
+.yalla-results-shell{max-width:1180px;margin:26px auto 0;padding:20px;border-radius:24px;background:linear-gradient(180deg,#f7fbfa,#fff);border:1px solid #e1ece9;box-shadow:0 18px 55px rgba(28,65,59,.10)}
+.results-intro{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:8px 6px 20px;border-bottom:1px solid #e3ece9;margin-bottom:14px;text-align:right}
+.results-intro h3{font-size:25px;margin:5px 0 6px;color:#173b35}
+.results-intro p{margin:0;color:#657773}
+.results-kicker{font-size:13px;font-weight:900;color:#087052;background:#e8f5f1;border-radius:999px;padding:7px 11px;display:inline-block}
+.trust-pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.trust-pills span{background:#fff;border:1px solid #dce8e5;border-radius:999px;padding:8px 11px;font-size:12px;color:#38544f;white-space:nowrap}
+#tpwl-tickets{background:#fff;border-radius:18px;overflow:hidden;min-height:100px}
+@media(max-width:760px){.results-intro{align-items:flex-start;flex-direction:column}.trust-pills{justify-content:flex-start}.yalla-results-shell{padding:12px;border-radius:18px}.yalla-flight-search{padding:12px}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"يلا رحلة","alternateName":"رحلتي السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","inLanguage":"ar-SA","description":"BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك، من رحلتي السعودية. خدمات سفر وروابط حجز للطيران والإقامة والسيارات والتوصيل والنقل الخاص والأنشطة."}
@@ -141,7 +157,17 @@ html[data-site-lang="ar"] body{direction:rtl}
   </datalist>
 </form>
 <div id="tpwl-search" class="tpwl-native-hidden"></div>
-<div id="tpwl-tickets"></div>
+<section class="yalla-results-shell">
+    <div class="results-intro">
+      <div>
+        <span class="results-kicker ar-only">✈️ خيارات رحلتك</span><span class="results-kicker en-only">✈️ Your flight options</span>
+        <h3 class="ar-only">اختر الرحلة المناسبة لك</h3><h3 class="en-only">Choose the flight that suits you</h3>
+        <p class="ar-only">قارن الرحلات والأسعار بهدوء، ثم أكمل الحجز لدى مزود السفر.</p><p class="en-only">Compare flights and fares, then complete your booking with the travel provider.</p>
+      </div>
+      <div class="trust-pills"><span>🔒 <b class="ar-only">حجز آمن</b><b class="en-only">Secure booking</b></span><span>💳 SAR</span><span>✈️ <b class="ar-only">شركات متعددة</b><b class="en-only">Multiple airlines</b></span></div>
+    </div>
+    <div id="tpwl-tickets"></div>
+  </section>
 <script>
 (function(){
   const form=document.getElementById('yallaFlightSearch');
