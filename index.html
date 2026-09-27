@@ -107,6 +107,43 @@ html[data-site-lang="ar"] body{direction:rtl}
 <p style="text-align:center;color:var(--muted)"><span class="ar-only">استخدم محرك الحجز الحقيقي مباشرة هنا. اختر مدينة المغادرة والوجهة والتواريخ ثم ابحث.</span><span class="en-only">Use the live booking search here. Choose your departure city, destination and dates, then search.</span></p>
 <div id="tpwl-search"></div>
 <div id="tpwl-tickets"></div>
+<script>
+(function centerTpwlSearchButton(){
+  const host=document.getElementById('tpwl-search');
+  if(!host) return;
+  function walk(root){
+    const nodes=[...(root.querySelectorAll?root.querySelectorAll('*'):[])];
+    for(const el of nodes){
+      if(el.shadowRoot) walk(el.shadowRoot);
+      const txt=(el.textContent||'').trim();
+      const isButton=el.tagName==='BUTTON'||el.getAttribute?.('role')==='button'||el.getAttribute?.('type')==='submit';
+      if(isButton && (/البحث عن رحلات طيران|search flights/i.test(txt))){
+        el.style.setProperty('display','block','important');
+        el.style.setProperty('width','340px','important');
+        el.style.setProperty('max-width','90%','important');
+        el.style.setProperty('min-height','54px','important');
+        el.style.setProperty('margin','18px auto 4px','important');
+        el.style.setProperty('font-weight','900','important');
+        el.style.setProperty('font-size','17px','important');
+        const p=el.parentElement;
+        if(p){
+          p.style.setProperty('flex','0 0 100%','important');
+          p.style.setProperty('width','100%','important');
+          p.style.setProperty('max-width','100%','important');
+          p.style.setProperty('display','flex','important');
+          p.style.setProperty('justify-content','center','important');
+          p.style.setProperty('order','999','important');
+          p.style.setProperty('margin','0 auto','important');
+        }
+      }
+    }
+  }
+  const apply=()=>walk(host);
+  apply();
+  new MutationObserver(apply).observe(host,{childList:true,subtree:true});
+  setTimeout(apply,500); setTimeout(apply,1500); setTimeout(apply,3500);
+})();
+</script>
 <p class="notice"><span class="ar-only"><strong>تنويه:</strong> نتائج وأسعار الطيران تأتي من مزود البحث، وقد نحصل على عمولة عند إتمام حجز مؤهل عبر روابط الشراكة.</span><span class="en-only"><strong>Notice:</strong> Flight results and prices come from the search provider, and we may earn a commission from eligible bookings through affiliate links.</span></p>
 </div><section id="services"><div class="head"><h2><span class="ar-only">خدمات يلا رحلة</span><span class="en-only">Yalla Rehla Services</span></h2><p>روابط حجز فعلية لدى مزودي خدمات السفر، مع بقاء السعر والتوفر والدفع النهائي لدى كل مزود.</p></div><div class="partnerbar"><div class="partner">✈️ شركات الطيران</div><div class="partner">🏨 الفنادق</div><div class="partner">🚗 تأجير السيارات</div><div class="partner">🎟️ الأنشطة والباقات</div></div><p class="trust">لن نعرض سعرًا أو توفرًا على أنه مؤكد إلا بعد الربط بمزود حجز معتمد.</p><div class="head"><h2><span class="ar-only">كل احتياجات الرحلة في مكان واحد</span><span class="en-only">Everything for your trip in one place</span></h2><p>واجهة سهلة تساعدك على ترتيب طلبك قبل الحجز.</p></div>
 <div class="cards">
