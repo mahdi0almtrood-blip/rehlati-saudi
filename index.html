@@ -49,7 +49,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 var script = document.createElement("script");
 script.async = 1;
 script.type = "module";
-script.src = "https://tpemd.com/wl_web/main.js?wl_id=22698";
+script.src = "https://tpwgts.com/wl_web/main.js?wl_id=22698";
 document.head.appendChild(script);
 })();
 </script>
@@ -97,7 +97,7 @@ document.head.appendChild(script);
 <a class="float" href="#booking">✈️ ابدأ الحجز</a>
 <footer><strong>BOOKING • ✈ يــــلا رحــــلة — أسعار ترضيك… ورحلة تسعدك</strong><br><span class="small">روابط الحجز تنقلك مباشرة إلى مزودي الخدمة، وقد تكون بعض الروابط روابط شراكة.</span><br><span class="small">من رحلتي السعودية</span><br><span class="small">العملة الأساسية في تقديرات الميزانية: الريال السعودي (SAR)</span><br>طيران • إقامة • سيارات • توصيل مطار • نقل خاص • أنشطة<br><a href="privacy.html">سياسة الخصوصية</a> • <a href="terms.html">الشروط والأحكام</a><div class="small">© 2026 رحلتي السعودية — جميع الحقوق محفوظة<br>الحجوزات والأسعار النهائية تتم لدى مزود الخدمة المرتبط.</div></footer>
 <script>
-const today=new Date().toISOString().split('T')[0];const depart=document.getElementById('date'),ret=document.getElementById('returnDate');depart.min=today;ret.min=today;document.getElementById('travelDate').min=today;depart.addEventListener('change',()=>{ret.min=depart.value||today;if(ret.value&&ret.value<ret.min)ret.value='';});
+const today=new Date().toISOString().split('T')[0];const depart=document.getElementById('date'),ret=document.getElementById('returnDate'),travelDate=document.getElementById('travelDate');if(travelDate)travelDate.min=today;if(depart&&ret){depart.min=today;ret.min=today;depart.addEventListener('change',()=>{ret.min=depart.value||today;if(ret.value&&ret.value<ret.min)ret.value='';});}
 let tripType='طيران';
 document.getElementById('makeRequest').onclick=()=>{let name=document.getElementById('name').value.trim(),dest=document.getElementById('dest').value.trim();if(!name||!dest){alert('اكتب الاسم والوجهة أولاً');return}let t='طلب رحلة جديد ✈️
 النوع: '+tripType+'
