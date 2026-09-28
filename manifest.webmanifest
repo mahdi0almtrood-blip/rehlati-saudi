@@ -1,0 +1,12 @@
+{
+  "name": "يلا رحلة | Yalla Rehla",
+  "short_name": "يلا رحلة",
+  "description": "طيران وفنادق وسيارات وتوصيل مطار وأنشطة للمسافر السعودي.",
+  "lang": "ar-SA",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f8f9",
+  "theme_color": "#063d48"
+}
