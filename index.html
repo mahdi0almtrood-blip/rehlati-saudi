@@ -260,6 +260,28 @@ html.flight-results-mode .booking{margin-bottom:12px}
 (function(){
   const b=document.getElementById('langToggle');
   const tr=new Map([
+    ["لن نعرض سعرًا أو توفرًا على أنه مؤكد إلا بعد الربط بمزود حجز معتمد.","We only show confirmed prices or availability after connecting to an approved booking provider."],
+    ["روابط حجز فعلية لدى مزودي خدمات السفر، مع بقاء السعر والتوفر والدفع النهائي لدى كل مزود.","Direct booking links from travel providers; final price, availability and payment remain with each provider."],
+    ["ابحث وقارن الرحلات من داخل يلا رحلة، ثم أكمل الحجز لدى مزود العرض.","Search and compare flights inside Yalla Rehla, then complete booking with the provider."],
+    ["ابحث عن طيران داخل يلا رحلة ←","Search flights inside Yalla Rehla ←"],
+    ["استكشف الخيارات المتاحة لدى Klook والخدمات المناسبة لوجهتك.","Explore Klook options and services available for your destination."],
+    ["استكشف Klook ←","Explore Klook ←"],
+    ["انتقل إلى Localrent لمقارنة خيارات تأجير السيارات المتاحة.","Compare available car rental options with Localrent."],
+    ["استأجر سيارة ←","Rent a car ←"],
+    ["احجز النقل من وإلى المطار عبر Kiwitaxi، مع خيار إضافي عبر INTUI.","Book airport transfers with Kiwitaxi, with INTUI as another option."],
+    ["قارن خيارات النقل الخاص عبر GetTransfer وأكمل الحجز لدى مزود الخدمة.","Compare private transfers with GetTransfer and complete booking with the provider."],
+    ["استكشف تذاكر المعالم والأنشطة السياحية المتاحة لدى Tiqets.","Explore attraction tickets and activities available from Tiqets."],
+    ["استكشف الأنشطة ←","Explore activities ←"],
+    ["اجمع احتياجاتك في ملخص واحد مرتب قبل الانتقال لمزودي الخدمات.","Collect your trip needs in one clear summary before continuing to providers."],
+    ["جهّز طلبك ←","Prepare your request ←"],
+    ["اختر وجهتك وابدأ التخطيط للطيران والأنشطة والتنقل.","Choose your destination and start planning flights, activities and transport."],
+    ["نعمل على توجيه أدوات البحث والحجز لعرض الأسعار بالريال كلما كان مزود الخدمة يدعم ذلك. وقد يغيّر مزود الحجز العملة حسب إعداداته أو موقع المستخدم.","We aim to show prices in Saudi Riyals whenever supported. The booking provider may change the currency based on its settings or user location."],
+    ["ابدأ من الخدمة التي تحتاجها، ثم انتقل إلى مزود الحجز وأكمل الحجز وفق السعر والتوافر والشروط المعروضة هناك.","Start with the service you need, then continue to the provider to complete booking according to its price, availability and terms."],
+    ["بعض منصات السفر في السعودية توفر Tabby عند الدفع. تظهر أهلية التقسيط وشروطه في صفحة الدفع لدى مزود الخدمة.","Some travel providers in Saudi Arabia offer Tabby at checkout. Eligibility and terms appear on the provider’s payment page."],
+    ["بعض منصات السفر توفر Tamara عند الدفع. تظهر أهلية التقسيط وشروطه في صفحة الدفع لدى مزود الخدمة.","Some travel providers offer Tamara at checkout. Eligibility and terms appear on the provider’s payment page."],
+    ["يلا رحلة لا يدّعي قبول تابي أو تمارا مباشرة حاليًا؛ أي تقسيط يتم عبر مزود الحجز إذا كان متاحًا له.","Yalla Rehla does not currently process Tabby or Tamara directly; installments are handled by the booking provider when available."],
+    ["روابط الحجز تنقلك إلى مزودي الخدمة، وقد تكون بعض الروابط روابط شراكة.","Booking links take you to service providers, and some may be affiliate links."],
+
     ['الخدمات','Services'],['وجهات','Destinations'],['الأسئلة','FAQ'],['خطط رحلتك','Plan your trip'],['حجوزات','Bookings'],
     ['🇸🇦 منصة سفر عربية بسيطة وواضحة','🇸🇦 A simple and clear travel platform'],['أسعار ترضيك… ورحلة تسعدك','Great prices… happier journeys'],
     ['طيران','Flights'],['فنادق','Hotels'],['سيارات','Cars'],['أنشطة','Activities'],['توصيل','Airport transfer'],['نقل خاص','Private transfer'],
@@ -295,12 +317,13 @@ html.flight-results-mode .booking{margin-bottom:12px}
     document.documentElement.dir=en?'ltr':'rtl';
     document.body.dir=en?'ltr':'rtl';
     if(b){b.textContent=en?'العربية':'English';b.setAttribute('aria-label',en?'Switch to Arabic':'Switch to English');}
-    document.querySelectorAll('h1,h2,h3,h4,p,a,summary,button,label,option,.dest-copy,.hotel-head').forEach(el=>{
+    document.querySelectorAll('h1,h2,h3,h4,p,a,summary,button,label,option,.dest-copy,.hotel-head,.card,.notice,.trust,.guide-card,.pay-card').forEach(el=>{
       if(el.querySelector('.ar-only,.en-only'))return;
       if(!el.dataset.arText)el.dataset.arText=el.textContent.trim();
       const t=tr.get(el.dataset.arText);
       if(t)el.textContent=en?t:el.dataset.arText;
     });
+    const flightPh={flightFrom:['اكتب المدينة أو رمز المطار','Type city or airport code'],flightTo:['اكتب المدينة أو رمز المطار','Type city or airport code']};Object.entries(flightPh).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.placeholder=en?v[1]:v[0]});
     const ph={name:['الاسم','Name'],phone:['رقم الجوال','Mobile number'],dest:['الوجهة المطلوبة','Destination'],details:['تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال...','Additional details: hotel, nights, flight class, children...']};
     Object.entries(ph).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.placeholder=en?v[1]:v[0]});
     document.querySelectorAll('select').forEach(s=>s.querySelectorAll('option').forEach(o=>{
@@ -308,6 +331,7 @@ html.flight-results-mode .booking{margin-bottom:12px}
       const opts={'الميزانية التقريبية (ر.س)':'Approximate budget (SAR)','أقل من 2,000 ر.س':'Under SAR 2,000','2,000 – 5,000 ر.س':'SAR 2,000–5,000','5,000 – 10,000 ر.س':'SAR 5,000–10,000','أكثر من 10,000 ر.س':'Over SAR 10,000','مرنة':'Flexible','1 مسافر':'1 traveler','2 مسافرين':'2 travelers','3 مسافرين':'3 travelers','4 مسافرين':'4 travelers','5+ مسافرين':'5+ travelers'};
       if(opts[o.dataset.arText])o.textContent=en?opts[o.dataset.arText]:o.dataset.arText;
     }));
+    document.title=en?'Yalla Rehla | Flights, Hotels & Travel':'BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك | من رحلتي السعودية';
     try{localStorage.setItem('yallaRehlaLang',lang)}catch(e){}
   }
   window.toggleSiteLanguage=()=>setLang(document.documentElement.dataset.siteLang==='en'?'ar':'en');
