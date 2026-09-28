@@ -9,6 +9,8 @@
   gtag('js', new Date());
 
   gtag('config', 'G-W964RHW1WY');
+  // Yalla Rehla measurement helpers: track meaningful booking actions without collecting form values.
+  window.yallaTrack=function(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}};
 </script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك | من رحلتي السعودية</title>
@@ -412,13 +414,37 @@ html.flight-results-mode .booking{margin-bottom:12px}
   let initial='ar';try{initial=localStorage.getItem('yallaRehlaLang')||'ar'}catch(e){}
   setLang(initial==='en'?'en':'ar');
 
+  // Measure the actions that matter for a travel booking journey.
+  document.querySelectorAll('a[target="_blank"][rel*="sponsored"]').forEach(link=>link.addEventListener('click',()=>{
+    const href=link.getAttribute('href')||''; let provider='affiliate';
+    if(href.includes('klook'))provider='klook'; else if(href.includes('localrent'))provider='localrent'; else if(href.includes('kiwitaxi'))provider='kiwitaxi'; else if(href.includes('gettransfer'))provider='gettransfer'; else if(href.includes('tiqets'))provider='tiqets'; else if(href.includes('intui'))provider='intui';
+    window.yallaTrack('affiliate_click',{provider:provider});
+  }));
   document.querySelectorAll('.dest[data-airport]').forEach(card=>card.addEventListener('click',()=>{const to=document.getElementById('flightTo');if(to){to.value=card.dataset.airport;to.dataset.code=card.dataset.airport;document.getElementById('booking')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>to.focus(),450);}}));
 
   const travelDate=document.getElementById('travelDate');
   if(travelDate)travelDate.min=new Date().toISOString().split('T')[0];
   const makeRequest=document.getElementById('makeRequest');
   if(makeRequest)makeRequest.onclick=function(){
-    alert(document.documentElement.lang==='en'?'Your request has been received':'تم استلام طلبك');
+    const lang=document.documentElement.lang==='en'?'en':'ar';
+    const name=(document.getElementById('name')?.value||'').trim();
+    const phone=(document.getElementById('phone')?.value||'').trim();
+    const dest=(document.getElementById('dest')?.value||'').trim();
+    const date=document.getElementById('travelDate')?.value||'';
+    const budget=document.getElementById('budget')?.value||'';
+    const travellers=document.getElementById('travellers')?.value||'';
+    const details=(document.getElementById('details')?.value||'').trim();
+    const result=document.getElementById('result');
+    if(!dest||!date){alert(lang==='en'?'Please enter your destination and travel date.':'اكتب الوجهة وتاريخ السفر أولًا.');return;}
+    const label=lang==='en'?{name:'Name',phone:'Mobile',dest:'Destination',date:'Travel date',budget:'Budget',travellers:'Travelers',details:'Details'}:{name:'الاسم',phone:'الجوال',dest:'الوجهة',date:'تاريخ السفر',budget:'الميزانية',travellers:'المسافرون',details:'التفاصيل'};
+    const rows=[name&&'<b>'+label.name+':</b> '+name,phone&&'<b>'+label.phone+':</b> '+phone,'<b>'+label.dest+':</b> '+dest,'<b>'+label.date+':</b> '+date,budget&&'<b>'+label.budget+':</b> '+budget,travellers&&'<b>'+label.travellers+':</b> '+travellers,details&&'<b>'+label.details+':</b> '+details].filter(Boolean);
+    if(result){
+      result.style.display='block';
+      result.innerHTML=(lang==='en'?'<strong>Your trip summary</strong><br>':'<strong>ملخص رحلتك</strong><br>')+rows.join('<br>')+'<div class="copyrow"><button type="button" id="copyTripSummary" class="send">'+(lang==='en'?'Copy summary':'نسخ الملخص')+'</button></div>';
+      const copy=document.getElementById('copyTripSummary');
+      if(copy)copy.onclick=async function(){const text=rows.map(x=>x.replace(/<[^>]*>/g,'')).join('\\n');try{await navigator.clipboard.writeText(text);alert(lang==='en'?'Summary copied':'تم نسخ الملخص');}catch(e){alert(lang==='en'?'Copy is not available in this browser':'النسخ غير متاح في هذا المتصفح');}};
+    }
+    window.yallaTrack('trip_request_created',{destination:dest,has_phone:phone?'yes':'no'});
   };
 })();
 </script>
