@@ -46,6 +46,9 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 @media(max-width:520px){
   .quick-services{grid-template-columns:repeat(4,minmax(0,1fr))!important}
   .quick-services a{min-width:0!important}
+  /* Mobile: the quick-service row already provides these choices; remove the duplicate tabs completely. */
+  .booking#booking>.tabs{display:none!important}
+  .booking#booking{padding-top:22px!important}
 }
 
 .partnerbar{max-width:1120px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.partner{background:#fff;border:1px solid #dfeaec;border-radius:14px;padding:16px;text-align:center;font-weight:800}.trust{max-width:1120px;margin:22px auto 0;text-align:center;color:var(--muted);font-size:13px}.copyrow{display:flex;gap:8px;margin-top:10px}.copyrow button{flex:1}@media(max-width:850px){.partnerbar{grid-template-columns:1fr 1fr}}
