@@ -110,7 +110,7 @@ window.TPWL_CONFIGURATION={...window.TPWL_CONFIGURATION,resultsURL:"https://mahd
 if(new URLSearchParams(location.search).has("flightSearch")){
  document.documentElement.classList.add("flight-results-mode");
 }
-(function () {
+window.loadYallaFlightEngine=function(){
  if(window.__yallaFlightEngineLoading)return;
  window.__yallaFlightEngineLoading=true;
  var script=document.createElement("script");
@@ -118,7 +118,8 @@ if(new URLSearchParams(location.search).has("flightSearch")){
  script.type="module";
  script.src="https://tpemd.com/wl_web/main.js?wl_id=22698";
  document.head.appendChild(script);
-})();
+};
+if(new URLSearchParams(location.search).has("flightSearch"))window.loadYallaFlightEngine();
 </script>
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
@@ -239,12 +240,14 @@ html.flight-results-mode .booking{margin-bottom:12px}
     document.documentElement.classList.add('flight-results-mode');
     const btn=form.querySelector('.yalla-search-btn');
     if(btn){btn.disabled=true;btn.innerHTML=document.documentElement.lang==='en'?'Searching flights…':'جاري البحث عن الرحلات…';}
-    window.loadYallaFlightEngine&&window.loadYallaFlightEngine();
     const url=new URL(location.href);
     url.searchParams.set('flightSearch',q);
     if(form.dataset.cheapest==='1'){url.searchParams.set('sort','price');url.searchParams.set('cheapest','1');form.dataset.cheapest='';}
     url.hash='booking';
-    location.replace(url.toString());
+    // Put the search query in the URL before loading the provider engine.
+    // This avoids a full page reload and a second provider bootstrap, which was adding visible delay.
+    history.replaceState(null,'',url.toString());
+    window.loadYallaFlightEngine&&window.loadYallaFlightEngine();
   });
 })();
 </script>
