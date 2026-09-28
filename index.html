@@ -149,7 +149,7 @@ html.flight-results-mode .booking{margin-bottom:12px}
       <select id="flightAdults"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
     </label>
   </div>
-  <div class="search-actions"><button class="yalla-search-btn" type="submit"><span class="ar-only">🔍 بحث التذاكر</span><span class="en-only">🔍 Search tickets</span></button><a class="cheapest-price-btn" href="./cheap-flights.html"><span class="ar-only">💰 بحث عن أرخص الأسعار</span><span class="en-only">💰 Find the cheapest prices</span></a></div>
+  <div class="search-actions"><button class="yalla-search-btn" type="submit"><span class="ar-only">🔍 بحث التذاكر</span><span class="en-only">🔍 Search tickets</span></button><a class="cheapest-price-btn" id="cheapestPriceBtn" href="#booking"><span class="ar-only">💰 بحث عن أرخص الأسعار</span><span class="en-only">💰 Find the cheapest prices</span></a></div>
 </form>
 <div class="yalla-flow-strip" aria-label="مسار الحجز">
   <span>1️⃣ ابحث داخل يلا رحلة</span><b>←</b><span>2️⃣ قارن الأسعار واختر</span><b>←</b><span>3️⃣ أكمل الحجز والدفع عند الشريك</span>
@@ -208,6 +208,12 @@ html.flight-results-mode .booking{margin-bottom:12px}
     return airportMap[s.toLowerCase()]||airportMap[s]||'';
   };
   const ddmm=v=>{const p=v.split('-');return p[2]+p[1]};
+  const cheapestBtn=document.getElementById('cheapestPriceBtn');
+  if(cheapestBtn)cheapestBtn.addEventListener('click',e=>{
+    e.preventDefault();
+    form.dataset.cheapest='1';
+    if(typeof form.requestSubmit==='function') form.requestSubmit(); else form.dispatchEvent(new Event('submit',{cancelable:true}));
+  });
   form.addEventListener('submit',e=>{
     e.preventDefault();
     if(!resolveCountryChoice())return;
@@ -225,6 +231,7 @@ html.flight-results-mode .booking{margin-bottom:12px}
     window.loadYallaFlightEngine&&window.loadYallaFlightEngine();
     const url=new URL(location.href);
     url.searchParams.set('flightSearch',q);
+    if(form.dataset.cheapest==='1'){url.searchParams.set('sort','price');url.searchParams.set('cheapest','1');form.dataset.cheapest='';}
     url.hash='booking';
     location.replace(url.toString());
   });
