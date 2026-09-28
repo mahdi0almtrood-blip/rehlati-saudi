@@ -94,7 +94,12 @@ html[data-site-lang="ar"] .ar-only{display:inline!important}
 </script>
 <link rel="preconnect" href="https://tpwgts.com" crossorigin>
 <link rel="modulepreload" href="https://tpwgts.com/wl_web/main.js?wl_id=22698">
-<link rel="preconnect" href="https://tpx.li" crossorigin>\n<link rel="dns-prefetch" href="//tpx.li">
+<link rel="preconnect" href="https://tpx.li" crossorigin>
+<link rel="dns-prefetch" href="//tpx.li">
+<link rel="preconnect" href="https://www.aviasales.com" crossorigin>
+<link rel="dns-prefetch" href="//www.aviasales.com">
+<link rel="preconnect" href="https://aviasales.com" crossorigin>
+<link rel="dns-prefetch" href="//aviasales.com">
 <link rel="dns-prefetch" href="//tpwgts.com">
 <script>
 window.TPWL_CONFIGURATION={...window.TPWL_CONFIGURATION,resultsURL:"https://mahdi0almtrood-blip.github.io/rehlati-saudi/"};
@@ -107,7 +112,11 @@ window.loadYallaFlightEngine=function(){
  script.fetchPriority="high";
  document.head.appendChild(script);
 };
-if(new URLSearchParams(location.search).has("flightSearch")){document.documentElement.classList.add("flight-results-mode");window.loadYallaFlightEngine();}else{if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",()=>window.loadYallaFlightEngine(),{once:true});}else{window.loadYallaFlightEngine();}}
+if(new URLSearchParams(location.search).has("flightSearch")){
+ document.documentElement.classList.add("flight-results-mode");
+ ["https://www.aviasales.com","https://aviasales.com","https://tpx.li"].forEach(function(h){try{fetch(h,{mode:"no-cors",cache:"no-store",priority:"low"}).catch(function(){});}catch(e){}});
+ window.loadYallaFlightEngine();
+}else{if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",()=>window.loadYallaFlightEngine(),{once:true});}else{window.loadYallaFlightEngine();}}
 </script>
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
