@@ -94,21 +94,20 @@ html[data-site-lang="ar"] .ar-only{display:inline!important}
 </script>
 <link rel="preconnect" href="https://tpemd.com" crossorigin>
 <link rel="dns-prefetch" href="//tpemd.com">
-<script>
+<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
 window.TPWL_CONFIGURATION={...window.TPWL_CONFIGURATION,resultsURL:"https://mahdi0almtrood-blip.github.io/rehlati-saudi/"};
-window.loadYallaFlightEngine=function(){
- if(window.__yallaFlightEngineLoading)return;
- window.__yallaFlightEngineLoading=true;
- var script=document.createElement("script");
- script.async=true;
- script.type="module";
- script.src="https://tpemd.com/wl_web/main.js?wl_id=22698";
- document.head.appendChild(script);
-};
 if(new URLSearchParams(location.search).has("flightSearch")){
  document.documentElement.classList.add("flight-results-mode");
 }
-window.loadYallaFlightEngine();
+(function () {
+ if(window.__yallaFlightEngineLoading)return;
+ window.__yallaFlightEngineLoading=true;
+ var script=document.createElement("script");
+ script.async=1;
+ script.type="module";
+ script.src="https://tpemd.com/wl_web/main.js?wl_id=22698";
+ document.head.appendChild(script);
+})();
 </script>
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
