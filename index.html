@@ -76,7 +76,7 @@ body{background:linear-gradient(180deg,#eef7f5 0,#f7faf9 38%,#eef4f3 100%)}
 {"@context":"https://schema.org","@type":"WebSite","name":"يلا رحلة","alternateName":"رحلتي السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","inLanguage":"ar-SA","description":"BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك، من رحلتي السعودية. خدمات سفر وروابط حجز للطيران والإقامة والسيارات والتوصيل والنقل الخاص والأنشطة."}
 </script>
 <link rel="preconnect" href="https://tpwgts.com" crossorigin>
-<link rel="dns-prefetch" href="//tpx.li">
+<link rel="preconnect" href="https://tpx.li" crossorigin>\n<link rel="dns-prefetch" href="//tpx.li">
 <link rel="dns-prefetch" href="//tpwgts.com">
 <script>
 window.TPWL_CONFIGURATION={...window.TPWL_CONFIGURATION,resultsURL:"https://mahdi0almtrood-blip.github.io/rehlati-saudi/"};
@@ -89,16 +89,17 @@ window.loadYallaFlightEngine=function(){
  script.fetchPriority="high";
  document.head.appendChild(script);
 };
-if(new URLSearchParams(location.search).has("flightSearch")) window.loadYallaFlightEngine();
-window.__yallaWarmBound=true;
-document.addEventListener("pointerdown",function(e){if(e.target.closest && e.target.closest("#yallaFlightSearch,#booking")) window.loadYallaFlightEngine();},{once:true,passive:true});
-document.addEventListener("focusin",function(e){if(e.target.closest && e.target.closest("#yallaFlightSearch,#booking")) window.loadYallaFlightEngine();},{once:true});
+if(new URLSearchParams(location.search).has("flightSearch")){document.documentElement.classList.add("flight-results-mode");window.loadYallaFlightEngine();}
 </script>
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
 html[data-site-lang="en"] .ar-only{display:none!important}
 html[data-site-lang="en"] body{direction:ltr}
 html[data-site-lang="ar"] body{direction:rtl}
+html.flight-results-mode .hotel-deals,html.flight-results-mode #services,html.flight-results-mode #destinations,html.flight-results-mode #request,html.flight-results-mode #faq,html.flight-results-mode footer{display:none!important}
+html.flight-results-mode .hero{min-height:auto;padding-bottom:12px}
+html.flight-results-mode .booking{margin-bottom:12px}
+@media(max-width:760px){.flight-fields{grid-template-columns:1fr 1fr}.flight-fields label:nth-child(5){grid-column:1/-1}.yalla-search-btn{width:100%;margin-top:12px}.booking{padding:12px}.hero{padding-left:12px;padding-right:12px}}
 </style><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="dns-prefetch" href="//tpwgts.com"><link rel="dns-prefetch" href="//klook.tpx.li"></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
@@ -196,10 +197,14 @@ html[data-site-lang="ar"] body{direction:rtl}
     const back=ret.value?ddmm(ret.value):'';
     const adults=document.getElementById('flightAdults').value;
     const q=from+ddmm(dep.value)+to+back+adults;
+    document.documentElement.classList.add('flight-results-mode');
+    const btn=form.querySelector('.yalla-search-btn');
+    if(btn){btn.disabled=true;btn.innerHTML=document.documentElement.lang==='en'?'Searching flights…':'جاري البحث عن الرحلات…';}
+    window.loadYallaFlightEngine&&window.loadYallaFlightEngine();
     const url=new URL(location.href);
     url.searchParams.set('flightSearch',q);
     url.hash='booking';
-    location.href=url.toString();
+    location.replace(url.toString());
   });
 })();
 </script>
