@@ -266,6 +266,38 @@ html[data-site-lang="ar"] body{direction:rtl}
     }
     try{localStorage.setItem('yallaRehlaLang',lang)}catch(e){}
   }
+    const pairs = [
+      ['واجهة سهلة تساعدك على ترتيب طلبك قبل الحجز.','An easy interface to organize your trip before booking.'],
+      ['رحلات الطيران','Flights'],['ابحث وقارن الرحلات من داخل يلا رحلة، ثم أكمل الحجز لدى مزود العرض.','Search and compare flights on Yalla Rehla, then complete booking with the provider.'],
+      ['ابحث عن طيران داخل يلا رحلة ←','Search flights on Yalla Rehla ←'],['الإقامة وخدمات السفر','Hotels & travel services'],
+      ['استكشف الخيارات المتاحة لدى Klook والخدمات المناسبة لوجهتك.','Explore available Klook options and services for your destination.'],['استكشف Klook ←','Explore Klook ←'],
+      ['تأجير السيارات','Car rental'],['انتقل إلى Localrent لمقارنة خيارات تأجير السيارات المتاحة.','Compare available car rental options with Localrent.'],['استأجر سيارة ←','Rent a car ←'],
+      ['توصيل المطار','Airport transfer'],['احجز النقل من وإلى المطار عبر Kiwitaxi، مع خيار إضافي عبر INTUI.','Book airport transfers with Kiwitaxi, with INTUI as an additional option.'],
+      ['نقل خاص','Private transfer'],['قارن خيارات النقل الخاص عبر GetTransfer وأكمل الحجز لدى مزود الخدمة.','Compare private transfer options with GetTransfer and complete booking with the provider.'],
+      ['الأنشطة والمعالم','Activities & attractions'],['استكشف تذاكر المعالم والأنشطة السياحية المتاحة لدى Tiqets.','Explore attraction tickets and travel activities available from Tiqets.'],['استكشف الأنشطة ←','Explore activities ←'],
+      ['اجمع احتياجاتك في ملخص واحد مرتب قبل الانتقال لمزودي الخدمات.','Collect your trip needs in one clear summary before continuing to providers.'],['جهّز طلبك ←','Prepare your request ←'],
+      ['أدخل المدن والتاريخ وعدد المسافرين.','Enter cities, dates and number of travelers.'],['اكتب احتياجات الفندق والميزانية وأي طلبات أخرى.','Add hotel needs, budget and any other requests.'],['نرتب التفاصيل في صيغة واضحة لتسهيل متابعة الحجز.','We organize the details clearly to make booking easier.'],
+      ['أدخل البيانات، وسنرتب لك ملخصًا جاهزًا للنسخ والمشاركة.','Enter your details and we will prepare a summary ready to copy and share.'],
+      ['أين يتم الحجز والدفع؟','Where are booking and payment completed?'],['في الطيران، تبحث وتقارن وتختار الرحلة داخل يلا رحلة. عند إكمال الحجز والدفع فقط تنتقل إلى مزود الحجز وفق شروطه.','For flights, search, compare and choose on Yalla Rehla. You move to the booking provider only to complete booking and payment.'],
+      ['هل الأسعار المعروضة مؤكدة؟','Are displayed prices guaranteed?'],['لا نعرض سعرًا أو توفرًا على أنه مؤكد دون اتصال بمزود حجز. السعر النهائي يحدده مزود الخدمة وقت الحجز.','Prices and availability are not guaranteed without confirmation from the booking provider. The provider determines the final price at booking.'],
+      ['هل يعمل الموقع على الجوال؟','Does the site work on mobile?'],['نعم، التصميم متجاوب مع الجوال والكمبيوتر والأجهزة اللوحية.','Yes. The site is responsive on phones, computers and tablets.'],
+      ['اختر وجهتك وابدأ التخطيط للطيران والأنشطة والتنقل.','Choose your destination and start planning flights, activities and transport.'],['دليل السفر والحجز','Travel & booking guide'],
+      ['محرك البحث الرئيسي موجود أعلى الصفحة.','The main search engine is at the top of the page.'],['العودة إلى البحث عن رحلة ←','Back to flight search ←'],
+      ['ابدأ من الخدمة التي تحتاجها، ثم انتقل إلى مزود الحجز وأكمل الحجز وفق السعر والتوافر والشروط المعروضة هناك.','Start with the service you need, then continue to the booking provider according to its displayed price, availability and terms.'],
+      ['الرحلات الجوية','Flights'],['ابحث وقارن الرحلات.','Search and compare flights.'],['الأنشطة والتذاكر','Activities & tickets'],['تجارب ومعالم وتذاكر.','Experiences, attractions and tickets.'],['خيارات سيارات للوجهات.','Car options for your destinations.'],['النقل من المطار','Airport transfers'],['خيارات نقل خاص ومطار.','Private and airport transfer options.'],['دليل الوجهات','Destinations guide'],['تصفح أكثر من 40 وجهة.','Browse more than 40 destinations.'],
+      ['حجز طيران رخيص','Cheap flights'],['نصائح للمقارنة والبحث عن الرحلات.','Tips for comparing and finding flights.'],['السفر إلى دبي','Travel to Dubai'],['رتّب الطيران والإقامة والأنشطة.','Plan flights, hotels and activities.'],['توصيل من المطار','Airport transfer'],['رتّب النقل قبل الوصول.','Arrange your transfer before arrival.']
+    ];
+    document.querySelectorAll('h2,h3,p,a,summary,button,option').forEach(el=>{
+      if(el.querySelector('.ar-only,.en-only')) return;
+      if(!el.dataset.arText) el.dataset.arText=el.textContent.trim();
+      const hit=pairs.find(p=>p[0]===el.dataset.arText);
+      if(hit) el.textContent=en?hit[1]:hit[0];
+    });
+    const ph={
+      name:['الاسم','Name'],phone:['رقم الجوال','Mobile number'],dest:['الوجهة المطلوبة','Destination'],
+      details:['تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال...','Additional details: hotel, nights, flight class, children...']
+    };
+    Object.entries(ph).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.placeholder=en?v[1]:v[0]});
   window.toggleSiteLanguage=function(){
     setLang(document.documentElement.dataset.siteLang==='en'?'ar':'en');
   };
