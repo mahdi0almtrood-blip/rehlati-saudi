@@ -94,8 +94,11 @@ if(new URLSearchParams(location.search).has("flightSearch")){document.documentEl
 <style>
 html[data-site-lang="ar"] .en-only{display:none!important}
 html[data-site-lang="en"] .ar-only{display:none!important}
-html[data-site-lang="en"] body{direction:ltr}
-html[data-site-lang="ar"] body{direction:rtl}
+html[data-site-lang="en"] body{direction:ltr;text-align:left}
+html[data-site-lang="ar"] body{direction:rtl;text-align:right}
+html[data-site-lang="en"] .field,html[data-site-lang="en"] .hotel-head,html[data-site-lang="en"] .destinations .head,html[data-site-lang="en"] .dest-copy,html[data-site-lang="en"] .results-intro{text-align:left}
+html[data-site-lang="en"] .dest-copy{left:26px;right:auto}
+html[data-site-lang="ar"] .dest-copy{right:26px;left:auto}
 html.flight-results-mode .hotel-deals,html.flight-results-mode #services,html.flight-results-mode #destinations,html.flight-results-mode #request,html.flight-results-mode #faq,html.flight-results-mode footer{display:none!important}
 html.flight-results-mode .hero{min-height:auto;padding-bottom:12px}
 html.flight-results-mode .booking{margin-bottom:12px}
@@ -317,11 +320,29 @@ html.flight-results-mode .booking{margin-bottom:12px}
     document.documentElement.dir=en?'ltr':'rtl';
     document.body.dir=en?'ltr':'rtl';
     if(b){b.textContent=en?'العربية':'English';b.setAttribute('aria-label',en?'Switch to Arabic':'Switch to English');}
-    document.querySelectorAll('h1,h2,h3,h4,p,a,summary,button,label,option,.dest-copy,.hotel-head,.card,.notice,.trust,.guide-card,.pay-card').forEach(el=>{
-      if(el.querySelector('.ar-only,.en-only'))return;
-      if(!el.dataset.arText)el.dataset.arText=el.textContent.trim();
-      const t=tr.get(el.dataset.arText);
-      if(t)el.textContent=en?t:el.dataset.arText;
+    // Translate every standalone text node, including text inside mixed-language cards.
+    // This avoids the old bug where a parent containing .ar-only/.en-only caused nearby Arabic text to be skipped.
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode(node){
+        const p=node.parentElement;
+        if(!p||p.closest('script,style,.ar-only,.en-only'))return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const raw=node.nodeValue, key=raw.trim();
+      if(!node.parentElement.dataset.arNodeText && /[\\u0600-\\u06FF]/.test(key))node.parentElement.dataset.arNodeText=key;
+      const ar=node.parentElement.dataset.arNodeText||key;
+      const translated=tr.get(ar);
+      if(translated){
+        const lead=raw.match(/^\\s*/)?.[0]||'', tail=raw.match(/\\s*$/)?.[0]||'';
+        node.nodeValue=lead+(en?translated:ar)+tail;
+      }
+    });
+    document.querySelectorAll('[data-ar-text]').forEach(el=>{
+      const ar=el.dataset.arText, translated=tr.get(ar);
+      if(translated)el.textContent=en?translated:ar;
     });
     const flightPh={flightFrom:['اكتب المدينة أو رمز المطار','Type city or airport code'],flightTo:['اكتب المدينة أو رمز المطار','Type city or airport code']};Object.entries(flightPh).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.placeholder=en?v[1]:v[0]});
     const ph={name:['الاسم','Name'],phone:['رقم الجوال','Mobile number'],dest:['الوجهة المطلوبة','Destination'],details:['تفاصيل إضافية: الفندق، عدد الليالي، درجة الطيران، الأطفال...','Additional details: hotel, nights, flight class, children...']};
