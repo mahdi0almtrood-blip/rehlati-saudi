@@ -332,12 +332,16 @@ html.flight-results-mode .booking{margin-bottom:12px}
     const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
     nodes.forEach(node=>{
       const raw=node.nodeValue, key=raw.trim();
-      if(!node.parentElement.dataset.arNodeText && /[\\u0600-\\u06FF]/.test(key))node.parentElement.dataset.arNodeText=key;
-      const ar=node.parentElement.dataset.arNodeText||key;
-      const translated=tr.get(ar);
-      if(translated){
+      // Cache both language forms once, so switching back to Arabic never treats English as the source.
+      if(!node.__yallaAr && !node.__yallaEn){
+        if(/[\\u0600-\\u06FF]/.test(key)){node.__yallaAr=key;node.__yallaEn=tr.get(key)||key;}
+        else {
+          for(const [arText,enText] of tr){if(enText===key){node.__yallaAr=arText;node.__yallaEn=enText;break;}}
+        }
+      }
+      if(node.__yallaAr){
         const lead=raw.match(/^\\s*/)?.[0]||'', tail=raw.match(/\\s*$/)?.[0]||'';
-        node.nodeValue=lead+(en?translated:ar)+tail;
+        node.nodeValue=lead+(en?node.__yallaEn:node.__yallaAr)+tail;
       }
     });
     document.querySelectorAll('[data-ar-text]').forEach(el=>{
