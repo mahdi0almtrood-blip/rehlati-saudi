@@ -62,6 +62,7 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 .flight-fields input:focus,.flight-fields select:focus{border-color:#087052;box-shadow:0 0 0 3px rgba(8,112,82,.10)}
 .yalla-search-btn{display:block;width:min(390px,90%);min-height:58px;margin:22px auto 4px;border:0;border-radius:14px;background:#087052;color:#fff;font:inherit;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(8,112,82,.20)}
 .yalla-search-btn:hover{transform:translateY(-1px)}
+.search-actions{display:flex;gap:10px;justify-content:center;align-items:stretch;margin:22px auto 4px;max-width:800px}.search-actions .yalla-search-btn{width:auto;flex:1;margin:0}.cheapest-price-btn{flex:1;display:flex;align-items:center;justify-content:center;min-height:58px;border:2px solid #087052;border-radius:14px;background:#fff;color:#087052;text-decoration:none;font:inherit;font-size:17px;font-weight:900;cursor:pointer}.cheapest-price-btn:hover{background:#eef8f5}@media(max-width:560px){.search-actions{flex-direction:column}.search-actions .yalla-search-btn,.cheapest-price-btn{width:100%}}
 @media(max-width:900px){.flight-fields{grid-template-columns:1fr 1fr}.flight-fields label:last-child{grid-column:1/-1}.yalla-flight-search{margin-top:14px}}
 @media(max-width:560px){.flight-fields{grid-template-columns:1fr}.flight-fields label:last-child{grid-column:auto}.yalla-search-btn{width:100%}}
 
@@ -148,7 +149,7 @@ html.flight-results-mode .booking{margin-bottom:12px}
       <select id="flightAdults"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
     </label>
   </div>
-  <button class="yalla-search-btn" type="submit"><span class="ar-only">🔍 عرض الرحلات والأسعار</span><span class="en-only">🔍 Show flights & prices</span></button>
+  <div class="search-actions"><button class="yalla-search-btn" type="submit"><span class="ar-only">🔍 بحث التذاكر</span><span class="en-only">🔍 Search tickets</span></button><a class="cheapest-price-btn" href="./cheap-flights.html"><span class="ar-only">💰 بحث عن أرخص الأسعار</span><span class="en-only">💰 Find the cheapest prices</span></a></div>
 </form>
 <div class="yalla-flow-strip" aria-label="مسار الحجز">
   <span>1️⃣ ابحث داخل يلا رحلة</span><b>←</b><span>2️⃣ قارن الأسعار واختر</span><b>←</b><span>3️⃣ أكمل الحجز والدفع عند الشريك</span>
