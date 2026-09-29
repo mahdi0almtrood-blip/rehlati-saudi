@@ -77,6 +77,11 @@ footer{background:#052f38;color:#d9eff1;padding:35px 6%;text-align:center;line-h
 @media(max-width:900px){.flight-fields{grid-template-columns:1fr 1fr}.flight-fields label:last-child{grid-column:1/-1}.yalla-flight-search{margin-top:14px}}
 @media(max-width:560px){.flight-fields{grid-template-columns:1fr}.flight-fields label:last-child{grid-column:auto}.yalla-search-btn{width:100%}}
 
+/* Keep the Yalla Rehla flight search visible while visitors compare results. This changes layout only; the live flight engine remains untouched. */
+.yalla-flight-search{position:sticky;top:76px;z-index:18}
+@media(max-width:760px){.yalla-flight-search{top:66px;max-height:calc(100vh - 76px);overflow:auto;overscroll-behavior:contain}}
+@media(max-width:560px){.yalla-flight-search{top:62px}}
+
 /* Premium travel atmosphere around live flight results */
 body{background:linear-gradient(180deg,#eef7f5 0,#f7faf9 38%,#eef4f3 100%)}
 .booking#booking{background:rgba(255,255,255,.97);border:1px solid rgba(8,112,82,.10);box-shadow:0 24px 70px rgba(19,61,55,.14);overflow:visible}
