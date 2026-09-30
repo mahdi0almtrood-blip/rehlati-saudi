@@ -605,4 +605,11 @@ document.querySelectorAll('input[type="date"]').forEach(x=>x.addEventListener('c
 addEventListener('load',sync);
 document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(sync,0)});
 })();
-</script></body></html>
+</script><script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./service-worker.js').catch(function () {});
+  });
+}
+</script>
+</body></html>
