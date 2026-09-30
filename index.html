@@ -566,7 +566,7 @@ function setup(inputId,menuId){
 }
 setup('flightFrom','fromAirportMenu');setup('flightTo','toAirportMenu');
 })();
-</script><script id="full-language-fix-v1">
+</script><script id="full-language-fix-v1" type="application/x-disabled">
 (function(){
 const EN={
 'الدمام':'Dammam','الرياض':'Riyadh','جدة':'Jeddah','المدينة المنورة':'Madinah','أبها':'Abha','جازان':'Jazan','الطائف':'Taif','القصيم':'Qassim','تبوك':'Tabuk','نيوم':'Neom','العلا':'AlUla','الأحساء':'Al Ahsa',
@@ -593,5 +593,30 @@ function apply(){
 }
 window.addEventListener('load',apply);document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(apply,0)});
 new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['data-site-lang','lang']});
+})();
+</script><style id="language-visibility-safety-v2">
+/* Safety: never allow both language layers to disappear. */
+html[data-site-lang="ar"] .ar-only{display:inline!important}
+html[data-site-lang="ar"] .en-only{display:none!important}
+html[data-site-lang="en"] .ar-only{display:none!important}
+html[data-site-lang="en"] .en-only{display:inline!important}
+html:not([data-site-lang]) .ar-only{display:inline!important}
+html:not([data-site-lang]) .en-only{display:none!important}
+section{content-visibility:visible!important;contain:none!important}
+</style>
+<script id="language-safe-switch-v2">
+(function(){
+function setLang(lang){
+ const en=lang==='en',root=document.documentElement;
+ root.setAttribute('data-site-lang',en?'en':'ar');root.lang=en?'en':'ar';root.dir=en?'ltr':'rtl';
+ const b=document.getElementById('langToggle');if(b)b.textContent=en?'العربية':'English';
+ const from=document.getElementById('flightFrom'),to=document.getElementById('flightTo'),hotel=document.getElementById('hotelDestination');
+ if(from)from.placeholder=en?'Choose or type city / airport':'اختر أو اكتب المدينة / المطار';
+ if(to)to.placeholder=en?'Choose or type city / airport':'اختر أو اكتب المدينة / المطار';
+ if(hotel)hotel.placeholder=en?'Riyadh, Dubai, Cairo...':'الرياض، دبي، القاهرة...';
+ try{localStorage.setItem('yallaLang',en?'en':'ar')}catch(e){}
+}
+window.toggleSiteLanguage=function(){setLang(document.documentElement.getAttribute('data-site-lang')==='en'?'ar':'en')};
+let initial='ar';try{initial=localStorage.getItem('yallaLang')||'ar'}catch(e){}setLang(initial);
 })();
 </script></body></html>
