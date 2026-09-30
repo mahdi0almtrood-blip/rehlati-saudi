@@ -226,8 +226,8 @@ main{padding-top:164px!important}
 <p style="text-align:center;color:var(--muted)"><span class="ar-only">ابحث وقارن الرحلات والأسعار هنا داخل يلا رحلة، ثم اختر الرحلة المناسبة. الانتقال للشريك يكون فقط لإكمال الحجز والدفع.</span><span class="en-only">Search and compare flights and prices here inside Yalla Rehla, then choose your flight. Continue to the partner only to complete booking and payment.</span></p>
 <form id="yallaFlightSearch" class="yalla-flight-search">
   <div class="flight-fields">
-    <label class="airport-field"><span class="ar-only">من</span><span class="en-only">From</span><input id="flightFrom" autocomplete="off" placeholder="اختر أو اكتب المدينة / المطار" required><div class="airport-menu" id="fromAirportMenu"></div></label>
-    <label class="airport-field"><span class="ar-only">إلى</span><span class="en-only">To</span><input id="flightTo" autocomplete="off" placeholder="اختر أو اكتب المدينة / المطار" required><div class="airport-menu" id="toAirportMenu"></div></label>
+    <label class="airport-field"><span class="ar-only">من</span><span class="en-only">From</span><input id="flightFrom" list="globalAirports" autocomplete="off" placeholder="اختر أو اكتب المدينة / المطار" required><div class="airport-menu" id="fromAirportMenu"></div></label>
+    <label class="airport-field"><span class="ar-only">إلى</span><span class="en-only">To</span><input id="flightTo" list="globalAirports" autocomplete="off" placeholder="اختر أو اكتب المدينة / المطار" required><div class="airport-menu" id="toAirportMenu"></div></label>
     <label><span class="ar-only">تاريخ المغادرة</span><span class="en-only">Departure</span>
       <input id="flightDepart" type="date" required>
     </label>
