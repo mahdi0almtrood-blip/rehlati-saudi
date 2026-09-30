@@ -203,6 +203,24 @@ html[data-site-lang="en"] .date-en-wrap::after{content:attr(data-en-date);positi
 /* Keep Yalla Rehla header visually first; flight search sits just below it */
 #yallaFlightSearch{top:112px!important}
 @media(max-width:760px){#yallaFlightSearch{top:96px!important}}
+</style><style id="mobile-fixed-search-stable-v12">
+@media(max-width:760px){
+#yallaFlightSearch{
+position:fixed!important;
+top:230px!important;
+left:10px!important;
+right:10px!important;
+width:auto!important;
+max-height:calc(100vh - 245px)!important;
+overflow:auto!important;
+transform:none!important;
+margin:0!important;
+z-index:2147483000!important;
+overscroll-behavior:contain!important;
+-webkit-overflow-scrolling:touch!important;
+}
+body{padding-top:720px!important}
+}
 </style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
