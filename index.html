@@ -193,6 +193,12 @@ html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit{direction:lt
 html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit-day-field,
 html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit-month-field,
 html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit-year-field{direction:ltr!important}
+</style><style id="desktop-english-date-overlay-v2">
+@media(min-width:761px){
+html[data-site-lang="en"] input[type="date"]{color:transparent!important;position:relative!important;direction:ltr!important}
+html[data-site-lang="en"] .date-en-wrap{position:relative!important}
+html[data-site-lang="en"] .date-en-wrap::after{content:attr(data-en-date);position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:#17252b;font:inherit;z-index:2}
+}
 </style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
@@ -551,5 +557,21 @@ function setDateLang(){
 }
 addEventListener('load',setDateLang);
 document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(setDateLang,0)});
+})();
+</script><script id="desktop-english-date-overlay-script-v2">
+(function(){
+function fmt(v){if(!v)return 'mm/dd/yyyy';const p=v.split('-');return p.length===3?p[1]+'/'+p[2]+'/'+p[0]:'mm/dd/yyyy'}
+function sync(){
+ const en=document.documentElement.getAttribute('data-site-lang')==='en';
+ document.querySelectorAll('input[type="date"]').forEach(x=>{
+   let w=x.parentElement;
+   if(!w.classList.contains('date-en-wrap'))w.classList.add('date-en-wrap');
+   w.setAttribute('data-en-date',fmt(x.value));
+   x.lang=en?'en-US':'ar-SA';
+ });
+}
+document.querySelectorAll('input[type="date"]').forEach(x=>x.addEventListener('change',sync));
+addEventListener('load',sync);
+document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(sync,0)});
 })();
 </script></body></html>
