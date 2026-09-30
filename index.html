@@ -566,4 +566,32 @@ function setup(inputId,menuId){
 }
 setup('flightFrom','fromAirportMenu');setup('flightTo','toAirportMenu');
 })();
+</script><script id="full-language-fix-v1">
+(function(){
+const EN={
+'الدمام':'Dammam','الرياض':'Riyadh','جدة':'Jeddah','المدينة المنورة':'Madinah','أبها':'Abha','جازان':'Jazan','الطائف':'Taif','القصيم':'Qassim','تبوك':'Tabuk','نيوم':'Neom','العلا':'AlUla','الأحساء':'Al Ahsa',
+'دبي':'Dubai','أبوظبي':'Abu Dhabi','الشارقة':'Sharjah','الدوحة':'Doha','البحرين':'Bahrain','الكويت':'Kuwait','مسقط':'Muscat','إسطنبول':'Istanbul','طرابزون':'Trabzon','أنطاليا':'Antalya','القاهرة':'Cairo','شرم الشيخ':'Sharm El Sheikh','عمّان':'Amman','بيروت':'Beirut','الدار البيضاء':'Casablanca','مراكش':'Marrakesh','طنجة':'Tangier','أغادير':'Agadir','تونس':'Tunis','بانكوك':'Bangkok','بوكيت':'Phuket','كرابي':'Krabi','جاكرتا':'Jakarta','بالي':'Bali','كوالالمبور':'Kuala Lumpur','سنغافورة':'Singapore','مانيلا':'Manila','طوكيو':'Tokyo','طوكيو ناريتا':'Tokyo Narita','أوساكا':'Osaka','سيول':'Seoul','هونغ كونغ':'Hong Kong','لندن':'London','باريس':'Paris','روما':'Rome','مدريد':'Madrid','برشلونة':'Barcelona','أمستردام':'Amsterdam','زيورخ':'Zurich','فيينا':'Vienna','أثينا':'Athens','نيويورك':'New York','لوس أنجلوس':'Los Angeles','شيكاغو':'Chicago','ميامي':'Miami','تورونتو':'Toronto','سيدني':'Sydney','ماليه':'Maldives',
+'السعودية':'Saudi Arabia','الإمارات':'UAE','قطر':'Qatar','عُمان':'Oman','تركيا':'Turkey','مصر':'Egypt','الأردن':'Jordan','لبنان':'Lebanon','المغرب':'Morocco','تايلند':'Thailand','إندونيسيا':'Indonesia','ماليزيا':'Malaysia','الفلبين':'Philippines','اليابان':'Japan','كوريا الجنوبية':'South Korea','بريطانيا':'United Kingdom','فرنسا':'France','إيطاليا':'Italy','إسبانيا':'Spain','هولندا':'Netherlands','سويسرا':'Switzerland','النمسا':'Austria','اليونان':'Greece','أمريكا':'USA','كندا':'Canada','أستراليا':'Australia','المالديف':'Maldives'
+};
+const exact={
+'1️⃣ ابحث داخل يلا رحلة':'1️⃣ Search on Yalla Rehla','2️⃣ قارن الأسعار واختر':'2️⃣ Compare prices and choose','3️⃣ أكمل الحجز والدفع عند الشريك':'3️⃣ Complete booking and payment with the provider',
+'فنادق الرياض':'Hotels in Riyadh','أكمل البحث للانتقال إلى مزود الحجز':'Complete the search to continue to the booking provider',
+'إقامة مميزة في الرياض':'Featured stays in Riyadh','خيارات إقامة وسط الرياض':'Central Riyadh stays','إقامة في دبي':'Stays in Dubai','إقامة في القاهرة':'Stays in Cairo',
+'جيد جدًا':'Very good','رائع':'Excellent','السعر الحي بالريال عند البحث':'Live SAR price when you search','قارن السعر قبل الحجز':'Compare prices before booking','تحديد البحث أولًا':'Set your search first',
+'خدمات يلا رحلة':'Yalla Rehla services','لا توجد نتيجة — جرّب اسم المدينة أو الدولة':'No results — try a city or country name'
+};
+function apply(){
+ const en=document.documentElement.getAttribute('data-site-lang')==='en'||document.documentElement.lang==='en';
+ document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';
+ const from=document.getElementById('flightFrom'),to=document.getElementById('flightTo'),hd=document.getElementById('hotelDestination');
+ if(from)from.placeholder=en?'Choose or type city / airport':'اختر أو اكتب المدينة / المطار';
+ if(to)to.placeholder=en?'Choose or type city / airport':'اختر أو اكتب المدينة / المطار';
+ if(hd)hd.placeholder=en?'Riyadh, Dubai, Cairo...':'الرياض، دبي، القاهرة...';
+ document.querySelectorAll('#globalAirports option').forEach(o=>{if(!o.dataset.ar)o.dataset.ar=o.value;if(en){let v=o.dataset.ar;Object.entries(EN).sort((a,b)=>b[0].length-a[0].length).forEach(([a,b])=>v=v.replace(a,b));o.value=v}else o.value=o.dataset.ar});
+ document.querySelectorAll('#hotelCities option').forEach(o=>{if(!o.dataset.ar)o.dataset.ar=o.value;o.value=en?(EN[o.dataset.ar]||o.dataset.ar):o.dataset.ar});
+ document.querySelectorAll('.yalla-flow-strip span,.hotel-result-head b,.hotel-price-pill,.hotel-card h3,.hotel-card .hotel-meta span,.hotel-card .hotel-price,.hotel-book-btn').forEach(el=>{if(!el.dataset.ar)el.dataset.ar=el.textContent.trim();el.textContent=en?(exact[el.dataset.ar]||EN[el.dataset.ar]||el.dataset.ar):el.dataset.ar});
+}
+window.addEventListener('load',apply);document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(apply,0)});
+new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['data-site-lang','lang']});
+})();
 </script></body></html>
