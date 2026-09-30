@@ -177,6 +177,12 @@ section{content-visibility:visible!important;contain:none!important}
 html[data-site-lang="ar"] .ar-only{display:inline!important}html[data-site-lang="ar"] .en-only{display:none!important}
 html[data-site-lang="en"] .ar-only{display:none!important}html[data-site-lang="en"] .en-only{display:inline!important}
 @media(max-width:760px){.yalla-flight-search{top:64px!important}}
+</style><style id="freeze-hotfix-v2">
+html{scroll-behavior:auto!important}
+*{backdrop-filter:none!important}
+section{content-visibility:visible!important;contain:none!important}
+body{overflow-x:hidden!important;overflow-y:auto!important}
+.yalla-flight-search{position:sticky!important;top:76px!important;z-index:40!important;background:#fff!important}
 </style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
