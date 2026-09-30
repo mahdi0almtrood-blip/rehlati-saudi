@@ -161,7 +161,12 @@ html.flight-results-mode .booking{margin-bottom:12px}
   .yalla-flight-search{top:64px!important}
 }
 </style><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="dns-prefetch" href="//tpwgts.com"><link rel="dns-prefetch" href="//klook.tpx.li"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"يلا رحلة","alternateName":"Yalla Rehla","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","description":"منصة سفر للمسافر السعودي لمقارنة والوصول إلى خدمات الطيران والإقامة والسيارات والتنقلات والأنشطة عبر مزودي السفر."}</script>
-</head>
+<style id="yalla-fixed-search-v2">
+.yalla-flight-search.yalla-search-fixed{position:fixed!important;top:76px!important;left:50%!important;transform:translateX(-50%)!important;width:min(1080px,calc(100% - 28px))!important;z-index:999!important;margin:0!important;box-shadow:0 16px 38px rgba(6,61,72,.24)!important}
+.yalla-search-spacer{display:none}
+.yalla-search-spacer.active{display:block}
+@media(max-width:760px){.yalla-flight-search.yalla-search-fixed{top:64px!important;width:calc(100% - 20px)!important;max-height:calc(100vh - 74px)!important;overflow:auto!important}}
+</style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
 <main>
@@ -503,4 +508,25 @@ html.flight-results-mode .booking{margin-bottom:12px}
   };
 })();
 </script>
-</body></html>
+<script id="yalla-fixed-search-script">
+(function(){
+ const form=document.getElementById('yallaFlightSearch');
+ if(!form)return;
+ const spacer=document.createElement('div');
+ spacer.className='yalla-search-spacer';
+ form.parentNode.insertBefore(spacer,form.nextSibling);
+ let anchor=0;
+ function measure(){if(!form.classList.contains('yalla-search-fixed'))anchor=form.getBoundingClientRect().top+window.scrollY;}
+ function sync(){
+   const header=document.querySelector('header');
+   const top=(header?header.offsetHeight:64)+8;
+   const should=window.scrollY>anchor-top;
+   if(should&&!form.classList.contains('yalla-search-fixed')){
+     spacer.style.height=form.offsetHeight+'px';spacer.classList.add('active');form.classList.add('yalla-search-fixed');
+   }else if(!should&&form.classList.contains('yalla-search-fixed')){
+     form.classList.remove('yalla-search-fixed');spacer.classList.remove('active');spacer.style.height='';measure();
+   }
+ }
+ measure();window.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',()=>{if(!form.classList.contains('yalla-search-fixed'))measure();sync()});sync();
+})();
+</script></body></html>
