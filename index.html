@@ -176,6 +176,8 @@ html.flight-results-mode .booking{margin-bottom:12px}
 .booking#booking>.tabs,.booking#booking>h2,.booking#booking>p{display:none!important}
 .yalla-flight-search{margin:0 auto 8px!important}
 @media(max-width:760px){.hero{min-height:390px!important}.hero-service-strip{grid-template-columns:repeat(5,minmax(0,1fr));width:calc(100% - 20px);gap:4px;padding:5px}.hero-service-strip a{font-size:11px;padding:10px 3px}.booking#booking{margin:-12px 10px 18px!important}}
+</style><style id="airport-picker-v1">
+.airport-field{position:relative}.airport-menu{display:none;position:absolute;top:100%;right:0;left:0;margin-top:7px;background:#fff;border:1px solid #d7e5e1;border-radius:14px;box-shadow:0 18px 44px rgba(6,61,72,.22);max-height:320px;overflow:auto;z-index:1200;padding:7px}.airport-field.open .airport-menu{display:block}.airport-option{display:flex;justify-content:space-between;gap:8px;width:100%;border:0;background:#fff;padding:11px 10px;border-radius:9px;cursor:pointer;text-align:right;color:#173b35}.airport-option:hover,.airport-option:focus{background:#eef8f5}.airport-option small{color:#6a7c78;white-space:nowrap}.airport-empty{padding:14px;text-align:center;color:#6a7c78}@media(max-width:760px){.airport-menu{position:fixed;top:132px;right:12px;left:12px;max-height:55vh}}
 </style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
@@ -195,12 +197,8 @@ html.flight-results-mode .booking{margin-bottom:12px}
 <p style="text-align:center;color:var(--muted)"><span class="ar-only">ابحث وقارن الرحلات والأسعار هنا داخل يلا رحلة، ثم اختر الرحلة المناسبة. الانتقال للشريك يكون فقط لإكمال الحجز والدفع.</span><span class="en-only">Search and compare flights and prices here inside Yalla Rehla, then choose your flight. Continue to the partner only to complete booking and payment.</span></p>
 <form id="yallaFlightSearch" class="yalla-flight-search">
   <div class="flight-fields">
-    <label><span class="ar-only">من</span><span class="en-only">From</span>
-      <input id="flightFrom" list="globalAirports" autocomplete="off" placeholder="اكتب المدينة أو رمز المطار" required>
-    </label>
-    <label><span class="ar-only">إلى</span><span class="en-only">To</span>
-      <input id="flightTo" list="globalAirports" autocomplete="off" placeholder="اكتب المدينة أو رمز المطار" required>
-    </label>
+    <label class="airport-field"><span class="ar-only">من</span><span class="en-only">From</span><input id="flightFrom" autocomplete="off" placeholder="اختر أو اكتب المدينة / المطار" required><div class="airport-menu" id="fromAirportMenu"></div></label>
+    <label class="airport-field"><span class="ar-only">إلى</span><span class="en-only">To</span><input id="flightTo" autocomplete="off" placeholder="اختر أو اكتب المدينة / المطار" required><div class="airport-menu" id="toAirportMenu"></div></label>
     <label><span class="ar-only">تاريخ المغادرة</span><span class="en-only">Departure</span>
       <input id="flightDepart" type="date" required>
     </label>
@@ -538,5 +536,34 @@ html.flight-results-mode .booking{margin-bottom:12px}
    }
  }
  measure();window.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',()=>{if(!form.classList.contains('yalla-search-fixed'))measure();sync()});sync();
+})();
+</script><script id="airport-picker-script-v1">
+(function(){
+const airports=[
+['الدمام','Dammam','DMM','السعودية'],['الرياض','Riyadh','RUH','السعودية'],['جدة','Jeddah','JED','السعودية'],['المدينة المنورة','Madinah','MED','السعودية'],['أبها','Abha','AHB','السعودية'],['جازان','Jazan','GIZ','السعودية'],['الطائف','Taif','TIF','السعودية'],['القصيم','Qassim','ELQ','السعودية'],['تبوك','Tabuk','TUU','السعودية'],['نيوم','Neom','NUM','السعودية'],['العلا','AlUla','ULH','السعودية'],['الأحساء','Al Ahsa','HOF','السعودية'],
+['دبي','Dubai','DXB','الإمارات'],['أبوظبي','Abu Dhabi','AUH','الإمارات'],['الشارقة','Sharjah','SHJ','الإمارات'],['الدوحة','Doha','DOH','قطر'],['البحرين','Bahrain','BAH','البحرين'],['الكويت','Kuwait','KWI','الكويت'],['مسقط','Muscat','MCT','عُمان'],
+['إسطنبول','Istanbul','IST','تركيا'],['طرابزون','Trabzon','TZX','تركيا'],['أنطاليا','Antalya','AYT','تركيا'],['القاهرة','Cairo','CAI','مصر'],['شرم الشيخ','Sharm El Sheikh','SSH','مصر'],['عمّان','Amman','AMM','الأردن'],['بيروت','Beirut','BEY','لبنان'],
+['الدار البيضاء','Casablanca','CMN','المغرب'],['مراكش','Marrakesh','RAK','المغرب'],['طنجة','Tangier','TNG','المغرب'],['أغادير','Agadir','AGA','المغرب'],['تونس','Tunis','TUN','تونس'],
+['بانكوك','Bangkok','BKK','تايلند'],['بوكيت','Phuket','HKT','تايلند'],['كرابي','Krabi','KBV','تايلند'],['جاكرتا','Jakarta','CGK','إندونيسيا'],['بالي','Bali','DPS','إندونيسيا'],['كوالالمبور','Kuala Lumpur','KUL','ماليزيا'],['سنغافورة','Singapore','SIN','سنغافورة'],['مانيلا','Manila','MNL','الفلبين'],
+['طوكيو','Tokyo Haneda','HND','اليابان'],['طوكيو ناريتا','Tokyo Narita','NRT','اليابان'],['أوساكا','Osaka','KIX','اليابان'],['سيول','Seoul','ICN','كوريا الجنوبية'],['هونغ كونغ','Hong Kong','HKG','هونغ كونغ'],
+['لندن','London Heathrow','LHR','بريطانيا'],['باريس','Paris','CDG','فرنسا'],['روما','Rome','FCO','إيطاليا'],['مدريد','Madrid','MAD','إسبانيا'],['برشلونة','Barcelona','BCN','إسبانيا'],['أمستردام','Amsterdam','AMS','هولندا'],['زيورخ','Zurich','ZRH','سويسرا'],['فيينا','Vienna','VIE','النمسا'],['أثينا','Athens','ATH','اليونان'],
+['نيويورك','New York','JFK','أمريكا'],['لوس أنجلوس','Los Angeles','LAX','أمريكا'],['شيكاغو','Chicago','ORD','أمريكا'],['ميامي','Miami','MIA','أمريكا'],['تورونتو','Toronto','YYZ','كندا'],['سيدني','Sydney','SYD','أستراليا'],['ماليه','Maldives','MLE','المالديف']
+];
+function setup(inputId,menuId){
+ const input=document.getElementById(inputId),menu=document.getElementById(menuId),wrap=input.closest('.airport-field'); if(!input||!menu)return;
+ const norm=s=>(s||'').toLowerCase().normalize('NFKD');
+ function render(){
+  const q=norm(input.value); let rows=airports.filter(a=>!q||norm(a.join(' ')).includes(q));
+  if(inputId==='flightFrom'&&!q) rows=[...airports.filter(a=>a[3]==='السعودية'),...airports.filter(a=>a[3]!=='السعودية')];
+  rows=rows.slice(0,60); menu.innerHTML='';
+  if(!rows.length){menu.innerHTML='<div class="airport-empty">لا توجد نتيجة — جرّب اسم المدينة أو الدولة</div>';return;}
+  rows.forEach(a=>{const b=document.createElement('button');b.type='button';b.className='airport-option';b.innerHTML='<span>'+a[0]+' — '+a[1]+'</span><small>'+a[3]+' · '+a[2]+'</small>';b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{input.value=a[0]+' — '+a[1]+' ('+a[2]+')';input.dataset.code=a[2];wrap.classList.remove('open');});menu.appendChild(b);});
+ }
+ input.addEventListener('focus',()=>{document.querySelectorAll('.airport-field').forEach(x=>x.classList.remove('open'));wrap.classList.add('open');render();});
+ input.addEventListener('click',()=>{wrap.classList.add('open');render();});
+ input.addEventListener('input',()=>{input.dataset.code='';wrap.classList.add('open');render();});
+ document.addEventListener('click',e=>{if(!wrap.contains(e.target))wrap.classList.remove('open');});
+}
+setup('flightFrom','fromAirportMenu');setup('flightTo','toAirportMenu');
 })();
 </script></body></html>
