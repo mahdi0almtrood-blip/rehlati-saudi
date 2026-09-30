@@ -187,7 +187,13 @@ body{overflow-x:hidden!important;overflow-y:auto!important}
 #yallaFlightSearch{position:fixed!important;top:72px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:min(1080px,calc(100% - 24px))!important;z-index:2147483000!important;margin:0!important;background:#fff!important;border-radius:18px!important;box-shadow:0 12px 32px rgba(0,0,0,.24)!important;padding:12px!important}
 body{padding-top:120px!important}
 @media(max-width:760px){#yallaFlightSearch{top:62px!important;width:calc(100% - 10px)!important;padding:7px!important}.flight-fields{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}.flight-fields label{font-size:10px!important}.flight-fields input,.flight-fields select{min-width:0!important;font-size:10px!important;padding:7px 3px!important}.search-actions{display:flex!important;gap:4px!important}.search-actions button{font-size:10px!important;padding:8px 4px!important}body{padding-top:148px!important}}
-</style><style id="english-hotel-clean-v1">html[data-site-lang="en"] #hotel-deals,html[data-site-lang="en"] #hotelSearchForm{direction:ltr!important;text-align:left!important}</style></head>
+</style><style id="english-hotel-clean-v1">html[data-site-lang="en"] #hotel-deals,html[data-site-lang="en"] #hotelSearchForm{direction:ltr!important;text-align:left!important}</style><style id="english-date-digits-v1">
+html[data-site-lang="en"] input[type="date"]{direction:ltr!important;text-align:left!important;font-variant-numeric:lining-nums!important}
+html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit{direction:ltr!important}
+html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit-day-field,
+html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit-month-field,
+html[data-site-lang="en"] input[type="date"]::-webkit-datetime-edit-year-field{direction:ltr!important}
+</style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
 <main>
@@ -536,5 +542,14 @@ function sync(){
  if(trav){const vals=en?['1 traveler','2 travelers','3 travelers','4 travelers','5+ travelers']:['1 مسافر','2 مسافرين','3 مسافرين','4 مسافرين','5+ مسافرين'];[...trav.options].forEach((o,i)=>o.textContent=vals[i]||o.textContent)}
 }
 document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(sync,0)});window.addEventListener('load',sync);
+})();
+</script><script id="english-date-lang-v1">
+(function(){
+function setDateLang(){
+ const en=document.documentElement.getAttribute('data-site-lang')==='en';
+ document.querySelectorAll('input[type="date"]').forEach(x=>{x.lang=en?'en-US':'ar-SA';x.dir='ltr'});
+}
+addEventListener('load',setDateLang);
+document.addEventListener('click',e=>{if(e.target.closest('#langToggle'))setTimeout(setDateLang,0)});
 })();
 </script></body></html>
