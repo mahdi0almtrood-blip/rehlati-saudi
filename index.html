@@ -142,6 +142,24 @@ html.flight-results-mode .hotel-deals,html.flight-results-mode #services,html.fl
 html.flight-results-mode .hero{min-height:auto;padding-bottom:12px}
 html.flight-results-mode .booking{margin-bottom:12px}
 @media(max-width:760px){.flight-fields{grid-template-columns:1fr 1fr}.flight-fields label:nth-child(5){grid-column:1/-1}.yalla-search-btn{width:100%;margin-top:12px}.booking{padding:12px}.hero{padding-left:12px;padding-right:12px}}
+</style>
+<style id="yalla-sticky-search-fix">
+/* Layout-only fix: keep Yalla Rehla search fields visible while scrolling. */
+.booking#booking{overflow:visible!important}
+.yalla-flight-search{
+  position:sticky!important;
+  top:78px!important;
+  z-index:45!important;
+  background:#fff!important;
+  border:1px solid #dbeae5!important;
+  box-shadow:0 12px 30px rgba(6,61,72,.18)!important;
+}
+@media(max-width:760px){
+  .yalla-flight-search{top:68px!important;max-height:none!important;overflow:visible!important}
+}
+@media(max-width:560px){
+  .yalla-flight-search{top:64px!important}
+}
 </style><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="dns-prefetch" href="//tpwgts.com"><link rel="dns-prefetch" href="//klook.tpx.li"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"يلا رحلة","alternateName":"Yalla Rehla","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/","description":"منصة سفر للمسافر السعودي لمقارنة والوصول إلى خدمات الطيران والإقامة والسيارات والتنقلات والأنشطة عبر مزودي السفر."}</script>
 </head>
 <body>
