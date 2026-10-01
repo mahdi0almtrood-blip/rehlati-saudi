@@ -532,7 +532,7 @@ main{padding-top:164px!important}
       const opts={'الميزانية التقريبية (ر.س)':'Approximate budget (SAR)','أقل من 2,000 ر.س':'Under SAR 2,000','2,000 – 5,000 ر.س':'SAR 2,000–5,000','5,000 – 10,000 ر.س':'SAR 5,000–10,000','أكثر من 10,000 ر.س':'Over SAR 10,000','مرنة':'Flexible','1 مسافر':'1 traveler','2 مسافرين':'2 travelers','3 مسافرين':'3 travelers','4 مسافرين':'4 travelers','5+ مسافرين':'5+ travelers'};
       if(opts[o.dataset.arText])o.textContent=en?opts[o.dataset.arText]:o.dataset.arText;
     }));
-    document.title=en?'Yalla Rehla | Flights, Hotels & Travel':'BOOKING | يلا رحلة — أسعار ترضيك ورحلة تسعدك | من رحلتي السعودية';
+    document.title=en?'Yalla Rehla | Flights, Hotels & Travel':'يلا رحلة | مقارنة أسعار تذاكر الطيران وحجز الفنادق';
     try{localStorage.setItem('yallaRehlaLang',lang)}catch(e){}
   }
   window.toggleSiteLanguage=()=>setLang(document.documentElement.dataset.siteLang==='en'?'ar':'en');
