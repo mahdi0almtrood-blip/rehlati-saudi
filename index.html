@@ -219,7 +219,9 @@ main{padding-top:164px!important}
 <style id="cheap-route-seo-v1">
 .cheap-route-seo{max-width:1120px;margin:26px auto 0;padding:0 6% 18px;text-align:right}.cheap-route-seo h2{margin:0 0 8px;font-size:clamp(28px,5vw,42px);color:#063d48}.cheap-route-seo>p{margin:0 0 18px;color:#62757a;font-weight:800}.cheap-route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cheap-route-grid a{display:block;background:#fff;border:1px solid #dfeaec;border-radius:14px;padding:14px;font-weight:900;color:#087052;box-shadow:0 5px 18px #153a400d}@media(max-width:850px){.cheap-route-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.cheap-route-grid{grid-template-columns:1fr}}
 </style>
-</head>
+<style id="hotel-smart-search-v1">
+.smart-hotel-destination{position:relative}.smart-hotel-destination input{width:100%}.hotel-smart-results{position:absolute;top:calc(100% + 6px);right:0;left:0;z-index:80;max-height:320px;overflow:auto;background:#fff;border:1px solid #d7e1e3;border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,.18);padding:7px;text-align:right}.hotel-smart-results[hidden]{display:none!important}.hotel-smart-item{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;border:0;background:#fff;color:#173b35;padding:11px 12px;border-radius:10px;cursor:pointer;text-align:right;font:inherit}.hotel-smart-item:hover,.hotel-smart-item:focus{background:#eef8f5;outline:none}.hotel-smart-country{font-size:12px;color:#607570;white-space:nowrap}.hotel-smart-empty{padding:14px;color:#607570;text-align:center}@media(max-width:760px){.hotel-smart-results{max-height:260px}}
+</style></head>
 <body>
 <header><div class="logo">✈ <span class="brand-main" aria-label="يلا رحلة">يــــلا رحــــلة</span><span class="brand-sub"><span class="ar-only">من رحلتي السعودية</span><span class="en-only">by Rehlati Saudi</span></span></div><nav class="nav"><a href="#services" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth',block:'start'});return false;"><span class="ar-only">الخدمات</span><span class="en-only">Services</span></a><a href="#destinations"><span class="ar-only">وجهات</span><span class="en-only">Destinations</span></a><a href="#faq"><span class="ar-only">الأسئلة</span><span class="en-only">FAQ</span></a><a href="#feedback"><span class="ar-only">الإدارة</span><span class="en-only">Management</span></a><a class="cta" href="#request"><span class="ar-only">خطط رحلتك</span><span class="en-only">Plan your trip</span></a><button class="lang-btn" id="langToggle" type="button" aria-label="Switch language" onclick="toggleSiteLanguage()">English</button></nav></header>
 <main>
@@ -368,7 +370,7 @@ main{padding-top:164px!important}
 <div class="hotel-head"><span class="results-kicker">🏨 <span class="ar-only">فنادق وإقامات</span><span class="en-only">Hotels & stays</span></span><h2><span class="ar-only">ابحث عن فندقك داخل يلا رحلة</span><span class="en-only">Find your hotel on Yalla Rehla</span></h2><p><span class="ar-only">اختر الوجهة والتاريخ والنزلاء والغرف، ثم قارن الخيارات هنا قبل الانتقال للحجز النهائي.</span><span class="en-only">Choose destination, dates, guests and rooms, then compare options here before final booking.</span></p></div>
 <form class="hotel-search-box" id="hotelSearchForm">
 <div class="hotel-search-fields">
-<label class="hotel-destination"><span class="ar-only">الوجهة</span><span class="en-only">Destination</span><input type="search" id="hotelDestination" aria-label="Hotel destination" data-ar-placeholder="اكتب أي مدينة أو دولة" data-en-placeholder="Type any city or country" placeholder="اكتب أي مدينة أو دولة" autocomplete="off" required></label>
+<label class="hotel-destination smart-hotel-destination"><span class="ar-only">الوجهة</span><span class="en-only">Destination</span><input id="hotelDestination" type="search" autocomplete="off" spellcheck="false" data-ar-placeholder="اكتب الدولة أو المدينة: السعودية، مصر، تركيا..." data-en-placeholder="Type a country or city: Saudi Arabia, Egypt, Turkey..." placeholder="اكتب الدولة أو المدينة: السعودية، مصر، تركيا..." aria-autocomplete="list" aria-controls="hotelSmartResults"><div id="hotelSmartResults" class="hotel-smart-results" role="listbox" hidden></div></label>
 <label><span class="ar-only">تاريخ الوصول</span><span class="en-only">Check-in</span><input type="date" id="hotelCheckin" required></label>
 <label><span class="ar-only">تاريخ المغادرة</span><span class="en-only">Check-out</span><input type="date" id="hotelCheckout" required></label>
 <label><span class="ar-only">النزلاء</span><span class="en-only">Guests</span><select id="hotelGuests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
@@ -627,4 +629,40 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-</body></html>
+<script id="hotel-smart-search-js-v1">
+(function(){
+const input=document.getElementById('hotelDestination'),box=document.getElementById('hotelSmartResults');if(!input||!box)return;
+const places=[
+['السعودية','Saudi Arabia',['الرياض','Riyadh'],['جدة','Jeddah'],['مكة المكرمة','Makkah'],['المدينة المنورة','Madinah'],['الدمام','Dammam'],['الخبر','Khobar'],['الظهران','Dhahran'],['الطائف','Taif'],['أبها','Abha'],['خميس مشيط','Khamis Mushait'],['تبوك','Tabuk'],['العلا','AlUla'],['ينبع','Yanbu'],['جازان','Jazan'],['الباحة','Al Baha'],['القصيم','Qassim'],['حائل','Hail'],['نجران','Najran'],['الجبيل','Jubail'],['الأحساء','Al Ahsa']],
+['مصر','Egypt',['القاهرة','Cairo'],['الجيزة','Giza'],['الإسكندرية','Alexandria'],['شرم الشيخ','Sharm El Sheikh'],['الغردقة','Hurghada'],['العلمين','El Alamein'],['الأقصر','Luxor'],['أسوان','Aswan'],['مرسى علم','Marsa Alam'],['دهب','Dahab'],['سهل حشيش','Sahl Hasheesh'],['العين السخنة','Ain Sokhna']],
+['تركيا','Turkey',['إسطنبول','Istanbul'],['أنطاليا','Antalya'],['بودروم','Bodrum'],['طرابزون','Trabzon'],['بورصة','Bursa'],['إزمير','Izmir'],['فتحية','Fethiye'],['مرمريس','Marmaris'],['كابادوكيا','Cappadocia'],['أنقرة','Ankara']],
+['الإمارات','UAE',['دبي','Dubai'],['أبوظبي','Abu Dhabi'],['الشارقة','Sharjah'],['رأس الخيمة','Ras Al Khaimah'],['عجمان','Ajman'],['الفجيرة','Fujairah'],['العين','Al Ain']],
+['أذربيجان','Azerbaijan',['باكو','Baku'],['غابالا','Gabala'],['شيكي','Sheki'],['قوبا','Quba'],['غانجا','Ganja']],
+['جورجيا','Georgia',['تبليسي','Tbilisi'],['باتومي','Batumi'],['بورجومي','Borjomi'],['كوتايسي','Kutaisi'],['غودوري','Gudauri']],
+['المغرب','Morocco',['مراكش','Marrakesh'],['الدار البيضاء','Casablanca'],['طنجة','Tangier'],['أغادير','Agadir'],['فاس','Fes'],['الرباط','Rabat'],['شفشاون','Chefchaouen']],
+['تايلاند','Thailand',['بانكوك','Bangkok'],['بوكيت','Phuket'],['كرابي','Krabi'],['باتايا','Pattaya'],['شيانغ ماي','Chiang Mai'],['كوه ساموي','Koh Samui']],
+['إندونيسيا','Indonesia',['بالي','Bali'],['جاكرتا','Jakarta'],['باندونغ','Bandung'],['لومبوك','Lombok'],['يوجياكارتا','Yogyakarta']],
+['ماليزيا','Malaysia',['كوالالمبور','Kuala Lumpur'],['لنكاوي','Langkawi'],['بينانغ','Penang'],['جنتنج','Genting Highlands']],
+['اليابان','Japan',['طوكيو','Tokyo'],['أوساكا','Osaka'],['كيوتو','Kyoto'],['ناغويا','Nagoya'],['سابورو','Sapporo']],
+['بريطانيا','United Kingdom',['لندن','London'],['مانشستر','Manchester'],['إدنبرة','Edinburgh']],
+['فرنسا','France',['باريس','Paris'],['نيس','Nice'],['كان','Cannes'],['ليون','Lyon']],
+['إيطاليا','Italy',['روما','Rome'],['ميلانو','Milan'],['فينيسيا','Venice'],['فلورنسا','Florence']],
+['سويسرا','Switzerland',['زيورخ','Zurich'],['جنيف','Geneva'],['إنترلاكن','Interlaken'],['لوسيرن','Lucerne']],
+['البوسنة','Bosnia',['سراييفو','Sarajevo'],['موستار','Mostar']],
+['أمريكا','USA',['نيويورك','New York'],['لوس أنجلوس','Los Angeles'],['ميامي','Miami'],['أورلاندو','Orlando'],['لاس فيغاس','Las Vegas'],['واشنطن','Washington DC']],
+['المالديف','Maldives',['ماليه','Male'],['مافوشي','Maafushi']],
+['قطر','Qatar',['الدوحة','Doha']],['البحرين','Bahrain',['المنامة','Manama']],['الكويت','Kuwait',['مدينة الكويت','Kuwait City']],['عُمان','Oman',['مسقط','Muscat'],['صلالة','Salalah']]
+];
+const flat=[];places.forEach(g=>{const ar=g[0],en=g[1];g.slice(2).forEach(city=>flat.push({countryAr:ar,countryEn:en,ar:city[0],en:city[1]}))});
+const norm=s=>(s||'').toLowerCase().trim().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه');
+function render(){
+ const q=norm(input.value);let rows=flat.filter(x=>!q||[x.countryAr,x.countryEn,x.ar,x.en].some(v=>norm(v).includes(q))).slice(0,60);
+ box.innerHTML='';
+ if(!rows.length){box.innerHTML='<div class="hotel-smart-empty">لا توجد نتيجة — اكتب اسم مدينة أو دولة أخرى</div>';box.hidden=false;return;}
+ rows.forEach(x=>{const b=document.createElement('button');b.type='button';b.className='hotel-smart-item';b.setAttribute('role','option');b.innerHTML='<span><b>'+x.ar+'</b> — '+x.en+'</span><span class="hotel-smart-country">'+x.countryAr+' · '+x.countryEn+'</span>';b.onclick=()=>{input.value=x.en;input.dataset.display=x.ar+' — '+x.en;box.hidden=true;input.focus()};box.appendChild(b)});
+ box.hidden=false;
+}
+input.addEventListener('focus',render);input.addEventListener('input',render);
+document.addEventListener('click',e=>{if(!e.target.closest('.smart-hotel-destination'))box.hidden=true});
+})();
+</script></body></html>
