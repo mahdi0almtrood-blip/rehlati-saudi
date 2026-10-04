@@ -685,10 +685,11 @@ const places=[
 const flat=[];places.forEach(g=>{const ar=g[0],en=g[1];g.slice(2).forEach(city=>flat.push({countryAr:ar,countryEn:en,ar:city[0],en:city[1]}))});
 const norm=s=>(s||'').toLowerCase().trim().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه');
 function render(){
+ const en=document.documentElement.getAttribute('data-site-lang')==='en';
  const q=norm(input.value);let rows=flat.filter(x=>!q||[x.countryAr,x.countryEn,x.ar,x.en].some(v=>norm(v).includes(q))).slice(0,60);
  box.innerHTML='';
- if(!rows.length){box.innerHTML='<div class="hotel-smart-empty">لا توجد نتيجة — اكتب اسم مدينة أو دولة أخرى</div>';box.hidden=false;return;}
- rows.forEach(x=>{const b=document.createElement('button');b.type='button';b.className='hotel-smart-item';b.setAttribute('role','option');b.innerHTML='<span><b>'+x.ar+'</b> — '+x.en+'</span><span class="hotel-smart-country">'+x.countryAr+' · '+x.countryEn+'</span>';b.onclick=()=>{input.value=x.en;input.dataset.display=x.ar+' — '+x.en;box.hidden=true;input.focus()};box.appendChild(b)});
+ if(!rows.length){box.innerHTML='<div class="hotel-smart-empty">'+(en?'No results — try another city or country':'لا توجد نتيجة — اكتب اسم مدينة أو دولة أخرى')+'</div>';box.hidden=false;return;}
+ rows.forEach(x=>{const b=document.createElement('button');b.type='button';b.className='hotel-smart-item';b.setAttribute('role','option');const city=en?x.en:x.ar,country=en?x.countryEn:x.countryAr;b.innerHTML='<span><b>'+city+'</b></span><span class="hotel-smart-country">'+country+'</span>';b.onclick=()=>{input.value=city;input.dataset.display=city;box.hidden=true;input.focus()};box.appendChild(b)});
  box.hidden=false;
 }
 input.addEventListener('focus',render);input.addEventListener('input',render);
