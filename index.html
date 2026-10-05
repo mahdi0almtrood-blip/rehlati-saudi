@@ -187,7 +187,7 @@ html.flight-results-mode .booking{margin-bottom:12px}
 @media(max-width:560px){
   .yalla-flight-search{top:64px!important}
 }
-</style><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="dns-prefetch" href="//tpwgts.com"><link rel="dns-prefetch" href="//klook.tpx.li">
+</style><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="dns-prefetch" href="//tpwgts.com">
 <style id="hero-booking-layout-v3">
 .hero{min-height:430px!important;padding-bottom:34px!important}
 .hero h1{margin-bottom:8px!important}
@@ -543,8 +543,8 @@ main{padding-top:164px!important}
     ["روابط حجز فعلية لدى مزودي خدمات السفر، مع بقاء السعر والتوفر والدفع النهائي لدى كل مزود.","Direct booking links from travel providers; final price, availability and payment remain with each provider."],
     ["ابحث وقارن الرحلات من داخل يلا رحلة، ثم أكمل الحجز لدى مزود العرض.","Search and compare flights inside Yalla Rehla, then complete booking with the provider."],
     ["ابحث عن طيران داخل يلا رحلة ←","Search flights inside Yalla Rehla ←"],
-    ["استكشف الخيارات المتاحة لدى Klook والخدمات المناسبة لوجهتك.","Explore Klook options and services available for your destination."],
-    ["استكشف Klook ←","Explore Klook ←"],
+
+
     ["انتقل إلى Localrent لمقارنة خيارات تأجير السيارات المتاحة.","Compare available car rental options with Localrent."],
     ["استأجر سيارة ←","Rent a car ←"],
     ["احجز النقل من وإلى المطار عبر Kiwitaxi، مع خيار إضافي عبر INTUI.","Book airport transfers with Kiwitaxi, with INTUI as another option."],
@@ -660,7 +660,7 @@ main{padding-top:164px!important}
   // Measure the actions that matter for a travel booking journey.
   document.querySelectorAll('a[target="_blank"][rel*="sponsored"]').forEach(link=>link.addEventListener('click',()=>{
     const href=link.getAttribute('href')||''; let provider='affiliate';
-    if(href.includes('klook'))provider='klook'; else if(href.includes('localrent'))provider='localrent'; else if(href.includes('kiwitaxi'))provider='kiwitaxi'; else if(href.includes('gettransfer'))provider='gettransfer'; else if(href.includes('tiqets'))provider='tiqets'; else if(href.includes('intui'))provider='intui';
+    if(href.includes('localrent'))provider='localrent'; else if(href.includes('kiwitaxi'))provider='kiwitaxi'; else if(href.includes('gettransfer'))provider='gettransfer'; else if(href.includes('tiqets'))provider='tiqets'; else if(href.includes('intui'))provider='intui';
     window.yallaTrack('affiliate_click',{provider:provider});
   }));
   document.querySelectorAll('.dest[data-airport]').forEach(card=>card.addEventListener('click',()=>{const to=document.getElementById('flightTo');if(to){to.value=card.dataset.airport;to.dataset.code=card.dataset.airport;document.getElementById('booking')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>to.focus(),450);}}));
