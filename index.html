@@ -776,7 +776,7 @@ if(!track||cards.length<2)return;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let index=0,paused=reduced.matches,hover=false,timer=null,visible=false;
 function label(){pause.setAttribute('aria-pressed',String(paused));pause.querySelector('.ar-only').textContent=paused?'تشغيل الحركة':'إيقاف الحركة';pause.querySelector('.en-only').textContent=paused?'Play motion':'Pause motion';}
-function move(step){index=(index+step+cards.length)%cards.length;const t=track.getBoundingClientRect(),c=cards[index].getBoundingClientRect();track.scrollBy({left:c.right-t.right,behavior:reduced.matches?'auto':'smooth'});}
+function move(step){const max=track.scrollWidth-track.clientWidth,pos=Math.abs(track.scrollLeft),stride=cards[0].getBoundingClientRect().width+18;const next=step>0?(pos>=max-4?0:Math.min(max,pos+stride)):(pos<=4?max:Math.max(0,pos-stride));track.scrollTo({left:-next,behavior:reduced.matches?'auto':'smooth'});}
 function schedule(){clearInterval(timer);timer=null;if(!paused&&!hover&&visible&&!document.hidden)timer=setInterval(()=>move(1),4500);}
 pause.addEventListener('click',()=>{paused=!paused;label();schedule();});
 document.getElementById('hotelSlidePrev').addEventListener('click',()=>{move(-1);schedule();});
