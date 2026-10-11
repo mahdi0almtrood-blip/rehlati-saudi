@@ -594,10 +594,15 @@ main{padding-top:164px!important}
     const x=summary();
     if(!valid(x)){refresh();(!d.value.trim()?d:ci).focus();return false}
     try{localStorage.setItem(storageKey,JSON.stringify(x))}catch(_){}
-    if(title)title.textContent=(ar()?'فنادق في ':'Hotels in ')+x.destination;
-    showStatus(x);
-    window.yallaTrack&&window.yallaTrack('hotel_search_opened',{destination:x.destination,source:source||'form',provider:'booking_direct'});
-    window.open(providerUrl(x),'_blank','noopener,noreferrer');
+    const url=providerUrl(x);
+    // Open the booking results immediately from the user's click; defer non-essential UI/analytics work.
+    const opened=window.open(url,'_blank','noopener,noreferrer');
+    setTimeout(()=>{
+      if(title)title.textContent=(ar()?'فنادق في ':'Hotels in ')+x.destination;
+      showStatus(x);
+      window.yallaTrack&&window.yallaTrack('hotel_search_opened',{destination:x.destination,source:source||'form',provider:'booking_direct'});
+    },0);
+    if(!opened) window.location.href=url;
     return true;
   };
   ci.addEventListener('change',()=>{co.min=addDays(ci.value,1);if(!co.value||co.value<=ci.value)co.value=addDays(ci.value,1);refresh()});
