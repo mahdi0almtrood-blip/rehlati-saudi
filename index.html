@@ -576,7 +576,7 @@ main{padding-top:164px!important}
     submitBtn.disabled=!ready;
     submitBtn.setAttribute('aria-disabled',String(!ready));
     submitBtn.dataset.ready=String(ready);
-    submitBtn.innerHTML='<span class="ar-only">'+(ready?'فتح Klook للفنادق':'اختر الوجهة والتواريخ')+'</span><span class="en-only">'+(ready?'Open Klook Hotels':'Choose destination and dates')+'</span>';
+    submitBtn.innerHTML='<span class="ar-only">'+(ready?'متابعة البحث في Klook':'اختر الوجهة والتواريخ')+'</span><span class="en-only">'+(ready?'Continue search on Klook':'Choose destination and dates')+'</span>';
     f.classList.toggle('hotel-ready',ready);
     try{localStorage.setItem(storageKey,JSON.stringify(x))}catch(_){}
     return ready;
@@ -585,7 +585,7 @@ main{padding-top:164px!important}
   const showStatus=x=>{
     let box=document.getElementById('hotelSearchStatus');
     if(!box){box=document.createElement('div');box.id='hotelSearchStatus';box.className='live-price-note';box.setAttribute('role','status');box.setAttribute('aria-live','polite');box.style.cssText='margin:10px auto 0;max-width:1120px;background:#eef8f5;border-radius:12px;padding:12px;color:#174b40;line-height:1.7';f.insertAdjacentElement('afterend',box)}
-    box.textContent=ar()?'تم فتح Klook عبر رابط الشراكة الموثّق. اختر Hotels وأعد إدخال الوجهة والتواريخ، ثم راجع السعر وسياسة الإلغاء قبل التأكيد.':'Klook opened through the verified affiliate link. Select Hotels, re-enter your destination and dates, then review the price and cancellation policy before confirming.';
+    box.textContent=ar()?'ستنتقل إلى Klook عبر رابط الشراكة. اختر قسم الفنادق وأدخل الوجهة والتواريخ مرة أخرى؛ البيانات لا تنتقل تلقائيًا حاليًا. راجع السعر النهائي وسياسة الإلغاء قبل الحجز. لا يُعد فتح الرابط تأكيدًا لحجز أو عمولة.':'Continue to Klook via the partner link. Select Hotels and re-enter destination and dates; these details are not transferred automatically. Check the final price and cancellation terms. Opening the link does not confirm a booking or commission.';
   };
   const openProvider=source=>{
     const x=summary();
@@ -594,7 +594,8 @@ main{padding-top:164px!important}
     if(title)title.textContent=(ar()?'فنادق في ':'Hotels in ')+x.destination;
     showStatus(x);
     window.yallaTrack&&window.yallaTrack('hotel_search_opened',{destination:x.destination,source:source||'form',provider:'klook_affiliate'});
-    window.open(providerUrl(x),'_blank','noopener,noreferrer');
+    const opened=window.open(providerUrl(x),'_blank','noopener,noreferrer');
+    if(!opened){const link=document.createElement('a');link.href=providerUrl(x);link.target='_blank';link.rel='sponsored noopener noreferrer';link.textContent=ar()?'اضغط هنا لفتح موقع الفنادق إذا لم تُفتح نافذة جديدة':'Click here if the hotel website did not open';const box=document.getElementById('hotelSearchStatus');if(box){box.appendChild(document.createElement('br'));box.appendChild(link)}}
     return true;
   };
   ci.addEventListener('change',()=>{co.min=addDays(ci.value,1);if(!co.value||co.value<=ci.value)co.value=addDays(ci.value,1);refresh()});
