@@ -567,7 +567,10 @@ main{padding-top:164px!important}
   const today=iso(new Date()),tomorrow=addDays(today,1),dayAfter=addDays(today,2);
   ci.min=today;co.min=tomorrow;
   const saved=(()=>{try{return JSON.parse(localStorage.getItem(storageKey)||localStorage.getItem('yallaHotelSearchV1')||'null')}catch(_){return null}})();
-  if(saved){d.value=saved.destination||'';ci.value=saved.checkin>=today?saved.checkin:tomorrow;co.value=saved.checkout>ci.value?saved.checkout:addDays(ci.value,1);if(gu&&saved.guests)gu.value=saved.guests;if(ro&&saved.rooms)ro.value=saved.rooms}else{ci.value=tomorrow;co.value=dayAfter}
+  if(saved){d.value=saved.destination||'';ci.value=saved.checkin>=today?saved.checkin:tomorrow;co.value=saved.checkout>ci.value?saved.checkout:addDays(ci.value,1);if(gu&&saved.guests)gu.value=saved.guests;if(ro&&saved.rooms)ro.value=saved.rooms}else{ci.value=tomorrow;co.value=dayAfter};
+  // Keep the checkout calendar aligned with the restored check-in date.
+  co.min=addDays(ci.value,1);
+  if(!co.value||co.value<co.min)co.value=co.min
   const summary=()=>({destination:(d.value||'').trim(),checkin:ci.value,checkout:co.value,guests:gu?gu.value:'2',rooms:ro?ro.value:'1'});
   const valid=x=>x.destination.length>=2&&x.checkin>=today&&x.checkout>x.checkin;
   const label=ready=>ready?(ar()?'عرض الفنادق المتاحة':'Show available hotels'):(ar()?'اختر الوجهة والتواريخ':'Choose destination and dates');
