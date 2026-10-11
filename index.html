@@ -576,15 +576,19 @@ main{padding-top:164px!important}
     submitBtn.disabled=!ready;
     submitBtn.setAttribute('aria-disabled',String(!ready));
     submitBtn.dataset.ready=String(ready);
-    submitBtn.innerHTML='<span class="ar-only">'+(ready?'حفظ بحث الفندق':'اختر الوجهة والتواريخ')+'</span><span class="en-only">'+(ready?'Save hotel search':'Choose destination and dates')+'</span>';
+    submitBtn.innerHTML='<span class="ar-only">'+(ready?'عرض الفنادق المتاحة':'اختر الوجهة والتواريخ')+'</span><span class="en-only">'+(ready?'Show available hotels':'Choose destination and dates')+'</span>';
     f.classList.toggle('hotel-ready',ready);
     try{localStorage.setItem(storageKey,JSON.stringify(x))}catch(_){}
     return ready;
   };
-    const showStatus=x=>{
+    const providerUrl=x=>{
+    const q=new URLSearchParams({ss:x.destination,checkin:x.checkin,checkout:x.checkout,group_adults:x.guests,no_rooms:x.rooms,group_children:'0',selected_currency:'SAR'});
+    return 'https://www.booking.com/searchresults.html?'+q.toString();
+  };
+  const showStatus=x=>{
     let box=document.getElementById('hotelSearchStatus');
     if(!box){box=document.createElement('div');box.id='hotelSearchStatus';box.className='live-price-note';box.setAttribute('role','status');box.setAttribute('aria-live','polite');box.style.cssText='margin:10px auto 0;max-width:1120px;background:#eef8f5;border-radius:12px;padding:12px;color:#174b40;line-height:1.7';f.insertAdjacentElement('afterend',box)}
-    box.textContent=ar()?'تم حفظ الوجهة والتواريخ والنزلاء والغرف داخل يلا رحلة. لن نحولك إلى صفحة فنادق عامة. زر الحجز الخارجي سيُفعّل فقط بعد ربط شريك فنادق مناسب وتتبع العمولة.':'Destination, dates, guests and rooms are saved in Yalla Rehla. We will not redirect you to a generic hotel page. External booking will be enabled only after a suitable hotel partner and commission tracking are connected.';
+    box.textContent=ar()?'تم فتح نتائج Booking.com بالوجهة والتواريخ والنزلاء والغرف المحددة وبعملة SAR. الرابط مباشر مؤقتًا ولا نعتبره عمولة حتى اعتماد شراكة الفنادق.':'Booking.com results opened with your destination, dates, guests, rooms and SAR currency. This is a temporary direct link and is not treated as commission tracking until the hotel partnership is approved.';
   };
   const openProvider=source=>{
     const x=summary();
@@ -592,8 +596,8 @@ main{padding-top:164px!important}
     try{localStorage.setItem(storageKey,JSON.stringify(x))}catch(_){}
     if(title)title.textContent=(ar()?'فنادق في ':'Hotels in ')+x.destination;
     showStatus(x);
-    window.yallaTrack&&window.yallaTrack('hotel_search_ready',{destination:x.destination,source:source||'form',provider:'pending_verified_hotel_partner'});
-    f.scrollIntoView({behavior:'smooth',block:'center'});
+    window.yallaTrack&&window.yallaTrack('hotel_search_opened',{destination:x.destination,source:source||'form',provider:'booking_direct'});
+    window.open(providerUrl(x),'_blank','noopener,noreferrer');
     return true;
   };
   ci.addEventListener('change',()=>{co.min=addDays(ci.value,1);if(!co.value||co.value<=ci.value)co.value=addDays(ci.value,1);refresh()});
