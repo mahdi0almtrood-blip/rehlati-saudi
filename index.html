@@ -938,7 +938,7 @@ const track=document.getElementById('hotelResults'),pause=document.getElementByI
 if(!track||!pause)return;
 const cards=Array.from(track.querySelectorAll('.hotel-card')),reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let paused=reduced.matches,focused=false,previous=0,position=0;
-cards.forEach(card=>{const clone=card.cloneNode(true);clone.dataset.loopClone='true';clone.setAttribute('aria-hidden','true');clone.tabIndex=-1;clone.querySelectorAll('a,button').forEach(el=>el.tabIndex=-1);clone.addEventListener('click',e=>{e.preventDefault();card.querySelector('.hotel-refine-btn').click();});track.appendChild(clone);});
+cards.slice(0,Math.min(cards.length,8)).forEach(card=>{const clone=card.cloneNode(true);clone.dataset.loopClone='true';clone.setAttribute('aria-hidden','true');clone.tabIndex=-1;clone.querySelectorAll('a,button').forEach(el=>el.tabIndex=-1);clone.addEventListener('click',e=>{e.preventDefault();card.querySelector('.hotel-refine-btn').click();});track.appendChild(clone);});
 function span(){return Math.abs(cards[0].getBoundingClientRect().left-track.querySelector('[data-loop-clone]').getBoundingClientRect().left);}
 function label(){pause.setAttribute('aria-pressed',String(paused));pause.querySelector('.ar-only').textContent=paused?'تشغيل الحركة':'إيقاف الحركة';pause.querySelector('.en-only').textContent=paused?'Play motion':'Pause motion';}
 function warm(){const box=track.getBoundingClientRect();track.querySelectorAll('img').forEach(img=>{const r=img.getBoundingClientRect();if(r.right>box.left-700&&r.left<box.right+700)img.loading='eager';});}
