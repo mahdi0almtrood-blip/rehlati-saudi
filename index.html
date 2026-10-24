@@ -969,16 +969,13 @@ const region=document.getElementById('hotelResults');if(region)region.setAttribu
 labels();new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 })();
 </script>
-<script id="hotel-fast-navigation-v4">
+<script id="hotel-fast-navigation-v5">
 (function(){
-const section=document.getElementById('hotel-deals'),links=document.querySelectorAll('a[href="https://expedia.com/affiliate/XM8ZHrN?locale=ar-SA&currency=SAR" target="_blank" rel="sponsored noopener"]');
-if(!section)return;
-function warm(){section.querySelectorAll('#hotelResults img').forEach(img=>{img.loading='eager';});}
+const links=document.querySelectorAll('a[href*="expedia.com/affiliate/XM8ZHrN"]');
 links.forEach(link=>{
-link.addEventListener('pointerenter',warm,{once:true,passive:true});
-link.addEventListener('focus',warm,{once:true});
-link.addEventListener('pointerdown',warm,{once:true,passive:true});
-link.addEventListener('click',e=>{e.preventDefault();warm();section.scrollIntoView({behavior:'instant',block:'start'});});
+  link.addEventListener('click',()=>{
+    window.yallaTrack&&window.yallaTrack('hotel_affiliate_click',{source:'hotel_nav',provider:'expedia',affiliate:true});
+  },{passive:true});
 });
 })();
 </script>
