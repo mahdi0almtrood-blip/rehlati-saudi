@@ -1,4 +1,4 @@
-const CACHE_NAME = 'yalla-rehla-v2';
+const CACHE_NAME = 'yalla-rehla-v3-hotels-direct';
 const APP_SHELL = ['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install', event => {
