@@ -597,7 +597,7 @@ main{padding-top:164px!important}
     const url=providerUrl(x);
     // Open the booking results immediately from the user's click; defer non-essential UI/analytics work.
     // A single same-tab navigation avoids popup blockers and duplicate redirects.
-    window.yallaTrack&&window.yallaTrack('hotel_affiliate_click',{destination:x.destination,source:source||'form',provider:'expedia',affiliate:true});
+    window.yallaTrack&&window.yallaTrack('hotel_affiliate_click',{source:source||'form',provider:'expedia',affiliate:true});
     window.location.assign(url);
     return true;
   };
@@ -787,7 +787,7 @@ main{padding-top:164px!important}
       const opts={'الميزانية التقريبية (ر.س)':'Approximate budget (SAR)','أقل من 2,000 ر.س':'Under SAR 2,000','2,000 – 5,000 ر.س':'SAR 2,000–5,000','5,000 – 10,000 ر.س':'SAR 5,000–10,000','أكثر من 10,000 ر.س':'Over SAR 10,000','مرنة':'Flexible','1 مسافر':'1 traveler','2 مسافرين':'2 travelers','3 مسافرين':'3 travelers','4 مسافرين':'4 travelers','5+ مسافرين':'5+ travelers'};
       if(opts[o.dataset.arText])o.textContent=en?opts[o.dataset.arText]:o.dataset.arText;
     }));
-    document.title=en?'Yalla Rehla | Flights, Hotels & Travel':'يلا رحلة | مقارنة أسعار تذاكر الطيران وحجز الفنادق';
+    document.title=en?'Yalla Rehla Saudi | Cheap Flights & Flight Ticket Comparison':'يلا رحلة السعودية | رحلات رخيصة وتذاكر طيران رخيصة ومقارنة أسعار الطيران';
     try{localStorage.setItem('yallaRehlaLang',lang)}catch(e){}
   }
   window.toggleSiteLanguage=()=>setLang(document.documentElement.dataset.siteLang==='en'?'ar':'en');
@@ -818,14 +818,37 @@ main{padding-top:164px!important}
     const result=document.getElementById('result');
     if(!dest||!date){alert(lang==='en'?'Please enter your destination and travel date.':'اكتب الوجهة وتاريخ السفر أولًا.');return;}
     const label=lang==='en'?{name:'Name',phone:'Mobile',dest:'Destination',date:'Travel date',budget:'Budget',travellers:'Travelers',details:'Details'}:{name:'الاسم',phone:'الجوال',dest:'الوجهة',date:'تاريخ السفر',budget:'الميزانية',travellers:'المسافرون',details:'التفاصيل'};
-    const rows=[name&&'<b>'+label.name+':</b> '+name,phone&&'<b>'+label.phone+':</b> '+phone,'<b>'+label.dest+':</b> '+dest,'<b>'+label.date+':</b> '+date,budget&&'<b>'+label.budget+':</b> '+budget,travellers&&'<b>'+label.travellers+':</b> '+travellers,details&&'<b>'+label.details+':</b> '+details].filter(Boolean);
+    const rows=[[label.name,name],[label.phone,phone],[label.dest,dest],[label.date,date],[label.budget,budget],[label.travellers,travellers],[label.details,details]].filter(([,value])=>Boolean(value));
     if(result){
       result.style.display='block';
-      result.innerHTML=(lang==='en'?'<strong>Your trip summary</strong><br>':'<strong>ملخص رحلتك</strong><br>')+rows.join('<br>')+'<div class="copyrow"><button type="button" id="copyTripSummary" class="send">'+(lang==='en'?'Copy summary':'نسخ الملخص')+'</button></div>';
-      const copy=document.getElementById('copyTripSummary');
-      if(copy)copy.onclick=async function(){const text=rows.map(x=>x.replace(/<[^>]*>/g,'')).join('\\n');try{await navigator.clipboard.writeText(text);alert(lang==='en'?'Summary copied':'تم نسخ الملخص');}catch(e){alert(lang==='en'?'Copy is not available in this browser':'النسخ غير متاح في هذا المتصفح');}};
+      result.replaceChildren();
+      const heading=document.createElement('strong');
+      heading.textContent=lang==='en'?'Your trip summary':'ملخص رحلتك';
+      result.append(heading,document.createElement('br'));
+      const summaryLines=[];
+      rows.forEach(([field,value],index)=>{
+        if(index>0)result.append(document.createElement('br'));
+        const strong=document.createElement('strong');
+        strong.textContent=field+':';
+        result.append(strong,document.createTextNode(' '+value));
+        summaryLines.push(field+': '+value);
+      });
+      const copyrow=document.createElement('div');
+      copyrow.className='copyrow';
+      const copy=document.createElement('button');
+      copy.type='button';
+      copy.id='copyTripSummary';
+      copy.className='send';
+      copy.textContent=lang==='en'?'Copy summary':'نسخ الملخص';
+      copyrow.append(copy);
+      result.append(copyrow);
+      copy.onclick=async function(){
+        const text=summaryLines.join('\\n');
+        try{await navigator.clipboard.writeText(text);alert(lang==='en'?'Summary copied':'تم نسخ الملخص');}
+        catch(e){alert(lang==='en'?'Copy is not available in this browser':'النسخ غير متاح في هذا المتصفح');}
+      };
     }
-    window.yallaTrack('trip_request_created',{destination:dest,has_phone:phone?'yes':'no'});
+    window.yallaTrack('trip_request_created',{has_destination:dest?'yes':'no',has_phone:phone?'yes':'no'});
   };
 })();
 </script>
