@@ -792,7 +792,7 @@ main{padding-top:164px!important}
   }
   window.toggleSiteLanguage=()=>setLang(document.documentElement.dataset.siteLang==='en'?'ar':'en');
   if(b)b.onclick=window.toggleSiteLanguage;
-  let initial=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';try{initial=localStorage.getItem('yallaRehlaLang')||initial}catch(e){}
+  let initial='ar';try{initial=localStorage.getItem('yallaRehlaLang')||initial}catch(e){}
   setLang(initial==='en'?'en':'ar');
 
   // Measure the actions that matter for a travel booking journey.
