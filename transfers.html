@@ -62,5 +62,19 @@
 
     <p class="note">إفصاح: قد نحصل على عمولة من الحجوزات المؤهلة عبر بعض الروابط، دون تكلفة إضافية عليك. الضغط على رابط لا يعني إتمام حجز.</p>
   </main>
+<script id="service-affiliate-tracking-v1">
+(function(){
+document.addEventListener('click',function(e){
+ const a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
+ let u;try{u=new URL(a.href,location.href)}catch(_){return}
+ const h=u.hostname.toLowerCase();
+ if(!/aviasales|tpx\.li|expedia|booking|agoda|localrent|gettransfer|tiqets|klook|kiwitaxi|intui/.test(h))return;
+ const provider=h.includes('expedia')?'expedia':h.includes('aviasales')?'aviasales':h.includes('localrent')?'localrent':h.includes('gettransfer')?'gettransfer':h.includes('tiqets')?'tiqets':h.includes('booking')?'booking':h.includes('agoda')?'agoda':h.includes('klook')?'klook':h.includes('kiwitaxi')?'kiwitaxi':h.includes('intui')?'intui':'travelpayouts';
+ const page=location.pathname;
+ const service=page.includes('car-rental')?'car_rental':page.includes('transfer')?'transfer':page.includes('activities')?'activity':'travel_service';
+ if(typeof gtag==='function')gtag('event','affiliate_outbound_click',{provider:provider,service:service,page_path:page,link_position:a.id||a.closest('section')?.id||'service_page'});
+},true);
+})();
+</script>
 </body>
 </html>
