@@ -1031,4 +1031,38 @@ document.addEventListener('click',function(e){
 },true);
 })();
 </script>
+<script id="affiliate-outbound-tracking-v1">
+(function(){
+  const providers=[
+    ['aviasales','aviasales.'],['expedia','expedia.'],['localrent','localrent.'],
+    ['gettransfer','gettransfer.'],['tiqets','tiqets.'],['travelpayouts','tpx.li'],
+    ['booking','booking.'],['agoda','agoda.'],['klook','klook.']
+  ];
+  function providerFor(host){
+    const match=providers.find(([,needle])=>host.includes(needle));
+    return match?match[0]:'partner';
+  }
+  function serviceFor(link){
+    const text=((link.dataset.service||'')+' '+(link.textContent||'')+' '+link.href).toLowerCase();
+    if(/hotel|فندق|إقامة/.test(text))return 'hotel';
+    if(/car|سيار/.test(text))return 'car_rental';
+    if(/transfer|نقل|توصيل/.test(text))return 'transfer';
+    if(/activit|ticket|museum|نشاط|تذكرة|متحف/.test(text))return 'activity';
+    return 'flight';
+  }
+  document.addEventListener('click',function(event){
+    const link=event.target.closest&&event.target.closest('a[href]');
+    if(!link)return;
+    let url;try{url=new URL(link.href,location.href);}catch(e){return;}
+    const provider=providerFor(url.hostname.toLowerCase());
+    if(provider==='partner'&&!link.matches('[rel~="sponsored"],[data-affiliate],[href*="affiliate"]'))return;
+    window.yallaTrack&&window.yallaTrack('affiliate_outbound_click',{
+      provider:provider,
+      service:serviceFor(link),
+      page_path:location.pathname,
+      link_position:link.id||link.dataset.source||link.closest('section')?.id||'page'
+    });
+  },true);
+})();
+</script>
 </body></html>
