@@ -1056,12 +1056,17 @@ document.addEventListener('click',function(e){
     let url;try{url=new URL(link.href,location.href);}catch(e){return;}
     const provider=providerFor(url.hostname.toLowerCase());
     if(provider==='partner'&&!link.matches('[rel~="sponsored"],[data-affiliate],[href*="affiliate"]'))return;
-    window.yallaTrack&&window.yallaTrack('affiliate_outbound_click',{
+    const service=serviceFor(link);
+    const trackingData={
       provider:provider,
-      service:serviceFor(link),
+      service:service,
       page_path:location.pathname,
       link_position:link.id||link.dataset.source||link.closest('section')?.id||'page'
-    });
+    };
+    window.yallaTrack&&window.yallaTrack('affiliate_outbound_click',trackingData);
+    if(service==='hotel'){
+      window.yallaTrack&&window.yallaTrack('hotel_affiliate_click',trackingData);
+    }
   },true);
 })();
 </script>
