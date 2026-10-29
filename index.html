@@ -992,16 +992,6 @@ const region=document.getElementById('hotelResults');if(region)region.setAttribu
 labels();new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 })();
 </script>
-<script id="hotel-fast-navigation-v5">
-(function(){
-const links=document.querySelectorAll('a[href*="expedia.com/affiliate/XM8ZHrN"]');
-links.forEach(link=>{
-  link.addEventListener('click',()=>{
-    window.yallaTrack&&window.yallaTrack('hotel_affiliate_click',{source:'hotel_nav',provider:'expedia',affiliate:true});
-  },{passive:true});
-});
-})();
-</script>
 <script id="front-travel-autoplay">
 (function(){
 const track=document.getElementById('frontTravelTrack'),button=document.getElementById('frontTravelPause');
