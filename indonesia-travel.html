@@ -22,7 +22,7 @@
 <section class="card"><h2>اختر مطار الوصول المناسب</h2>
 <ul><li><strong>جاكرتا سوكارنو هاتا (CGK):</strong> مناسب لزيارة العاصمة والربط مع وجهات داخلية.</li><li><strong>بالي دينباسار (DPS):</strong> مناسب عندما يكون معظم البرنامج في بالي والمناطق القريبة.</li></ul>
 <p>عند فصل التذكرة الدولية عن الداخلية، اترك وقتًا كافيًا لاستلام الأمتعة وإعادة تسليمها وتحقق من شروط كل ناقل.</p>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن رحلات إندونيسيا</a></section>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="indonesia-guide">✈️ قارن رحلات إندونيسيا</a></section>
 <section class="card"><h2>قارن السعر الحقيقي</h2><ul><li>استخدم التواريخ وعدد المسافرين نفسيهما.</li><li>راجع الأمتعة المشمولة ومدة التوقف.</li><li>أضف تكلفة الرحلة الداخلية أو العبّارة والنقل إلى الفندق.</li><li>تحقق من الضرائب والخدمات والمبلغ النهائي لدى المزود.</li></ul>
 <div class="links"><a href="cheap-flights.html">تذاكر طيران رخيصة</a><a href="bali-travel.html">دليل بالي</a><a href="destinations.html">كل الوجهات</a></div></section>
 <section class="card"><h2>الإقامة والتنقل</h2><p>اختر منطقة الإقامة بحسب خطة الرحلة ووقت الوصول. في الجزر، قارن زمن الطريق من المطار ولا تعتمد على المسافة وحدها، ثم راجع سياسة الوقود والتأمين والوديعة قبل استئجار سيارة.</p>
@@ -31,4 +31,16 @@
 <section class="card"><h2>قبل السفر</h2><p>تحقق من متطلبات الجواز والدخول والتأشيرة وأي اشتراطات صحية من الجهات الرسمية قبل شراء تذكرة غير قابلة للاسترداد، لأن المتطلبات قد تتغير.</p></section>
 <p class="note"><strong>تنبيه:</strong> النقر أو الانتقال إلى مزود السفر لا يعني إتمام حجز. الحجز المؤكد هو ما يصدر له تأكيد من المزود بعد الدفع. قد نحصل على عمولة من بعض الحجوزات المؤهلة دون تكلفة إضافية من جانب يلا رحلة.</p>
 <section><h2>أسئلة شائعة</h2><h3>هل أبدأ الرحلة من جاكرتا أم بالي؟</h3><p>اختر مدينة الوصول بحسب برنامج الرحلة؛ جاكرتا مناسبة للأعمال والربط مع مدن أخرى، وبالي مناسبة إذا كان معظم البرنامج في الجزيرة.</p><h3>ما الذي أراجعه قبل حجز رحلة إندونيسيا؟</h3><p>راجع رمز المطار والأمتعة ومدة التوقف والرحلة الداخلية وسياسة التغيير والسعر النهائي عند مزود الحجز.</p></section>
-</main></body></html>
+</main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_placement:link.dataset.affiliatePlacement,
+      destination_url:link.href
+    });
+  });
+});
+</script>
+</body></html>
