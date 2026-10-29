@@ -29,15 +29,28 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <li>راجع الأمتعة المشمولة ومدة التوقف ومطار الربط.</li>
 <li>تحقق من وقت الوصول والمسافة إلى منطقة الإقامة.</li>
 <li>قارن الضرائب والخدمات والسعر النهائي لدى المزود.</li>
-</ul><a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران بوكيت</a></section>
+</ul><a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-product="flights" data-affiliate-placement="phuket-flight-cta">✈️ قارن طيران بوكيت</a></section>
 <section class="card"><h2>اختيار منطقة الإقامة</h2><ul>
 <li><strong>باتونغ:</strong> خدمات وحركة أكثر؛ راجع الضوضاء والمسافة الفعلية من الشاطئ.</li>
 <li><strong>كاتا:</strong> خيار شاطئي مناسب لمن يفضل برنامجًا أهدأ نسبيًا.</li>
 <li><strong>كارون:</strong> شاطئ طويل وخيارات متنوعة؛ قارن قرب الفندق من الخدمات.</li>
 </ul><div class="links"><a href="thailand-travel.html">دليل تايلاند</a><a href="bangkok-travel.html">دليل بانكوك</a><a href="cheap-flights.html">تذاكر طيران رخيصة</a><a href="destinations.html">كل الوجهات</a></div></section>
-<section class="card"><h2>النقل والأنشطة</h2><p>رتب النقل بعد تثبيت الفندق، وتأكد من نقطة الاستلام وسياسة الإلغاء. عند حجز جولة بحرية أو نشاط خارجي، راجع نقطة الانطلاق وما إذا كان النقل والتذاكر مشمولين.</p><a class="btn" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener">استكشف أنشطة بوكيت</a><div class="links"><a href="airport-transfer.html">توصيل المطار</a><a href="transfers.html">خيارات النقل</a><a href="car-rental.html">تأجير السيارات</a><a href="activities.html">الأنشطة</a></div></section>
+<section class="card"><h2>النقل والأنشطة</h2><p>رتب النقل بعد تثبيت الفندق، وتأكد من نقطة الاستلام وسياسة الإلغاء. عند حجز جولة بحرية أو نشاط خارجي، راجع نقطة الانطلاق وما إذا كان النقل والتذاكر مشمولين.</p><a class="btn" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener" data-affiliate-partner="Klook" data-affiliate-product="activities" data-affiliate-placement="phuket-activities-cta">استكشف أنشطة بوكيت</a><div class="links"><a href="airport-transfer.html">توصيل المطار</a><a href="transfers.html">خيارات النقل</a><a href="car-rental.html">تأجير السيارات</a><a href="activities.html">الأنشطة</a></div></section>
 <section class="card"><h2>من مطارات السعودية</h2><div class="links"><a href="flights-from-dammam.html">رحلات من الدمام</a><a href="flights-from-riyadh.html">رحلات من الرياض</a><a href="flights-from-jeddah.html">رحلات من جدة</a></div></section>
 <section class="card"><h2>قبل السفر</h2><p>تحقق من متطلبات الجواز والدخول والتأشيرة وأي اشتراطات صحية عبر الجهات الرسمية قبل شراء تذكرة غير قابلة للاسترداد، لأن المتطلبات قد تتغير.</p></section>
 <p class="note"><strong>تنبيه:</strong> النقر أو الانتقال إلى مزود السفر لا يعني إتمام حجز. الحجز المؤكد هو ما يصدر له تأكيد من المزود بعد الدفع. قد نحصل على عمولة من بعض الحجوزات المؤهلة دون تكلفة إضافية عليك.</p>
 <section class="card"><h2>أسئلة شائعة</h2><h3>ما مطار بوكيت الرئيسي؟</h3><p>مطار بوكيت الدولي رمزه HKT. تحقق من الرمز ووقت الوصول وتكلفة النقل قبل الحجز.</p><h3>كيف أختار منطقة الإقامة في بوكيت؟</h3><p>اختر المنطقة حسب برنامجك؛ باتونغ أكثر حركة، بينما كاتا وكارون خيارات شاطئية أهدأ نسبيًا. قارن الموقع والسعر النهائي وزمن النقل.</p></section>
-</main></body></html>
+</main><script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_product:link.dataset.affiliateProduct,
+      link_url:link.href,
+      link_text:(link.textContent||'').trim(),
+      page_placement:link.dataset.affiliatePlacement
+    });
+  });
+});
+</script>
+</body></html>
