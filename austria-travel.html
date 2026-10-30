@@ -27,7 +27,7 @@ body{font-family:Arial,sans-serif;background:#f5f8f7;color:#17352d;margin:0;line
 <section class="hero">
 <h1>السفر إلى النمسا من السعودية</h1>
 <p>ابدأ من مطار فيينا الدولي <strong>VIE</strong>، ثم رتّب رحلتك بين فيينا وسالزبورغ وإنسبروك. قارن السعر النهائي والأمتعة ومدة التوقف قبل اختيار الرحلة.</p>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">قارن رحلات الطيران</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">قارن رحلات الطيران</a>
 <a class="btn" href="activities.html">استكشف الأنشطة</a>
 </section>
 <section class="card">
@@ -54,7 +54,7 @@ body{font-family:Arial,sans-serif;background:#f5f8f7;color:#17352d;margin:0;line
 <section class="card">
 <h2>أنشطة ومعالم</h2>
 <p>اختر المعالم بعد تثبيت خط السير حتى لا تتعارض المواعيد مع التنقل بين المدن. راجع <a href="museum-tickets.html">تذاكر المتاحف</a> و<a href="activities.html">الأنشطة السياحية</a>.</p>
-<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">ابحث عن أنشطة لدى المزود</a>
+<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">ابحث عن أنشطة لدى المزود</a>
 </section>
 <section class="card">
 <h2>وجهات قريبة تجمعها في رحلة واحدة</h2>
@@ -68,5 +68,17 @@ body{font-family:Arial,sans-serif;background:#f5f8f7;color:#17352d;margin:0;line
 </section>
 <p class="note">قد نحصل على عمولة من بعض الحجوزات المؤهلة عبر روابط الشركاء دون تكلفة إضافية عليك. الضغط على الرابط وحده لا يثبت حجزًا أو عمولة.</p>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_placement:link.dataset.affiliatePlacement,
+      destination:'Austria',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
