@@ -35,7 +35,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <li>احسب الأمتعة واختيار المقعد ورسوم التغيير ضمن التكلفة.</li>
 <li>تحقق من السعر والتوفر النهائيين لدى مزود السفر.</li>
 </ul>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران برشلونة</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">✈️ قارن طيران برشلونة</a>
 </section>
 
 <section class="card">
@@ -68,7 +68,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <section class="card">
 <h2>المعالم والأنشطة</h2>
 <p>وزع المعالم حسب المنطقة لتقليل وقت التنقل، واحجز المواعيد المطلوبة فقط بعد مراجعة وقت الدخول وسياسة الإلغاء لدى المزود.</p>
-<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">🎟️ استكشف تذاكر برشلونة</a>
+<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">🎟️ استكشف تذاكر برشلونة</a>
 <div class="links"><a href="activities.html">كل الأنشطة</a><a href="spain-travel.html">دليل إسبانيا</a><a href="malaga-travel.html">دليل مالقة</a><a href="destinations.html">وجهات أخرى</a></div>
 </section>
 
@@ -92,5 +92,17 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <p>إيكسامبل مركزية، والحي القوطي قريب من المدينة القديمة، وغراسيا أهدأ نسبيًا. قارن الموقع والضوضاء وقرب النقل قبل الحجز.</p>
 </section>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      partner:link.dataset.affiliatePartner,
+      placement:link.dataset.affiliatePlacement,
+      destination:'Barcelona',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
