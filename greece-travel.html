@@ -20,7 +20,7 @@
 <body><main class="wrap">
   <nav class="links"><a href="index.html">الرئيسية</a> · <a href="destinations.html">الوجهات</a> · <a href="athens-travel.html">أثينا</a></nav>
   <h1>السفر إلى اليونان من السعودية</h1>
-  <section class="card"><p>ابدأ عبر مطار أثينا <strong>ATH</strong> أو مطار سالونيك <strong>SKG</strong>، ثم وزّع أيامك بين المدن والجزر. قارن السعر النهائي والأمتعة ومدة التوقف، ولا تثبت العبّارة قبل مراجعة وقت الوصول والميناء.</p><a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">قارن رحلات اليونان</a><a class="btn" href="activities.html">استكشف الأنشطة</a></section>
+  <section class="card"><p>ابدأ عبر مطار أثينا <strong>ATH</strong> أو مطار سالونيك <strong>SKG</strong>، ثم وزّع أيامك بين المدن والجزر. قارن السعر النهائي والأمتعة ومدة التوقف، ولا تثبت العبّارة قبل مراجعة وقت الوصول والميناء.</p><a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">قارن رحلات اليونان</a><a class="btn" href="activities.html">استكشف الأنشطة</a></section>
 
   <h2>مطارات أثينا وسالونيك</h2>
   <div class="grid">
@@ -45,10 +45,22 @@
     <section class="card"><h3>من الدمام</h3><p>قارن عبر <a href="flights-from-dammam.html">رحلات الدمام</a> السعر النهائي ومدة التوقف.</p></section>
   </div>
 
-  <section class="card"><h2>الآثار والمتاحف والأنشطة</h2><p>احجز المواقع ذات المواعيد بعد تثبيت أيام الرحلة، وراجع <a href="museum-tickets.html">تذاكر المتاحف</a> و<a href="activities.html">الأنشطة السياحية</a>. تحقق من نقطة التجمع وسياسة الإلغاء.</p><a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">استكشف التذاكر لدى المزود</a></section>
+  <section class="card"><h2>الآثار والمتاحف والأنشطة</h2><p>احجز المواقع ذات المواعيد بعد تثبيت أيام الرحلة، وراجع <a href="museum-tickets.html">تذاكر المتاحف</a> و<a href="activities.html">الأنشطة السياحية</a>. تحقق من نقطة التجمع وسياسة الإلغاء.</p><a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">استكشف التذاكر لدى المزود</a></section>
 
   <section class="card"><h2>وجهات قريبة</h2><p>يمكن ربط اليونان مع <a href="italy-travel.html">إيطاليا</a> أو <a href="istanbul-travel.html">تركيا</a> عندما يناسب المسار. قارن زمن الطيران والانتقال ولا تجمع جزرًا ومدنًا كثيرة في أيام قليلة.</p></section>
 
   <section class="card"><h2>أسئلة سريعة</h2><h3>ما المطار الرئيسي؟</h3><p>مطار أثينا ATH هو البوابة الرئيسية للعاصمة وكثير من رحلات الربط.</p><h3>هل أختار الطيران أم العبّارة؟</h3><p>يعتمد على الجزيرة والموسم والمدة والأمتعة؛ قارن وقت الرحلة كاملًا.</p><h3>هل الرابط يثبت حجزًا؟</h3><p>لا. السعر والتوفر والحجز والعمولة لا تتأكد إلا لدى مزود الخدمة.</p></section>
   <p class="note">قد نحصل على عمولة من بعض الحجوزات المؤهلة عبر روابط الشركاء دون تكلفة إضافية عليك. الضغط على الرابط وحده ليس حجزًا أو عمولة مؤكدة.</p>
-</main></body></html>
+</main><script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_placement:link.dataset.affiliatePlacement,
+      destination:'Greece',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
+</body></html>
