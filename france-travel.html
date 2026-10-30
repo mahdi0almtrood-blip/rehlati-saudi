@@ -26,7 +26,7 @@
   <h1>السفر إلى فرنسا من السعودية</h1>
   <section class="card">
     <p>خطط لرحلتك عبر مطارات باريس <strong>CDG</strong> و<strong>ORY</strong> أو مطار نيس <strong>NCE</strong>. قارن السعر النهائي والأمتعة ومدة التوقف والمطار قبل اختيار الرحلة، ثم رتّب القطار أو النقل إلى مدينتك.</p>
-    <a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">قارن رحلات فرنسا</a>
+    <a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">قارن رحلات فرنسا</a>
     <a class="btn" href="activities.html">استكشف الأنشطة</a>
   </section>
 
@@ -59,7 +59,7 @@
   <section class="card">
     <h2>المتاحف والأنشطة</h2>
     <p>احجز المواعيد المطلوبة بعد تثبيت أيام الرحلة. راجع <a href="museum-tickets.html">تذاكر المتاحف</a> و<a href="activities.html">الأنشطة السياحية</a>، وتأكد من اسم المزود وسياسة الإلغاء.</p>
-    <a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">استكشف التذاكر لدى المزود</a>
+    <a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">استكشف التذاكر لدى المزود</a>
   </section>
 
   <section class="card">
@@ -75,5 +75,17 @@
   </section>
   <p class="note">قد نحصل على عمولة من بعض الحجوزات المؤهلة عبر روابط الشركاء دون تكلفة إضافية عليك. الضغط على الرابط وحده ليس حجزًا أو عمولة مؤكدة.</p>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_placement:link.dataset.affiliatePlacement,
+      destination:'France',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
