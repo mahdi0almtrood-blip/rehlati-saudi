@@ -35,7 +35,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <li>قارن مدة التوقف وشروط التغيير والاسترداد.</li>
 <li>احسب النقل من المطار والرسوم ضمن التكلفة النهائية.</li>
 </ul>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران كوريا الجنوبية</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">✈️ قارن طيران كوريا الجنوبية</a>
 </section>
 
 <section class="card">
@@ -53,7 +53,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <section class="card">
 <h2>النقل والأنشطة</h2>
 <p>قارن القطار والحافلة والنقل الخاص من المطار بحسب وقت الوصول وعدد المسافرين وموقع الإقامة. رتّب الأنشطة حسب المنطقة لتقليل التنقل، وتحقق من اللغة وسياسة الإلغاء وموعد الدخول لدى المزود.</p>
-<a class="btn" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener">🎟️ استكشف أنشطة كوريا الجنوبية</a>
+<a class="btn" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener" data-affiliate-partner="Klook" data-affiliate-placement="activities">🎟️ استكشف أنشطة كوريا الجنوبية</a>
 <div class="links"><a href="activities.html">الأنشطة</a><a href="airport-transfer.html">توصيل المطار</a></div>
 </section>
 
@@ -76,5 +76,17 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <p>سيول مناسبة للمعالم والأسواق والمتاحف، وبوسان للشواطئ والأسواق الساحلية. يمكن الجمع بينهما إذا سمحت مدة الرحلة.</p>
 </section>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      partner:link.dataset.affiliatePartner,
+      placement:link.dataset.affiliatePlacement,
+      destination:'South Korea',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
