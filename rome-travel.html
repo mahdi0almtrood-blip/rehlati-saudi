@@ -35,7 +35,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <li>تأكد من مطار الوصول؛ وقت النقل ورسومه قد يغيران الخيار الأرخص.</li>
 <li>تحقق من السعر والشروط النهائية لدى مزود السفر قبل الدفع.</li>
 </ul>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران روما</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">✈️ قارن طيران روما</a>
 </section>
 
 <section class="card">
@@ -62,7 +62,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <h2>التنقل والمعالم</h2>
 <p>رتب زياراتك حسب المنطقة لتقليل الوقت. تحقق من تذاكر المترو والحافلات لدى الجهة الرسمية، ومن مواعيد الدخول وسياسة الإلغاء لدى مزود تذاكر المعالم.</p>
 <p>إذا واصلت إلى مدينة إيطالية أخرى، قارن القطار من محطة تيرميني مع الطيران الداخلي بعد احتساب وقت الوصول إلى المطار.</p>
-<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">🎟️ استكشف تذاكر معالم روما</a>
+<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">🎟️ استكشف تذاكر معالم روما</a>
 <div class="links"><a href="activities.html">كل الأنشطة</a><a href="cheap-flights.html">تذاكر طيران رخيصة</a><a href="destinations.html">وجهات أخرى</a></div>
 </section>
 
@@ -86,5 +86,17 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <p>وسط روما مناسب للمشي إلى معالم كثيرة، وبراتي قريب من الفاتيكان، وتراستيفيري له طابع مختلف. قارن السعر ووقت النقل وخطة زيارتك.</p>
 </section>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      partner:link.dataset.affiliatePartner,
+      placement:link.dataset.affiliatePlacement,
+      destination:'Rome',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
