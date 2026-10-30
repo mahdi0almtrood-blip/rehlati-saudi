@@ -26,7 +26,7 @@
 <li>تحقق من مدينة ومطار الوصول والمسافة إلى الفندق.</li>
 <li>راجع مدة التوقف ومتطلبات العبور وشروط التغيير.</li>
 <li>إذا زرت أكثر من مدينة، قارن تذكرة متعددة المدن مع الرحلات الداخلية.</li>
-</ul><a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران أمريكا</a></section>
+</ul><a class="btn" data-affiliate-partner="aviasales" data-affiliate-placement="usa_flights" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران أمريكا</a></section>
 
 <section class="card"><h2>نيويورك: JFK أم EWR؟</h2>
 <p>مطار JFK يقع في كوينز ويخدم عددًا كبيرًا من الرحلات الدولية. مطار EWR يقع في نيوجيرسي وقد يكون مناسبًا لمانهاتن أو نيوجيرسي بحسب وقت الوصول وموقع الإقامة. قارن زمن النقل ورسومه قبل شراء التذكرة.</p>
@@ -42,7 +42,7 @@
 
 <section class="card"><h2>الأنشطة والمعالم</h2>
 <p>رتب الأنشطة حسب المدينة والمنطقة، وتحقق من موعد الدخول وسياسة الإلغاء والضرائب لدى المزود. لا تعتمد على مسافة الخريطة وحدها؛ احسب زمن التنقل الفعلي.</p>
-<a class="btn" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener">🎟️ استكشف الأنشطة</a></section>
+<a class="btn" data-affiliate-partner="klook" data-affiliate-placement="usa_activities" href="https://klook.tpx.li/7jFmO4s5" target="_blank" rel="sponsored noopener">🎟️ استكشف الأنشطة</a></section>
 
 <section class="card"><h2>رحلات أمريكا من السعودية</h2>
 <div class="links"><a href="flights-from-dammam.html">رحلات من الدمام</a><a href="flights-from-riyadh.html">رحلات من الرياض</a><a href="flights-from-jeddah.html">رحلات من جدة</a></div></section>
@@ -54,4 +54,17 @@
 <section class="card"><h2>أسئلة شائعة</h2>
 <h3>أي مطار أختار لنيويورك: JFK أم EWR؟</h3><p>يعتمد على شركة الطيران وموقع الفندق والتكلفة النهائية للنقل. احسب الزمن والرسوم قبل الحجز.</p>
 <h3>هل يمكن جمع نيويورك ولوس أنجلوس؟</h3><p>نعم، لكن المسافة كبيرة وتحتاج رحلة داخلية ووقتًا إضافيًا للمطارات؛ قارن مسار مدينتين مع خيارات الذهاب والعودة.</p></section>
-</main></body></html>
+</main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      partner:link.dataset.affiliatePartner,
+      placement:link.dataset.affiliatePlacement,
+      destination:'USA',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
+</body></html>
