@@ -27,7 +27,7 @@ body{font-family:Arial,sans-serif;background:#f5f8f7;color:#17352d;margin:0;line
 <section class="hero">
 <h1>السفر إلى فيينا من السعودية</h1>
 <p>خطط للوصول عبر مطار فيينا الدولي <strong>VIE</strong>، واختر منطقة السكن بحسب قربها من المعالم ومحطات المترو. قارن السعر النهائي والأمتعة ومدة التوقف قبل حجز الطيران.</p>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">قارن رحلات فيينا</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">قارن رحلات فيينا</a>
 <a class="btn" href="museum-tickets.html">تذاكر المتاحف</a>
 </section>
 <section class="card">
@@ -55,7 +55,7 @@ body{font-family:Arial,sans-serif;background:#f5f8f7;color:#17352d;margin:0;line
 <div><h3>وسط فيينا</h3><p>اجمع الكاتدرائية والشوارع التاريخية والمقاهي في مسار مشي واحد.</p></div>
 </div>
 <p>راجع <a href="activities.html">الأنشطة السياحية</a> و<a href="museum-tickets.html">تذاكر المتاحف</a> بعد تثبيت أيام الرحلة.</p>
-<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">استكشف تذاكر لدى المزود</a>
+<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">استكشف تذاكر لدى المزود</a>
 </section>
 <section class="card">
 <h2>الطيران من السعودية</h2>
@@ -77,5 +77,17 @@ body{font-family:Arial,sans-serif;background:#f5f8f7;color:#17352d;margin:0;line
 </section>
 <p class="note">قد نحصل على عمولة من بعض الحجوزات المؤهلة عبر روابط الشركاء دون تكلفة إضافية عليك. الضغط على الرابط وحده ليس حجزًا أو عمولة مؤكدة.</p>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_placement:link.dataset.affiliatePlacement,
+      destination:'Vienna',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
