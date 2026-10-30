@@ -35,7 +35,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <li>قارن الوصول إلى مالقة مباشرة مع السفر عبر مدينة إسبانية أخرى عندما يكون عمليًا.</li>
 <li>راجع السعر وشروط التغيير والإلغاء لدى المزود قبل الدفع.</li>
 </ul>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران مالقة</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flights">✈️ قارن طيران مالقة</a>
 </section>
 
 <section class="card">
@@ -62,7 +62,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <section class="card">
 <h2>الأنشطة والرحلات اليومية</h2>
 <p>رتب أنشطة المدينة أولًا، ثم أضف الرحلات الخارجية بحسب الوقت والمسافة. تحقق من نقطة التجمع واللغة وسياسة الإلغاء والرسوم لدى المزود.</p>
-<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">🎟️ استكشف تذاكر وأنشطة مالقة</a>
+<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener" data-affiliate-partner="Tiqets" data-affiliate-placement="activities">🎟️ استكشف تذاكر وأنشطة مالقة</a>
 <div class="links"><a href="activities.html">كل الأنشطة</a><a href="spain-travel.html">دليل إسبانيا</a><a href="barcelona-travel.html">دليل برشلونة</a><a href="destinations.html">وجهات أخرى</a></div>
 </section>
 
@@ -86,5 +86,17 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <p>داخل الوسط قد يكفي المشي والنقل العام. تفيد السيارة عند زيارة مناطق متفرقة في كوستا ديل سول بعد احتساب المواقف والوقود.</p>
 </section>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      affiliate_partner:link.dataset.affiliatePartner,
+      affiliate_placement:link.dataset.affiliatePlacement,
+      destination:'Malaga',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
