@@ -35,7 +35,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <li>تأكد من مطار الوصول لأن تكلفة النقل إلى الفندق قد تغيّر الخيار الأرخص.</li>
 <li>راجع السعر والشروط النهائية لدى مزود السفر قبل الدفع.</li>
 </ul>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران نيويورك</a>
+<a class="btn" data-affiliate-partner="aviasales" data-affiliate-placement="new_york_flights" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">✈️ قارن طيران نيويورك</a>
 </section>
 
 <section class="card">
@@ -61,7 +61,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <section class="card">
 <h2>المعالم والتذاكر</h2>
 <p>رتب المعالم حسب المنطقة واليوم، وتحقق من وقت الدخول وسياسة الإلغاء والرسوم لدى المزود. الحجز المبكر قد يفيد في المعالم ذات المواعيد المحددة، لكنه لا يغني عن مراجعة الشروط.</p>
-<a class="btn" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">🎟️ استكشف تذاكر المعالم</a>
+<a class="btn" data-affiliate-partner="tiqets" data-affiliate-placement="new_york_attractions" href="https://tiqets.tpx.li/95cmhjdm" target="_blank" rel="sponsored noopener">🎟️ استكشف تذاكر المعالم</a>
 <div class="links"><a href="activities.html">كل الأنشطة</a><a href="destinations.html">وجهات أخرى</a><a href="cheap-flights.html">تذاكر طيران رخيصة</a></div>
 </section>
 
@@ -85,5 +85,17 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <p>مانهاتن أقرب إلى كثير من المعالم وقد تكون أعلى تكلفة. بروكلين أو كوينز قد توفر خيارات مختلفة؛ قارن الحي ووقت النقل والتكلفة الإجمالية.</p>
 </section>
 </main>
+<script>
+document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
+  link.addEventListener('click',function(){
+    gtag('event','affiliate_outbound_click',{
+      partner:link.dataset.affiliatePartner,
+      placement:link.dataset.affiliatePlacement,
+      destination:'New York',
+      page_path:location.pathname
+    });
+  });
+});
+</script>
 </body>
 </html>
