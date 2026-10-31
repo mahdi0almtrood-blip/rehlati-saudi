@@ -15,7 +15,7 @@
 <style>
 body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line-height:1.8}.wrap{max-width:900px;margin:auto;padding:32px}h1,h2,h3{color:#087052;line-height:1.35}.card{background:#fff;padding:22px;margin:18px 0;border-radius:16px;box-shadow:0 5px 20px #0001}.btn{display:inline-block;background:#087052;color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;margin:5px}.links a{display:inline-block;margin:5px 8px;color:#087052}.note{font-size:14px;color:#596c65;border-right:4px solid #d5a928;padding:10px 14px;background:#fffaf0}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:11px;border:1px solid #dfe8e4;text-align:right}th{background:#eaf5f1}@media(max-width:600px){.wrap{padding:20px}table{font-size:14px}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"السفر إلى سنغافورة من السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/singapore-travel.html","description":"دليل عملي لمطار شانغي والطيران والسكن والنقل والأنشطة للمسافرين من السعودية.","inLanguage":"ar-SA"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TravelGuide","name":"السفر إلى سنغافورة من السعودية","url":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/singapore-travel.html","description":"دليل عملي لمطار شانغي والطيران والسكن والنقل والأنشطة للمسافرين من السعودية.","inLanguage":"ar-SA"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"يلا رحلة السعودية","item":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/"},{"@type":"ListItem","position":2,"name":"الوجهات","item":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/destinations.html"},{"@type":"ListItem","position":3,"name":"سنغافورة","item":"https://mahdi0almtrood-blip.github.io/rehlati-saudi/singapore-travel.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ما المطار الرئيسي في سنغافورة؟","acceptedAnswer":{"@type":"Answer","text":"مطار شانغي الدولي ورمزه SIN هو المطار الرئيسي. قارن وسيلة النقل إلى السكن ووقت الوصول قبل الحجز."}},{"@type":"Question","name":"كيف أقارن رحلة سنغافورة من السعودية؟","acceptedAnswer":{"@type":"Answer","text":"قارن السعر النهائي والأمتعة ومدة التوقف ومطار المغادرة من الرياض أو جدة أو الدمام، ثم راجع شروط المزود قبل الدفع."}}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W964RHW1WY"></script>
@@ -56,6 +56,7 @@ body{font-family:Arial,sans-serif;background:#f7faf9;color:#17352d;margin:0;line
 <h3>مارينا باي ووسط المدينة</h3><p>موقع مركزي لعدد من المعالم، مع ضرورة مقارنة السعر وقرب محطة النقل.</p>
 <h3>أورشارد</h3><p>منطقة تسوق وخدمات؛ افحص موقع الفندق الفعلي والمسافة إلى MRT.</p>
 <h3>تشايناتاون وليتل إنديا</h3><p>قارن سهولة النقل والهدوء ومساحة الغرفة وسياسة الإلغاء قبل الاختيار.</p>
+<a class="btn" href="https://expedia.com/affiliate/XM8ZHrN?locale=ar-SA&currency=SAR" target="_blank" rel="sponsored noopener" data-affiliate-partner="Expedia" data-affiliate-placement="hotels">🏨 قارن فنادق سنغافورة</a>
 </section>
 
 <section class="card">
@@ -90,7 +91,9 @@ document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){
       affiliate_partner:link.dataset.affiliatePartner,
       affiliate_placement:link.dataset.affiliatePlacement,
       destination:'Singapore',
-      page_path:location.pathname
+      link_url:link.href,
+      page_path:location.pathname,
+      transport_type:'beacon'
     });
   });
 });
