@@ -71,8 +71,8 @@ a{color:#087052}
 <li><strong>اختر منطقة الفندق:</strong> اجعلها قريبة من أغلب الأماكن التي تنوي زيارتها لتقليل وقت التنقل.</li>
 <li><strong>تحقق من المتطلبات الرسمية:</strong> راجع صلاحية وثائق السفر ومتطلبات الدخول من الجهات الرسمية قبل الدفع، لأنها قد تتغير.</li>
 </ol>
-<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener">ابحث عن طيران</a>
-<a class="btn" href="https://www.klook.com/hotels/?aid=api%7C13694%7C1ebb6c3f0f9040c99bf86b72c-782002%7Cpid%7C782002&aff_pid=782002&aff_adid=1455969&utm_medium=affiliate-alwayson&utm_source=network&utm_campaign=13694&utm_term=782002" target="_blank" rel="sponsored noopener" onclick="gtag('event','hotel_search',{destination:'Egypt',provider:'klook',source:'egypt_guide'});gtag('event','hotel_booking_click',{destination:'Egypt',provider:'klook',source:'egypt_guide'});gtag('event','affiliate_click',{provider:'klook',placement:'egypt_guide'})">عرض فنادق مصر لدى Klook</a>
+<a class="btn" href="https://aviasales.tpx.li/4RrQgTGf" target="_blank" rel="sponsored noopener" data-affiliate-partner="Aviasales" data-affiliate-placement="flight_search">ابحث عن طيران</a>
+<a class="btn" href="https://www.klook.com/hotels/?aid=api%7C13694%7C1ebb6c3f0f9040c99bf86b72c-782002%7Cpid%7C782002&aff_pid=782002&aff_adid=1455969&utm_medium=affiliate-alwayson&utm_source=network&utm_campaign=13694&utm_term=782002" target="_blank" rel="sponsored noopener" data-affiliate-partner="Klook" data-affiliate-placement="hotel_search">عرض فنادق مصر لدى Klook</a>
 </section>
 
 <section class="card">
@@ -113,5 +113,6 @@ a{color:#087052}
 
 <p class="note">قد نحصل على عمولة من بعض الحجوزات المؤهلة عبر روابط الشركاء دون تكلفة إضافية عليك. النقر على رابط فندق أو طيران لا يعني إتمام حجز.</p>
 </main>
+<script>document.querySelectorAll('a[data-affiliate-partner]').forEach(function(link){link.addEventListener('click',function(){gtag('event','affiliate_outbound_click',{affiliate_partner:link.dataset.affiliatePartner,affiliate_placement:link.dataset.affiliatePlacement,destination:'Egypt',page_path:location.pathname});});});</script>
 </body>
 </html>
